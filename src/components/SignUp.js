@@ -2,7 +2,7 @@ import React from 'react';
 import { login } from '../store';
 import { connect } from "react-redux";
 
-class Login extends React.Component {
+class SignUp extends React.Component {
 
   state = {
     user: {
@@ -13,7 +13,7 @@ class Login extends React.Component {
 
   handSubmit = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/api/v1/auth", {
+    fetch("http://localhost:3000/api/v1/users", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -37,7 +37,7 @@ class Login extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <h1>Login</h1>
+        <h1>Sign Up</h1>
       <form onSubmit={(e) => this.handSubmit(e)}>
         <h4>Email:</h4>
         <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
@@ -47,11 +47,13 @@ class Login extends React.Component {
         </input>
         <button type="submit">Log In</button>
       </form>
-    </React.Fragment>
+      </React.Fragment>
     )
   }
 }
+/////////// Not Sure about what to dispatch after a singup ///////////
 
+//
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (user) => {
@@ -60,4 +62,5 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+
+export default connect(null, mapDispatchToProps)(SignUp)
