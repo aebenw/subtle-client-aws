@@ -1,24 +1,36 @@
 import React from 'react';
-import { login } from '../actions/users'
+import { login } from '../store';
+import { connect } from "react-redux";
 
 class Login extends React.Component {
 
   state = {
-    email: '',
-    password: ''
+    user: {
+      email: '',
+      password: ''
+    }
   }
 
   handSubmit = (e) => {
     e.preventDefault()
-
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    }).then(console.log)
 
   }
 
   handleChange = (e) => {
     // debugger
     this.setState({
+      user: {
+      ...this.state.user,
       [e.target.name]: e.target.value
-    }, () => console.log(this.state))
+    }
+    })
   }
 
   render(){
