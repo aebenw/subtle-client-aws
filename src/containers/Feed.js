@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { fetchWithToken } from '../store/actions/users'
 import { token } from '../constants'
+import { withRouter } from 'react-router-dom'
 
 
 
@@ -10,11 +11,13 @@ class Feed extends React.Component {
 
 
   componentDidMount() {
-    if (token && !this.props.current) { this.props.fetchWithToken(token)
-    }
+    if ( !this.props.currentUser) { this.props.history.push('/')}
+
+
   }
 
   render(){
+    console.log("current user inside feed", this.props.currentUser)
     return (
       <h1>FEED</h1>
     )
@@ -32,4 +35,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Feed)
+const mapStateToProps = (state) => {
+  return {currentUser: state.users.currentUser}
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Feed))

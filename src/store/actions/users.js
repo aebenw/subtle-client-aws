@@ -6,7 +6,7 @@ const loginAction = (user) => ({ type: "LOGIN_USER", user})
 
 export function loginUser(user) {
   return (dispatch) => {
-    fetch(URL + "/auth", {
+    return fetch(URL + "/auth", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -27,7 +27,7 @@ export function loginUser(user) {
 
 export function createUser(user) {
   return (dispatch) => {
-    fetch(URL + "/users", {
+    return fetch(URL + "/users", {
       method: "POST",
       headers: {
         "Content-type": "application/json"
@@ -46,7 +46,8 @@ export function createUser(user) {
 
 export function fetchWithToken(token) {
   debugger
-  return (dispatch) => fetch(URL + "/current_user", {
+  return (dispatch) => {
+    return fetch(URL + "/current_user", {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -58,5 +59,6 @@ export function fetchWithToken(token) {
       else {
        dispatch(loginAction(user))
      }
-  })
+   })
+  }
 }

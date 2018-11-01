@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom'
 import Navbar from '../components/Navbar'
-import Home from './Home'
+import Welcome from './Welcome'
 import Feed from './Feed'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 
 
 import { token } from '../constants'
@@ -15,22 +16,24 @@ import { fetchWithToken } from '../store/actions/users'
 class App extends Component {
 
   componentDidMount(){
-    if (token && !this.props.current) { this.props.fetchWithToken(token)
+    if (token && !this.props.currentUser) {
+      debugger
+      this.props.fetchWithToken(token)
+      .then(() => this.props.history.push('/home'))
     }
   }
+
   render() {
-    // debugger
-    const { currentUser } = this.props
     return (
       <Fragment>
         <Fragment>
           <Navbar />
-          <Route exact path='/home' render={routerProps => <Home {...routerProps}/>} />
+          <Route exact path='/' render={routerProps => <Welcome {...routerProps}/>} />
           <Route exact path='/signup' render={routerProps => <SignUp {...routerProps}/>} />
           <Route exact path='/login' render={routerProps => <Login {...routerProps}/>} />
           <Route exact path='/home' render={routerProps => <Feed {...routerProps}/>} />
         </Fragment>
-        {currentUser ? <Feed /> : <Home />}
+
 
         </Fragment>
 
@@ -50,4 +53,7 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter (connect(mapStateToProps, mapDispatchToProps)(App));
+
+
+// {currentUser ? <Feed /> : <Home />}

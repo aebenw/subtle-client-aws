@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react'
 import SignUp from '../components/SignUp'
 import Login from '../components/Login'
 
-export default class Home extends Component {
+export default class Welcome extends Component {
 
 
   render(){

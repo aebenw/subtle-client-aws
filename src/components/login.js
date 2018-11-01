@@ -1,6 +1,7 @@
 import React from 'react';
 import { loginUser } from '../store';
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom'
 
 class Login extends React.Component {
 
@@ -14,6 +15,9 @@ class Login extends React.Component {
   handSubmit = (e) => {
     e.preventDefault()
     this.props.login(this.state)
+    .then(() => this.props.history.push('/home'))
+    // .then(r => this.props.history.push('/home'))
+
   }
 
   handleChange = (e) => {
@@ -52,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login)
+export default withRouter(connect(null, mapDispatchToProps)(Login))

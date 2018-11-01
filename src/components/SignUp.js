@@ -15,6 +15,7 @@ class SignUp extends React.Component {
   handSubmit = (e) => {
     e.preventDefault()
     this.props.createUser(this.state)
+    .then(() => this.props.history.push('/home'))
   }
 
   handleChange = (e) => {
