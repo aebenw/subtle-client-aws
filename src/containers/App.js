@@ -7,10 +7,16 @@ import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import { connect } from 'react-redux'
 
+
+import { token } from '../constants'
+import { fetchWithToken } from '../store/actions/users'
+
+
 class App extends Component {
 
   componentDidMount(){
-
+    if (token && !this.props.current) { this.props.fetchWithToken(token)
+    }
   }
   render() {
     // debugger
@@ -36,4 +42,12 @@ const mapStateToProps = (state) => {
   return {currentUser: state.users.currentUser}
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchWithToken: (token) => {
+      return dispatch(fetchWithToken(token))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

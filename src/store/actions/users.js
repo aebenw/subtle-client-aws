@@ -45,6 +45,7 @@ export function createUser(user) {
 }
 
 export function fetchWithToken(token) {
+  debugger
   return (dispatch) => fetch(URL + "/current_user", {
     headers: {
       "Content-Type": "application/json",
@@ -53,10 +54,9 @@ export function fetchWithToken(token) {
     }
   }).then(r => r.json())
     .then(user => {
-      debugger
       if(user.error) {dispatch(errorAction(user.error))}
       else {
-       dispatch(loginAction(user.user.user))
+       dispatch(loginAction(user))
      }
   })
 }

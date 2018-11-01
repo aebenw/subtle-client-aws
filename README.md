@@ -1,7 +1,9 @@
 TO DO
 
-AUTH/LOGIN/SIGNUP
+ROUTES
+~LOGOUT
 ~Catch errors when fetching
+~Reroute to home page when unauthorized
 
 
 

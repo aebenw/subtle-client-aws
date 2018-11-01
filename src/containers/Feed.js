@@ -10,8 +10,8 @@ class Feed extends React.Component {
 
 
   componentDidMount() {
-    console.log(token)
-    token ? this.props.fetchWithToken(token) : this.history.push('/home')
+    if (token && !this.props.current) { this.props.fetchWithToken(token)
+    }
   }
 
   render(){
