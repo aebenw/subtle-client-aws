@@ -4,6 +4,10 @@ import { URL } from '../../constants'
 const errorAction = (error) => ({type: "LOGIN_ERROR", error})
 const loginAction = (user) => ({ type: "LOGIN_USER", user})
 
+
+
+export const setHistory = (setHistory) => ({type: "SET_HISTORY", setHistory})
+
 export function loginUser(user) {
   return (dispatch) => {
     return fetch(URL + "/auth", {

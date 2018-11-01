@@ -16,11 +16,16 @@ import { fetchWithToken } from '../store/actions/users'
 class App extends Component {
 
   componentDidMount(){
-    if (token && !this.props.currentUser) {
+    if (token && !this.props.currentUser && this.props.setHistory) {
+      debugger
+      this.props.fetchWithToken(token)
+      .then(() => this.props.history.push(this.props.history))
+    } else if (token && !this.props.currentUser) {
       debugger
       this.props.fetchWithToken(token)
       .then(() => this.props.history.push('/home'))
-    } else if (this.props.currentUser) {
+    }
+    else if (this.props.currentUser) {
       this.props.history.push('/home')
     } else {
       this.props.history.push('/')
@@ -46,7 +51,10 @@ class App extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {currentUser: state.users.currentUser}
+  return {
+    currentUser: state.users.currentUser,
+    setHistory: state.users.setHistory
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

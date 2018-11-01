@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { fetchWithToken } from '../store/actions/users'
 import { token } from '../constants'
 import { withRouter } from 'react-router-dom'
+import { setHistory } from '../store/actions/users'
 
 
 
@@ -11,8 +12,11 @@ class Feed extends React.Component {
 
 
   componentDidMount() {
-    debugger
-    if (token && !this.props.currentUser) { this.props.fetchWithToken(token)
+    if (token && !this.props.currentUser) {
+    this.props.setHistory(this.props.history.location.pathname)
+     // this.props.fetchWithToken(token)
+     this.props.history.push('/')
+
     }
     else if (!token && !this.props.currentUser) {
       debugger
@@ -35,6 +39,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchWithToken: (token) => {
       return dispatch(fetchWithToken(token))
+    },
+    setHistory: (history) => {
+      return dispatch(setHistory(history))
     }
   }
 }
