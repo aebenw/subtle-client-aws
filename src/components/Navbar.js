@@ -16,6 +16,12 @@ export default class Navbar extends Component {
         >
           Home
         </Menu.Item>
+        <Menu.Item
+          header as={NavLink} exact to="/home"
+          active={activeItem === 'editorials'}
+        >
+          Home
+        </Menu.Item>
       </Menu>
     )
   }

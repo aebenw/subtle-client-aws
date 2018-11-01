@@ -11,9 +11,13 @@ class Feed extends React.Component {
 
 
   componentDidMount() {
-    if ( !this.props.currentUser) { this.props.history.push('/')}
-
-
+    debugger
+    if (token && !this.props.currentUser) { this.props.fetchWithToken(token)
+    }
+    else if (!token && !this.props.currentUser) {
+      debugger
+      this.props.history.push('/')
+    }
   }
 
   render(){

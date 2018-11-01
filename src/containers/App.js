@@ -20,6 +20,10 @@ class App extends Component {
       debugger
       this.props.fetchWithToken(token)
       .then(() => this.props.history.push('/home'))
+    } else if (this.props.currentUser) {
+      this.props.history.push('/home')
+    } else {
+      this.props.history.push('/')
     }
   }
 
