@@ -1,5 +1,5 @@
 import React from 'react';
-import { login } from '../store';
+import { loginUser } from '../store';
 import { connect } from "react-redux";
 
 class Login extends React.Component {
@@ -13,15 +13,7 @@ class Login extends React.Component {
 
   handSubmit = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/api/v1/auth", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(this.state)
-    }).then(r => r.json())
-      .then(console.log)
-
+    this.props.login(this.state)
   }
 
   handleChange = (e) => {
@@ -55,7 +47,7 @@ class Login extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     login: (user) => {
-      dispatch(login(user))
+      return dispatch(loginUser(user))
     }
   }
 }

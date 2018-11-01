@@ -1,25 +1,39 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Home from './Home'
-import Login from '../components/login'
+import Feed from './Feed'
+import Login from '../components/Login'
 import SignUp from '../components/SignUp'
+import { connect } from 'react-redux'
 
 class App extends Component {
+
+  componentDidMount(){
+
+  }
   render() {
+    // debugger
+    const { currentUser } = this.props
     return (
       <Fragment>
-      <Router>
-      <Fragment>
-        <Navbar />
-        <Route exact path='/home' render={routerProps => <Home {...routerProps}/>} />
-      </Fragment>
-      </Router>
-        <SignUp />
-        <Login />
-      </Fragment>
+        <Fragment>
+          <Navbar />
+          <Route exact path='/home' render={routerProps => <Home {...routerProps}/>} />
+          <Route exact path='/signup' render={routerProps => <SignUp {...routerProps}/>} />
+          <Route exact path='/login' render={routerProps => <Login {...routerProps}/>} />
+          <Route exact path='/home' render={routerProps => <Feed {...routerProps}/>} />
+        </Fragment>
+        {currentUser ? <Feed /> : <Home />}
+
+        </Fragment>
+
     );
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {currentUser: state.users.currentUser}
+}
+
+export default connect(mapStateToProps)(App);

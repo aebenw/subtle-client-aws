@@ -1,6 +1,7 @@
 import React from 'react';
-import { login } from '../store';
+import { createUser } from '../store';
 import { connect } from "react-redux";
+
 
 class SignUp extends React.Component {
 
@@ -13,19 +14,10 @@ class SignUp extends React.Component {
 
   handSubmit = (e) => {
     e.preventDefault()
-    fetch("http://localhost:3000/api/v1/users", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(this.state)
-    }).then(r => r.json())
-      .then(console.log)
-
+    this.props.createUser(this.state)
   }
 
   handleChange = (e) => {
-    // debugger
     this.setState({
       user: {
       ...this.state.user,
@@ -56,8 +48,8 @@ class SignUp extends React.Component {
 //
 const mapDispatchToProps = (dispatch) => {
   return {
-    login: (user) => {
-      dispatch(login(user))
+    createUser: (user) => {
+      dispatch(createUser(user))
     }
   }
 }
