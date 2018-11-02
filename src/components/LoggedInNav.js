@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
 import { Menu, Input } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
-class Navbar extends Component {
+class LoggedInNav extends Component {
 
   state = {}
 
+
+
   delteJWT = () => {
-    debugger
     localStorage.removeItem("jwt")
+    this.props.logOutAction()
     return this.props.history.push('/')
   }
 
   render(){
     const { activeItem } = this.state
-
       return(
       <Menu>
         <Menu.Item
@@ -28,15 +30,24 @@ class Navbar extends Component {
           <Menu.Item>
             <Input icon='search' placeholder='Search...' />
           </Menu.Item>
-          <Menu.Item
-            name='logout'
-            active={activeItem === 'logout'}
-            onClick={() => this.delteJWT()}
-          />
+           <Menu.Item
+             name='logout'
+             active={activeItem === 'logout'}
+             onClick={() => this.delteJWT()}
+           />
         </Menu.Menu>
       </Menu>
     )
   }
 }
 
-export default withRouter(Navbar)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOutAction: () => dispatch({ type: "LOGOUT_USER"})
+  }
+}
+
+
+
+export default withRouter (connect(null, mapDispatchToProps)(LoggedInNav))

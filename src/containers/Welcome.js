@@ -8,9 +8,7 @@ export default class Welcome extends Component {
   render(){
     return (
       <Fragment>
-        <h1>home sweet home</h1>
-        <Login />
-        <SignUp />
+        <h1>Welcome to Subtle</h1>
       </Fragment>
     )
   }

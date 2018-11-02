@@ -1,6 +1,8 @@
 import React from 'react';
 import { createUser } from '../store';
 import { connect } from "react-redux";
+import { withRouter } from 'react-router-dom';
+
 
 
 class SignUp extends React.Component {
@@ -8,6 +10,7 @@ class SignUp extends React.Component {
   state = {
     user: {
       email: '',
+      name: '',
       password: ''
     }
   }
@@ -32,13 +35,17 @@ class SignUp extends React.Component {
       <React.Fragment>
         <h1>Sign Up</h1>
       <form onSubmit={(e) => this.handSubmit(e)}>
+        <h4>Name:</h4>
+        <input onChange={(e) => this.handleChange(e)} name="name" value={this.state.name} type="text">
+        </input>
         <h4>Email:</h4>
         <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
         </input>
         <h4>Password:</h4>
         <input onChange={(e) => this.handleChange(e)} name="password" value={this.state.password} type="password">
         </input>
-        <button type="submit">Log In</button>
+
+        <button type="submit">Sign Up</button>
       </form>
       </React.Fragment>
     )
@@ -50,10 +57,10 @@ class SignUp extends React.Component {
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: (user) => {
-      dispatch(createUser(user))
+      return dispatch(createUser(user))
     }
   }
 }
 
 
-export default connect(null, mapDispatchToProps)(SignUp)
+export default withRouter(connect(null, mapDispatchToProps)(SignUp))

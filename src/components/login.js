@@ -16,12 +16,9 @@ class Login extends React.Component {
     e.preventDefault()
     this.props.login(this.state)
     .then(() => this.props.history.push('/home'))
-    // .then(r => this.props.history.push('/home'))
-
   }
 
   handleChange = (e) => {
-    // debugger
     this.setState({
       user: {
       ...this.state.user,

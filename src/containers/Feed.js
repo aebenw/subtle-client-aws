@@ -1,6 +1,5 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { fetchWithToken } from '../store/actions/users'
 import { token } from '../constants'
 import { withRouter } from 'react-router-dom'
 import { setHistory } from '../store/actions/users'
@@ -12,22 +11,24 @@ class Feed extends React.Component {
 
 
   componentDidMount() {
-    if (token && !this.props.currentUser) {
-    this.props.setHistory(this.props.history.location.pathname)
-     // this.props.fetchWithToken(token)
-     this.props.history.push('/')
-
+    if (token && !this.props.currentUser.email) {
+      this.props.setHistory(this.props.history.location.pathname)
     }
-    else if (!token && !this.props.currentUser) {
-      debugger
+    else if (!token && !this.props.currentUser.email) {
       this.props.history.push('/')
     }
   }
 
+  shouldComponentUpdate(nextProps){
+    return this.props.currentUser === nextProps.currentUser ?  false :  true
+  }
+
+
   render(){
     console.log("current user inside feed", this.props.currentUser)
+    const { currentUser } = this.props
     return (
-      <h1>FEED</h1>
+      <h1>{currentUser.name}'s FEED</h1>
     )
   }
 
@@ -37,9 +38,6 @@ class Feed extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchWithToken: (token) => {
-      return dispatch(fetchWithToken(token))
-    },
     setHistory: (history) => {
       return dispatch(setHistory(history))
     }

@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom'
-import Navbar from '../components/Navbar'
+import LoggedOutNav from '../components/LoggedOutNav'
+import LoggedInNav from '../components/LoggedInNav'
 import Welcome from './Welcome'
 import Feed from './Feed'
 import Login from '../components/login'
 import SignUp from '../components/SignUp'
+import Profile from '../containers/Profile'
+import Event from '../containers/Event'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -16,16 +19,14 @@ import { fetchWithToken } from '../store/actions/users'
 class App extends Component {
 
   componentDidMount(){
-    if (token && !this.props.currentUser && this.props.setHistory) {
-      debugger
+    if (token && !this.props.currentUser.name && (this.props.history.location.pathname !== '/')) {
       this.props.fetchWithToken(token)
-      .then(() => this.props.history.push(this.props.history))
-    } else if (token && !this.props.currentUser) {
-      debugger
+      .then(() => this.props.history.push(this.props.history.location.pathname))
+    } else if (token && !this.props.currentUser.name ) {
       this.props.fetchWithToken(token)
       .then(() => this.props.history.push('/home'))
     }
-    else if (this.props.currentUser) {
+    else if (this.props.currentUser.email) {
       this.props.history.push('/home')
     } else {
       this.props.history.push('/')
@@ -33,14 +34,20 @@ class App extends Component {
   }
 
   render() {
+    const { currentUser } = this.props
     return (
       <Fragment>
         <Fragment>
-          <Navbar />
+          {currentUser.email ?
+            <LoggedInNav currentUser={currentUser}/>
+          : <LoggedOutNav />}
           <Route exact path='/' render={routerProps => <Welcome {...routerProps}/>} />
           <Route exact path='/signup' render={routerProps => <SignUp {...routerProps}/>} />
           <Route exact path='/login' render={routerProps => <Login {...routerProps}/>} />
           <Route exact path='/home' render={routerProps => <Feed {...routerProps}/>} />
+          {/* // TODO: MAKE IT SO "/profle" IS SOMETHING MORE PERSONAL */}
+          <Route exact path='/event' render={routerProps => <Event {...routerProps}/>} />
+          <Route exact path='/profile' render={routerProps => <Profile {...routerProps}/>} />
         </Fragment>
 
 
