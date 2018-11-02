@@ -46,7 +46,6 @@ class App extends Component {
           <Route exact path='/login' render={routerProps => <Login {...routerProps}/>} />
           <Route exact path='/home' render={routerProps => <Feed {...routerProps}/>} />
           {/* // TODO: MAKE IT SO "/profle" IS SOMETHING MORE PERSONAL */}
-          <Route exact path='/event' render={routerProps => <Event {...routerProps}/>} />
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps}/>} />
         </Fragment>
 

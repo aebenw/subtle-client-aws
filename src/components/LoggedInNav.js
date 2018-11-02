@@ -25,6 +25,9 @@ class LoggedInNav extends Component {
           <NavLink className="button" exact to="/home">
             Home
           </NavLink>
+          <NavLink className="button" exact to="/profile">
+            My Profile
+          </NavLink>
           <button className="button" onClick={() => this.delteJWT()}>
             Log Out
           </button>

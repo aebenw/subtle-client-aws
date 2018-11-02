@@ -8,7 +8,6 @@ class LoggedOutNav extends Component {
   state = {}
 
   render(){
-    const { activeItem } = this.state
       return(
         <header>
           <NavLink className="button" exact to="/">

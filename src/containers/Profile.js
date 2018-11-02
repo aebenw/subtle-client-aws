@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 import { token } from '../constants'
 import { setHistory } from '../store/actions/users'
+import ChannelContainer from './ChannelContainer'
 
 
-class Profile extends React.Component {
+class Profile extends Component {
 
   componentDidMount() {
     if (token && !this.props.currentUser.name) {
@@ -16,10 +17,21 @@ class Profile extends React.Component {
     }
   }
 
+
+
   render(){
     const { currentUser } = this.props
     return (
-      <h1>{currentUser.name}'s Profile</h1>
+      <Fragment>
+        {this.props.currentUser.name ?
+          <Fragment>
+          <h1>{currentUser.name}'s Profile</h1>
+          <ChannelContainer channels={currentUser.channels} />
+          </Fragment>
+      :
+      <div class="spinner"></div>
+    }
+    </Fragment>
     )
   }
 
