@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import SignUp from '../components/SignUp'
-import Login from '../components/Login'
+import Login from '../components/login'
 
 export default class Welcome extends Component {
 
