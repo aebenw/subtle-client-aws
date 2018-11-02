@@ -33,19 +33,20 @@ class SignUp extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <h1>Sign Up</h1>
       <form onSubmit={(e) => this.handSubmit(e)}>
-        <h4>Name:</h4>
+        <fieldset>
+        <label>Name:</label>
         <input onChange={(e) => this.handleChange(e)} name="name" value={this.state.name} type="text">
         </input>
-        <h4>Email:</h4>
+        <label>Email:</label>
         <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
         </input>
-        <h4>Password:</h4>
+        <label>Password:</label>
         <input onChange={(e) => this.handleChange(e)} name="password" value={this.state.password} type="password">
         </input>
 
-        <button type="submit">Sign Up</button>
+          <button type="submit">Sign Up</button>
+        </fieldset>
       </form>
       </React.Fragment>
     )

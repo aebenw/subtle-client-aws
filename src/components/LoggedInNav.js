@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
-import { Menu, Input } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -19,24 +18,17 @@ class LoggedInNav extends Component {
   render(){
     const { activeItem } = this.state
       return(
-      <Menu>
-        <Menu.Item
-          header as={NavLink} exact to="/home"
-          active={activeItem === 'editorials'}
-        >
-          Home
-        </Menu.Item>
-        <Menu.Menu position='right'>
-          <Menu.Item>
-            <Input icon='search' placeholder='Search...' />
-          </Menu.Item>
-           <Menu.Item
-             name='logout'
-             active={activeItem === 'logout'}
-             onClick={() => this.delteJWT()}
-           />
-        </Menu.Menu>
-      </Menu>
+        <header>
+          <NavLink className="button" exact to="/home">
+          Subtle
+          </NavLink>
+          <NavLink className="button" exact to="/home">
+            Home
+          </NavLink>
+          <button className="button" onClick={() => this.delteJWT()}>
+            Log Out
+          </button>
+        </header>
     )
   }
 }

@@ -30,15 +30,17 @@ class Login extends React.Component {
   render(){
     return(
       <React.Fragment>
-        <h1>Login</h1>
-      <form onSubmit={(e) => this.handSubmit(e)}>
-        <h4>Email:</h4>
-        <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
-        </input>
-        <h4>Password:</h4>
-        <input onChange={(e) => this.handleChange(e)} name="password" value={this.state.password} type="password">
-        </input>
-        <button type="submit">Log In</button>
+        <form onSubmit={(e) => this.handSubmit(e)}>
+          <fieldset>
+            <legend>Log In</legend>
+            <label>Email:</label>
+            <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
+            </input>
+            <label>Password:</label>
+            <input onChange={(e) => this.handleChange(e)} name="password" value={this.state.password} type="password">
+            </input>
+            <button type="submit">Log In</button>
+        </fieldset>
       </form>
     </React.Fragment>
     )
