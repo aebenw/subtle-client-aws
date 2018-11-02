@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
-// import { Menu, Input } from 'semantic-ui-react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 
@@ -12,40 +11,16 @@ class LoggedOutNav extends Component {
     const { activeItem } = this.state
       return(
         <header>
-          <a href="#" class="logo">Logo   </a>
-          <NavLink className="button" exact to="/">Home
+          <NavLink className="button" exact to="/">
+          Subtle
           </NavLink>
-          <button>Download</button>
+          <NavLink className="button" exact to="/login">
+            Log In
+          </NavLink>
+          <NavLink className="button" exact to="/signup">
+            Sign Up
+          </NavLink>
         </header>
-      // <Menu>
-      //   <Menu.Item
-      //     header as={NavLink} exact to="/"
-      //     active={activeItem === 'home'}
-      //   >
-      //     Home
-      //   </Menu.Item>
-      //   <Menu.Menu position='right'>
-      //     <Menu.Item>
-      //       <Input icon='search' placeholder='Search...' />
-      //     </Menu.Item>
-      //
-      //
-      //       <Fragment>
-      //         <Menu.Item
-      //           header as={NavLink} exact to="/login"
-      //
-      //       name='login'
-      //       active={activeItem === 'login'}
-      //     > Log In </Menu.Item>
-      //     <Menu.Item
-      //       name='sigUp'
-      //       active={activeItem === 'signUp'}
-      //       header as={NavLink} exact to="/signup"
-      //     > Sign Up </Menu.Item>
-      //   </Fragment>
-      //
-      //   </Menu.Menu>
-      // </Menu>
     )
   }
 }

@@ -37,7 +37,7 @@ a, b, del, em, i, ins, q, span, strong, u {
 /* font-family: "HelveticaNeue-CondensedBold" */
 
 html, * {
-  font-family: "HelveticaNeue-Bold", BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: "HelveticaNeue", BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Helvetica, sans-serif;
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
 }
@@ -1093,7 +1093,7 @@ header button, header [type="button"], header .button, header [role="button"] {
   border: 0;
   border-radius: 0;
   margin: 0;
-  /* text-transform: uppercase; */
+  font-family: "HelveticaNeue-Bold"
 }
 
 header button:hover, header button:focus, header [type="button"]:hover, header [type="button"]:focus, header .button:hover, header .button:focus, header [role="button"]:hover, header [role="button"]:focus {
