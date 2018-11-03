@@ -20,6 +20,7 @@ class Profile extends Component {
 
 
   render(){
+
     const { currentUser } = this.props
     return (
       <Fragment>
@@ -29,7 +30,7 @@ class Profile extends Component {
           <ChannelContainer channels={currentUser.channels} />
           </Fragment>
       :
-      <div class="spinner"></div>
+      <div className="spinner"></div>
     }
     </Fragment>
     )

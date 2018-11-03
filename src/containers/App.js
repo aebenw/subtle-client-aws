@@ -7,7 +7,8 @@ import Feed from './Feed'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Profile from '../containers/Profile'
-import Event from '../containers/Event'
+import ChannelShow from '../components/ChannelShow'
+import BlockShow from '../components/BlockShow'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
@@ -47,6 +48,8 @@ class App extends Component {
           <Route exact path='/home' render={routerProps => <Feed {...routerProps}/>} />
           {/* // TODO: MAKE IT SO "/profle" IS SOMETHING MORE PERSONAL */}
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps}/>} />
+          <Route  path={`/channel/:channelID`} render={routerProps => <ChannelShow {...routerProps}/>} />
+          <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
         </Fragment>
 
 

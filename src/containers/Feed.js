@@ -25,11 +25,10 @@ class Feed extends React.Component {
 
 
   render(){
-    console.log("current user inside feed", this.props.currentUser)
     const { currentUser } = this.props
     return (
       <React.Fragment>
-        {this.props.currentUser.name ? <h1>{currentUser.name}'s FEED</h1> : <div class="spinner"></div>}
+        {currentUser.name ? <h1>{currentUser.name}'s FEED</h1> : <div className="spinner"></div>}
       </React.Fragment>
     )
   }
