@@ -10,7 +10,6 @@ class BlockShow extends Component {
 
   render(){
     const {currentBlock} = this.props
-    console.log(currentBlock)
     return(
       <Fragment>
       <h1>{currentBlock.content}</h1>
