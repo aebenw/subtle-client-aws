@@ -1,21 +1,17 @@
-import React, {Component, Fragment} from 'react'
+import React,{ Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 
 
-class BlockShow extends Component {
+const BlockShow = (props) =>  {
 
-
-
-  render(){
-    const {currentBlock} = this.props
+    const {currentBlock} = props
     return(
       <Fragment>
       <h1>{currentBlock.content}</h1>
       </Fragment>
     )
-  }
 }
 
 const mapStateToProps = (state) => {
