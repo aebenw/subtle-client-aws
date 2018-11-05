@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -16,7 +16,7 @@ class LoggedInNav extends Component {
   }
 
   render(){
-    const { activeItem } = this.state
+    // const { activeItem } = this.state
       return(
         <header>
           <NavLink className="button" exact to="/home">
