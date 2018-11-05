@@ -12,8 +12,7 @@ export default function userReducer(state = {currentUser: {}}, action){
       case "SET_HISTORY":
         return {...state, setHistory: action.setHistory};
 
-        case "ADD_CHANNEL":
-        debugger
+      case "ADD_CHANNEL":
         return {...state, [state.currentUser.channels]: state.currentUser.channels.push(action.channel)}
 
 

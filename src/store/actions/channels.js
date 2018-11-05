@@ -3,7 +3,6 @@ import { URL, HEADERS } from '../../constants'
 export const selectChannel = (channel) => ({type: "SELECT_CHANNEL", channel})
 
 /////////// ADDING A NEW CHANNEL TO USER'S CHANNEL /////
-export const  newChannel = (channel) => ({type: "NEW_CHANNEL", channel})
 
 export const addToUserChannel  = (channel) => ({ type: "ADD_CHANNEL", channel})
 
@@ -22,9 +21,3 @@ export function createChannel(channel){
     })
   }
 }
-
-// export function addNewChannelAndSelect() {
-//   return (dispatch) => {
-//
-//   }
-// }
