@@ -9,6 +9,7 @@ import SignUp from '../components/SignUp'
 import Profile from '../containers/Profile'
 import ChannelShow from '../components/ChannelShow'
 import NewChannel from '../components/NewChannel'
+import NewBlock from '../components/NewBlock'
 import BlockShow from '../components/BlockShow'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
@@ -49,7 +50,7 @@ class App extends Component {
           <Route exact path='/home' render={routerProps => <Feed {...routerProps}/>} />
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps}/>} />
           <Route  exact path={`/channels/new`} render={routerProps => <NewChannel {...routerProps}/>} />
-          <Route  exact path={`/blocks/new`} render={routerProps => <NewChannel {...routerProps}/>} />
+          <Route  exact path={`/blocks/new`} render={routerProps => <NewBlock {...routerProps}/>} />
           <Route  path={`/channel/:channelID`} render={routerProps => <ChannelShow {...routerProps}/>} />
           <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
         </Fragment>

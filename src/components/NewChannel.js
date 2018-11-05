@@ -22,7 +22,7 @@ class NewChannel extends Component {
         ...this.state.channel,
       [e.target.name]: e.target.value
       }
-    }, () => console.log(this.state))
+    })
   }
 
   handleSubmit = (e) => {
@@ -34,8 +34,6 @@ class NewChannel extends Component {
   }
 
   render(){
-    console.log(this.state.users, "state in render")
-    console.log(this.props.currentUser, "props in render")
     return(
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <fieldset>
