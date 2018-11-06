@@ -10,8 +10,8 @@ class NewChannel extends Component {
     state = {
       channel: {
         name: '',
-        users: []
-      }
+      },
+      users: [this.props.currentUser.id]
     }
 
 
@@ -27,9 +27,7 @@ class NewChannel extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let copy = Object.assign({}, this.state)
-    copy.channel.users.push(this.props.currentUser.id)
-    this.props.createChannel(copy)
+    this.props.createChannel(this.state)
     .then(res => this.props.history.push(`/channel/${res.channel.name}`))
   }
 

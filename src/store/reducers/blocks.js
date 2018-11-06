@@ -1,6 +1,7 @@
-export default function channelReducer(state = {}, action){
+export default function blockReducer(state = {}, action){
   switch(action.type){
     case "SELECT_BLOCK":
+    debugger
       return {...state, currentBlock: action.block};
 
     default:

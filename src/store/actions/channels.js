@@ -13,11 +13,11 @@ export function createChannel(channel){
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(channel)
-    }).then(res => res.json())
-    .then(res => {
+    }).then(r => r.json())
+    .then(r => {
       return (
-        dispatch(selectChannel(res)),
-        dispatch(addToUserChannel(res)))
+        dispatch(selectChannel(r)),
+        dispatch(addToUserChannel(r)))
     })
   }
 }

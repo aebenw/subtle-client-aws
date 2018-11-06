@@ -11,10 +11,10 @@ class NewBlock extends Component {
     super(props)
   this.state = {
     block: {
-      name: '',
-      channel: this.props.currentChannel.id,
-      user: this.props.currentChannel.id
-    }
+      content: '',
+      user_id: this.props.currentUser.id,
+    },
+    channels:  [this.props.currentChannel.id]
   }}
 
   handleChange = (e) => {
@@ -23,7 +23,7 @@ class NewBlock extends Component {
         ...this.state.block,
       [e.target.name]: e.target.value
       }
-    })
+    }, () => console.log(this.state))
   }
 
   handleSubmit = (e) => {
@@ -31,7 +31,6 @@ class NewBlock extends Component {
     // let copy = Object.assign({}, this.state)
     // debugger
     // copy.channel.users.push(this.props.currentUser.id)
-
     this.props.createBlock(this.state)
     .then(res => this.props.history.push(`/block/${res.block.id}`))
   }
@@ -44,7 +43,7 @@ class NewBlock extends Component {
       <div className="input-group fluid">
       <div>
         <label>New Block Name</label>
-        <input type="text" name="name" onChange={(e) => this.handleChange(e)}/>
+        <input type="text" name="content" onChange={(e) => this.handleChange(e)}/>
         <input type="submit"/>
       </div>
     </div>
