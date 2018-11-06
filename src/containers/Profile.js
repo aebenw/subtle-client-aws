@@ -20,7 +20,6 @@ class Profile extends Component {
 
 
   render(){
-
     const { currentUser } = this.props
     return (
       <Fragment>

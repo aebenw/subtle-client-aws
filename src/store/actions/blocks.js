@@ -10,7 +10,11 @@ export function createBlock(block) {
     return fetch(URL + "blocks", {
       method: "POST",
       headers: HEADERS,
-
+      body: JSON.stringify(block)
+    }).then(r => r.json())
+    .then(r => {
+      return (dispatch(selectBlock(r)),
+      dispatch(addBlockToChannel(r)))
     })
   }
 
