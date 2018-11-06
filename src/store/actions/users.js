@@ -7,6 +7,10 @@ export const setHistory = (setHistory) => ({type: "SET_HISTORY", setHistory})
 
 const userShow = (user) => ({type: "USER_SHOW", user})
 
+const addFriendToCurr = (user) => ({type: "ADD_FRIEND", user})
+const rmFriendFromCurr = (user) => ({type: "RM_FRIEND", user})
+
+
 export function loginUser(user) {
   return (dispatch) => {
     return fetch(URL + "/auth", {
@@ -66,5 +70,41 @@ export function fetchUserInfo(user){
     return fetch(URL + `users/${user.id}`)
     .then(r => r.json())
     .then(r => dispatch(userShow(r)))
+  }
+}
+
+export function addFriend(currUser, user){
+  console.log("inside add friend funtion")
+  const body = {
+    relationship: {
+      follower_id: currUser,
+      followed_id: user
+      }
+    }
+  return (dispatch) => {
+    return fetch(URL + `relationships`,{
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify(body)
+    }).then(r => r.json())
+    .then(r => dispatch(addFriendToCurr(r)))
+  }
+}
+
+export function rmFriend(currUser, user){
+  console.log("inside delete friend funtion")
+  const body = {
+    relationship: {
+      follower_id: currUser,
+      followed_id: user.id
+      }
+    }
+  return (dispatch) => {
+    return fetch(URL + `relationships`,{
+      method: "DELETE",
+      headers: HEADERS,
+      body: JSON.stringify(body)
+    }).then(r => r.json())
+    .then(r => dispatch(rmFriendFromCurr(user)))
   }
 }
