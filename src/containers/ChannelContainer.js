@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { selectChannel } from '../store/actions/channels'
 
 const Channel = props => {
+  debugger
   return(
     <Fragment>
     <div className="row">
