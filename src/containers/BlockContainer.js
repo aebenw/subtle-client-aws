@@ -7,7 +7,6 @@ const BlockContainer = (props) => {
   return(
     <div className="row">
   {props.blocks.map(block => {
-    console.log(block)
     return (
       <div key={block.id} className="card" onClick={() => props.selectBlock(block)}>
         <Link to={`/block/${block.id}`}>
