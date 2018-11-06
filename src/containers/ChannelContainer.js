@@ -28,6 +28,8 @@ const Channel = props => {
   )
 }
 
+
+// IF USER IS ONE OF THE AUTHORS OF CHANNEL THEN RENDER ++ BUTTON
 const mapDispatchToProps = (dispatch) => {
   return {
     selectChannel: (channel) => {
