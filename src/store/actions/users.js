@@ -67,7 +67,7 @@ export function fetchWithToken(token) {
 
 export function fetchUserInfo(user){
   return (dispatch) => {
-    return fetch(URL + `users/${user.id}`)
+    return fetch(URL + `users/${user}`)
     .then(r => r.json())
     .then(r => dispatch(userShow(r)))
   }

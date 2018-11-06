@@ -15,7 +15,7 @@ const UserContainer = (props) => {
     <div className="row">
         {props.friends.map(friend => {
         return (
-          <div key={friend.id} className="card" onClick={() => props.userShow(friend)}>
+          <div key={friend.id} className="card" onClick={() => props.userShow(friend.id)}>
             <NavLink to={{pathname: `/users/${friend.name}`, state: friend.id}}>
             {friend.name}
           </NavLink>
