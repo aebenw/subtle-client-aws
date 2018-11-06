@@ -8,6 +8,8 @@ import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Profile from '../containers/Profile'
 import ChannelShow from '../components/ChannelShow'
+import UserShow from '../components/UserShow'
+import FriendContainer from '../containers/FriendContainer'
 import NewChannel from '../components/NewChannel'
 import NewBlock from '../components/NewBlock'
 import BlockShow from '../components/BlockShow'
@@ -51,6 +53,8 @@ class App extends Component {
           <Route exact path='/profile' render={routerProps => <Profile {...routerProps}/>} />
           <Route  exact path={`/channels/new`} render={routerProps => <NewChannel {...routerProps}/>} />
           <Route  exact path={`/blocks/new`} render={routerProps => <NewBlock {...routerProps}/>} />
+          <Route  exact path={`/users/:name`} render={routerProps => <UserShow {...routerProps}/>} />
+          <Route  exact path={`/friends`} render={routerProps => <FriendContainer {...routerProps}/>} />
           <Route  path={`/channel/:channelID`} render={routerProps => <ChannelShow {...routerProps}/>} />
           <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
         </Fragment>

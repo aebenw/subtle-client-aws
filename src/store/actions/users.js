@@ -1,17 +1,17 @@
-import { URL } from '../../constants'
+import { URL, HEADERS } from '../../constants'
 // export const URL = "http://localhost:3000/api/v1/"
 
 const errorAction = (error) => ({type: "LOGIN_ERROR", error})
 const loginAction = (user) => ({ type: "LOGIN_USER", user})
 export const setHistory = (setHistory) => ({type: "SET_HISTORY", setHistory})
 
+const userShow = (user) => ({type: "USER_SHOW", user})
+
 export function loginUser(user) {
   return (dispatch) => {
     return fetch(URL + "/auth", {
       method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
+      headers: HEADERS,
       body: JSON.stringify(user)
     }).then(r => r.json())
       .then(user => {
@@ -30,9 +30,7 @@ export function createUser(user) {
   return (dispatch) => {
     return fetch(URL + "/users", {
       method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
+      headers: HEADERS,
       body: JSON.stringify(user)
     }).then(r => r.json())
       .then(user => {
@@ -60,5 +58,13 @@ export function fetchWithToken(token) {
        dispatch(loginAction(user))
      }
    })
+  }
+}
+
+export function fetchUserInfo(user){
+  return (dispatch) => {
+    return fetch(URL + `users/${user.id}`)
+    .then(r => r.json())
+    .then(r => dispatch(userShow(r)))
   }
 }

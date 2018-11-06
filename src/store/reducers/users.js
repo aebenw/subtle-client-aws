@@ -9,6 +9,9 @@ export default function userReducer(state = {currentUser: {}}, action){
       case "LOGOUT_USER":
         return {...state, currentUser: {}}
 
+        case "USER_SHOW":
+        return {...state, userShow: action.user}
+
       case "SET_HISTORY":
         return {...state, setHistory: action.setHistory};
 
