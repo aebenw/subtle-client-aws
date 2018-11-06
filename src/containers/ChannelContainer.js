@@ -2,18 +2,28 @@ import React,{Fragment} from 'react';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { selectChannel } from '../store/actions/channels'
+import {fetchUserInfo} from '../store/actions/users'
 
-const Channel = props => {
-  debugger
+
+const ChannelContainer = props => {
   return(
     <Fragment>
     <div className="row">
     {props.channels.map(channel => {
       return (
-        <div key={channel.name} className="card" onClick={() => props.selectChannel(channel)}>
-          <Link to={`/channel/${channel.name}`}>
-          {channel.name}
-        </Link>
+        <div key={channel.name} className="card" >
+          <div className="section" onClick={() => props.selectChannel(channel)}>
+            <Link to={`/channel/${channel.name}`}>
+            {channel.name}
+            </Link>
+          </div>
+          <div className="section">
+            {channel.users.map(user =>
+            <Link to={{pathname:`/users/${user.name}`, state: user.id}}>
+            Made by: {user.name}
+          </Link>
+              )}
+          </div>
         </div>
 
         )
@@ -35,8 +45,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     selectChannel: (channel) => {
     return dispatch(selectChannel(channel))
+  },
+    userShow: (user) => {
+      return dispatch(fetchUserInfo(user))
     }
   }
 }
 
-export default connect(null, mapDispatchToProps)(Channel);
+export default connect(null, mapDispatchToProps)(ChannelContainer);
