@@ -14,8 +14,8 @@ const Channel = ({channel, selectChannel, userShow}) => {
         </div>
         <div className="section">
           <p>Made by: </p>
-          {channel.users.map(user =>
-            <By key={user.id} user={user} userShow={userShow}/>)}
+          {channel.authors.map(author =>
+            <By key={author.id} user={author} userShow={userShow}/>)}
         </div>
       </div>
     )

@@ -13,10 +13,9 @@ import {fetchUserInfo} from '../store/actions/users'
 
 
 const BlockContainer = ({blocks, userShow, selectBlock}) => {
-  console.log(blocks, "from container")
   return (
   <div className="row">
-    {blocks.map(block => <Block key={block.block.id} block={block} selectBlock={selectBlock}
+    {blocks.map(block => <Block key={block.id} block={block} selectBlock={selectBlock}
     userShow={userShow}/>
     )}
   </div>
