@@ -11,7 +11,6 @@ import {fetchUserInfo} from '../store/actions/users'
 
 
 const ChannelShow = (props) => {
-  console.log(props.currentChannel)
     const {currentChannel, userShow} = props
     return(
       <Fragment>

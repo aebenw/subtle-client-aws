@@ -5,8 +5,18 @@ import { withRouter } from 'react-router-dom'
 import { setHistory } from '../store/actions/users'
 import {getContent} from '../store/actions/feed'
 
+//Components
+import Channel from '../components/channel/channel'
+import Block from '../components/block/block'
+import User from '../components/user/user'
 
 
+
+
+//ACTIONS
+import { selectBlock } from '../store/actions/blocks'
+import { selectChannel } from '../store/actions/channels'
+import {fetchUserInfo} from '../store/actions/users'
 
 
 class Feed extends Component {
@@ -28,13 +38,47 @@ class Feed extends Component {
 
 
   render(){
-    const { currentUser, content } = this.props
+    const { currentUser, content, userShow, selectChannel, selectBlock } = this.props
+    console.log(content)
     return (
       <Fragment>
+
         {content ?
           <Fragment>
           <h1>{currentUser.name}'s Feed</h1>
-          {content.map(x => <h1>{x.user}</h1>)}
+          <div className="row">
+
+          {content.map(x => {
+            if (x.authors){
+              console.log(x, "in channels")
+              return (
+                <Fragment>
+                <h3>New Channel</h3>
+                <Channel key={x.id} userShow={userShow} channel={x} selectChannel={selectChannel}/>
+                </Fragment>
+              )
+            } else if (x.content){
+              console.log(x, "in block")
+              return (
+                <Fragment>
+                <h3>New Block</h3>
+                <Block key={x.id} block={x} selectBlock={selectBlock}
+              userShow={userShow}/>
+              </Fragment>
+              )
+            } else if(x.email){
+              console.log(x, "in user")
+              return (
+                <Fragment>
+                <h3>New User</h3>
+                <User key={x.id} user={x} userShow={userShow}/>
+                </Fragment>
+              )
+            }
+
+          }
+          )}
+        </div>
         </Fragment>
 
 
@@ -55,6 +99,15 @@ const mapDispatchToProps = (dispatch) => {
     },
     getContent: () => {
       return dispatch(getContent())
+    },
+    selectChannel: (channel) => {
+      return dispatch(selectChannel(channel))
+    },
+    userShow: (user) => {
+      return dispatch(fetchUserInfo(user))
+    },
+    selectBlock: (block) => {
+    return dispatch(selectBlock(block))
     }
   }
 }
@@ -62,7 +115,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.users.currentUser,
-    content: state.feed.content
+    content: state.feed.feedContent
   }
 }
 
