@@ -5,21 +5,17 @@ import { Link } from 'react-router-dom'
 import By from '../user/by'
 
 const Block = ({block, selectBlock, userShow}) => {
-  // if (block.block){
-  //   block = block.block
-  // }
-
   return(
     <div  className="card" >
-      <div className="section" onClick={() => selectBlock(block.block)}>
-      <Link to={`/block/${block.block.id}`}>
-        {block.block.content}
+      <div className="section" onClick={() => selectBlock(block)}>
+      <Link to={`/block/${block.id}`}>
+        {block.content}
       </Link>
+    </div>
       <div className="section">
         <span style={{display :"inline"}}><p>Author: </p>
-          <By key={block.block.id} user={block.user} userShow={userShow}/></span>
+          <By key={block.id} user={block.author} userShow={userShow}/></span>
       </div>
-    </div>
   </div>
   )
 }

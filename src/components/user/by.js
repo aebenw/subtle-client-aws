@@ -9,6 +9,7 @@ const By = ({user, userShow}) => {
       {user.name}
     </Link>
   </p>
+
   )
 }
 
