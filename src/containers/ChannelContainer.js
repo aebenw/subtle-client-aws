@@ -18,11 +18,13 @@ const ChannelContainer = props => {
             </Link>
           </div>
           <div className="section">
+            <p> Made by:
             {channel.users.map(user =>
-            <Link to={{pathname:`/users/${user.name}`, state: user.id}}>
-            Made by: {user.name}
+            <Link key={user.id} to={{pathname:`/users/${user.name}`, state: user.id}}>
+             {user.name}
           </Link>
               )}
+            </p>
           </div>
         </div>
 
