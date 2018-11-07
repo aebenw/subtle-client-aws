@@ -1,13 +1,15 @@
-import React from 'react';
+import React,{Fragment, Component} from 'react';
 import { connect } from 'react-redux'
 import { token } from '../constants'
 import { withRouter } from 'react-router-dom'
 import { setHistory } from '../store/actions/users'
+import {getContent} from '../store/actions/feed'
 
 
 
 
-class Feed extends React.Component {
+
+class Feed extends Component {
 
 
   componentDidMount() {
@@ -17,6 +19,7 @@ class Feed extends React.Component {
     else if (!token && !this.props.currentUser.email) {
       this.props.history.push('/')
     }
+    this.props.getContent()
   }
 
   shouldComponentUpdate(nextProps){
@@ -25,11 +28,19 @@ class Feed extends React.Component {
 
 
   render(){
-    const { currentUser } = this.props
+    const { currentUser, content } = this.props
     return (
-      <React.Fragment>
-        {currentUser.name ? <h1>{currentUser.name}'s FEED</h1> : <div className="spinner"></div>}
-      </React.Fragment>
+      <Fragment>
+        {content ?
+          <Fragment>
+          <h1>{currentUser.name}'s Feed</h1>
+          {content.map(x => <h1>{x.user}</h1>)}
+        </Fragment>
+
+
+
+        : <div className="spinner"></div>}
+      </Fragment>
     )
   }
 
@@ -41,12 +52,18 @@ const mapDispatchToProps = (dispatch) => {
   return {
     setHistory: (history) => {
       return dispatch(setHistory(history))
+    },
+    getContent: () => {
+      return dispatch(getContent())
     }
   }
 }
 
 const mapStateToProps = (state) => {
-  return {currentUser: state.users.currentUser}
+  return {
+    currentUser: state.users.currentUser,
+    content: state.feed.content
+  }
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Feed))
