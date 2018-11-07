@@ -2,25 +2,29 @@ import React,{Fragment} from 'react'
 import { connect } from 'react-redux'
 import { withRouter, NavLink } from 'react-router-dom'
 
-//Components
-import User from '../components/user/user'
-
-//Actions
 import {fetchUserInfo} from '../store/actions/users'
 
 
 
-const UserContainer = ({ users, userShow, type }) => {
-
-
+const UserContainer = (props) => {
+  let isFriend
+  props.type === "FRIEND" ?  isFriend = true : isFriend = false
   return(
     <Fragment>
-    {users ?
+    {props.friends ?
     <div className="row">
-        {users.map(user => <User key={user.id} user={user} userShow={userShow}/>)}
+        {props.friends.map(friend => {
+        return (
+          <div key={friend.id} className="card" onClick={() => props.userShow(friend.id)}>
+            <NavLink to={{pathname: `/users/${friend.name}`, state: friend.id}}>
+            {friend.name}
+          </NavLink>
+        </div>
+          )
+      })}
     </div>
     :
-    <div class="spinner"></div>}
+    <div className="spinner"></div>}
     </Fragment>
   )
 
@@ -29,14 +33,14 @@ const UserContainer = ({ users, userShow, type }) => {
 
 const mapFriendsToProps = (state) => {
   return {
-    users: state.users.currentUser.friends,
+    friends: state.users.currentUser.friends,
     type: "FRIEND"
   }
 }
 
 const mapUsersToProps = (state) => {
   return {
-    users: state.users.currentUser.not_friends,
+    friends: state.users.currentUser.not_friends,
     type: "NOT_FRIEND"
   }
 }

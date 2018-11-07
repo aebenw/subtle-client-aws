@@ -7,9 +7,8 @@ import { addFriend } from '../store/actions/users'
 import { rmFriend } from '../store/actions/users'
 
 
-const UserShow = (props) => {
-  const { userShow, currentUserId, addFriend, rmFriend } = props
-  const isFriend = props.friendly()
+const UserShow = ({ userShow, currentUserId, addFriend, rmFriend, friendly, history }) => {
+  const isFriend = friendly()
     return (
       <Fragment>
       {userShow ?
@@ -18,7 +17,7 @@ const UserShow = (props) => {
           <div className="row">
             <div className="col-sm-3"><h1>{userShow.name}'s Profile</h1></div>
             <div className="col-sm-offset-9">
-              {isFriend ? <button class="inverse" onClick={() => rmFriend(currentUserId, userShow)} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}</div>
+              {isFriend ? <button class="inverse" onClick={() => {rmFriend(currentUserId, userShow); history.goBack()}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}</div>
           </div>
           <ChannelContainer channels={userShow.channels} />
         </Fragment>
