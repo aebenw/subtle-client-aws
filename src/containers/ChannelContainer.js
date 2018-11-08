@@ -7,7 +7,7 @@ import Channel from '../components/channel/channel'
 
 
 //ACTIONS
-import { selectChannel } from '../store/actions/channels'
+import { fetchChannel } from '../store/actions/channels'
 import {fetchUserInfo} from '../store/actions/users'
 
 
@@ -15,7 +15,7 @@ const ChannelContainer = props => {
   return(
     <Fragment>
     <div className="row">
-    {props.channels.map(channel => <Channel key={channel.id} userShow={props.userShow} channel={channel} selectChannel={props.selectChannel}/>)}
+    {props.channels.map(channel => <Channel key={channel.id} userShow={props.userShow} channel={channel} channelShow={props.channelShow}/>)}
     </div>
     </Fragment>
   )
@@ -25,8 +25,8 @@ const ChannelContainer = props => {
 // IF USER IS ONE OF THE AUTHORS OF CHANNEL THEN RENDER ++ BUTTON
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectChannel: (channel) => {
-    return dispatch(selectChannel(channel))
+    channelShow: (channel) => {
+    return dispatch(fetchChannel(channel))
   },
     userShow: (user) => {
       return dispatch(fetchUserInfo(user))

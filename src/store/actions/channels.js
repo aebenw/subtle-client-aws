@@ -21,3 +21,11 @@ export function createChannel(channel){
     })
   }
 }
+
+export function fetchChannel(id){
+  return (dispatch) => {
+    return fetch(URL + `channels/${id}`)
+    .then(r => r.json())
+    .then(r => dispatch(selectChannel(r)))
+  }
+}
