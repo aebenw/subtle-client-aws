@@ -10,6 +10,7 @@ const BlockShow = (props) =>  {
     return(
       <Fragment>
       <h1>{currentBlock.content}</h1>
+      <textarea></textarea>
       </Fragment>
     )
 }

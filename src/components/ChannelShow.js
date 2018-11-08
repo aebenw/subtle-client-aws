@@ -12,20 +12,25 @@ import {fetchUserInfo} from '../store/actions/users'
 
 const ChannelShow = (props) => {
     const {currentChannel, userShow} = props
+    console.log(currentChannel)
     return(
       <Fragment>
       <h1>{currentChannel.name}</h1>
-      <h3>Made by: </h3>{currentChannel.authors.map(author => <By id={author.id} user={author} userShow={userShow}/>)}
+      <h3>Made by: </h3>{currentChannel.authors.map(author => <By key={author.id} user={author} userShow={userShow}/>)}
 
       {currentChannel.blocks ?
       <BlockContainer blocks={currentChannel.blocks}/>
       : null
       }
-
+      { currentChannel.private ? null
+      :
       <Link to={`/blocks/new`}>
         <h2>+++++</h2>
       </Link>
-      </Fragment>
+
+
+    }
+  </Fragment>
     )
 }
 

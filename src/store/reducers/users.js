@@ -20,13 +20,13 @@ export default function userReducer(state = {currentUser: {}}, action){
 
         return {...state, currentUser: {...state.currentUser, channels: newArr}}
 
-      case "ADD_BLOCK":
-
-      let copy = [...state.currentUser.channels]
-      let channelId = action.block.channels[0].id
-      let chan = copy.find(x => x.id === channelId)
-      chan.blocks.push(action.block)
-          return {...state, currentUser: {...state.currentUser, channels: copy}}
+      // case "ADD_BLOCK":
+      // 
+      // let copy = [...state.currentUser.channels]
+      // let channelId = action.block.channels[0].id
+      // let chan = copy.find(x => x.id === channelId)
+      // chan.blocks.push(action.block)
+      //     return {...state, currentUser: {...state.currentUser, channels: copy}}
 
       case "ADD_FRIEND":
       let newFriends = [...state.currentUser.friends, action.user]

@@ -16,11 +16,6 @@ const ChannelContainer = props => {
     <Fragment>
     <div className="row">
     {props.channels.map(channel => <Channel key={channel.id} userShow={props.userShow} channel={channel} selectChannel={props.selectChannel}/>)}
-      <div className="card">
-      <Link to={`/channels/new`}>
-        <h2>+++++</h2>
-      </Link>
-      </div>
     </div>
     </Fragment>
   )

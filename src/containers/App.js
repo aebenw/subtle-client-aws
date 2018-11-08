@@ -1,31 +1,39 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
+
+import { token } from '../constants'
+
+//ACTIONS
+import {getContent} from '../store/actions/feed'
+import { fetchWithToken } from '../store/actions/users'
+
+//COMPONENTS
 import LoggedOutNav from '../components/LoggedOutNav'
 import LoggedInNav from '../components/LoggedInNav'
+
 import Welcome from './Welcome'
 import Feed from './Feed'
 import Login from '../components/Login'
 import SignUp from '../components/SignUp'
 import Profile from '../containers/Profile'
 import ChannelShow from '../components/ChannelShow'
-import UserShow from '../components/UserShow'
-import {FriendContainer, NotFriendContainer} from '../containers/UserContainer'
 import NewChannel from '../components/NewChannel'
 import NewBlock from '../components/NewBlock'
 import BlockShow from '../components/BlockShow'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import UserShow from '../components/UserShow'
+import {FriendContainer, NotFriendContainer} from '../containers/UserContainer'
 
 
-import { token } from '../constants'
-import { fetchWithToken } from '../store/actions/users'
 
 
 class App extends Component {
 
   componentDidMount(){
     if (token && !this.props.currentUser.name && (this.props.history.location.pathname !== '/')) {
-      this.props.fetchWithToken(token)
+      this.props.getContent()
+      .then(()=>  this.props.fetchWithToken(token) )
       .then(() => this.props.history.push(this.props.history.location.pathname))
     } else if (token && !this.props.currentUser.name ) {
       this.props.fetchWithToken(token)
@@ -78,6 +86,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchWithToken: (token) => {
       return dispatch(fetchWithToken(token))
+    },
+    getContent: () => {
+      return dispatch(getContent())
     }
   }
 }

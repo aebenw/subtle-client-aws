@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { token } from '../constants'
 import { setHistory } from '../store/actions/users'
 import ChannelContainer from './ChannelContainer'
@@ -28,10 +28,16 @@ class Profile extends Component {
           <Fragment>
           <h1>{currentUser.name}'s Profile</h1>
           <ChannelContainer channels={currentUser.channels} />
-          </Fragment>
+          <div className="card">
+          <Link to={`/channels/new`}>
+            <h2>+++++</h2>
+          </Link>
+          </div>
+        </Fragment>
       :
       <div className="spinner"></div>
     }
+
     </Fragment>
     )
   }
