@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 //Components
 import By from '../user/by'
 
-const Channel = ({channel, selectChannel, userShow}) => {
+const Channel = ({channel, channelShow, userShow}) => {
   return(
       <div key={channel.name} className="card" >
-        <div className="section" onClick={() => selectChannel(channel)}>
-          <Link to={`/channel/${channel.name}`}>
+        <div className="section" onClick={() => channelShow(channel.id)}>
+          <Link to={{pathname: `/channel/${channel.name}`, state: channel.id}}>
           {channel.name}
           </Link>
         </div>

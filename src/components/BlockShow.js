@@ -18,26 +18,55 @@ class BlockShow extends Component  {
     super(props)
     this.state = {
       comment: {
-        content: '',
-        user_id: this.props.userId,
-        block_id: this.props.history.location.state
-      }
+        comment: {
+          content: '',
+          user_id: this.props.userId,
+          block_id: this.props.history.location.state
+        }
+      },
+      select: ''
     }
   }
 
 
-  handleChange = (e) => {
+
+  // options = () => {
+  //   let arr = []
+  //   this.props.userChannels.map(chan => {
+  //     let option = {
+  //       value: `${chan.id}`, label: `${chan.name}`
+  //     }
+  //     return arr.push(option)
+  //   })
+  // }
+
+  options = () => {
+    return this.props.userChannels.map(chan => {
+      return(
+        <option value={chan.id}>{chan.name}</option>
+      )
+    })
+  }
+
+
+  handleCommentChange = (e) => {
     console.log(e)
     this.setState({
       comment: {
-        ...this.state.comment,
+        comment: {
+        ...this.state.comment.comment,
       [e.target.name]: e.target.value
-      }
+      }}
     }, console.log(this.state))
   }
 
-  handleSubmit = (e) => {
+  handleSelectSubmit = () => {
+     console.log(this.state.select)
+  }
+
+  handleFormSubmit = (e) => {
     e.preventDefault()
+    debugger
     this.props.addComment(this.state)
   }
 
@@ -52,12 +81,16 @@ class BlockShow extends Component  {
         { currentBlock ?
         <Fragment>
           <h1>{currentBlock.content}</h1>
-          <form onSubmit={(e) => this.handleSubmit(e)}>
+          <select>
+            {this.options()}
+          </select>
+
+          <form onSubmit={(e) => this.handleFormSubmit(e)}>
           {currentBlock.comments ?
             <CommentContainer comments={currentBlock.comments} />
             : null}
-          <textarea name="content" style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleChange(e)}></textarea>
-          <input type="submit" value= "comment" />
+          <textarea name="content" style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleCommentChange(e)}></textarea>
+          <input type="submit" value={this.state.comment.content} />
           </form>
         </Fragment>
         : <div className="spinner"></div>
@@ -70,7 +103,8 @@ class BlockShow extends Component  {
 const mapStateToProps = (state) => {
   return {
     currentBlock: state.blocks.currentBlock,
-    userId: state.users.currentUser.id
+    userId: state.users.currentUser.id,
+    userChannels: state.users.currentUser.channels
    }
 }
 

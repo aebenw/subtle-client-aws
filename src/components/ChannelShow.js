@@ -15,6 +15,8 @@ const ChannelShow = (props) => {
     console.log(currentChannel)
     return(
       <Fragment>
+      {currentChannel ?
+      <Fragment>
       <h1>{currentChannel.name}</h1>
       <h3>Made by: </h3>{currentChannel.authors.map(author => <By key={author.id} user={author} userShow={userShow}/>)}
 
@@ -27,8 +29,9 @@ const ChannelShow = (props) => {
       <Link to={`/blocks/new`}>
         <h2>+++++</h2>
       </Link>
-
-
+    }
+    </Fragment>
+    : <div className="spinner"></div>
     }
   </Fragment>
     )
