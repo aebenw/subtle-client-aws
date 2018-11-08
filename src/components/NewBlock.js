@@ -23,17 +23,21 @@ class NewBlock extends Component {
         ...this.state.block,
       [e.target.name]: e.target.value
       }
-    }, () => console.log(this.state))
+    })
+  }
+
+  shouldComponentUpdate(nextProps, nextState){
+    return nextState !== this.state ? false : true
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    // let copy = Object.assign({}, this.state)
-    // debugger
-    // copy.channel.users.push(this.props.currentUser.id)
-    this.props.createBlock(this.state)
+    this.props.createBlock(this.state, this.props.isMine)
     .then(res => this.props.history.push(`/block/${res.block.id}`))
   }
+
+
+
 
   render(){
     return(
@@ -62,10 +66,13 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     currentUser: state.users.currentUser,
-    currentChannel: state.channels.currentChannel
+    currentChannel: state.channels.currentChannel,
+    isMine: () => (
+      state.users.currentUser.channels.find(x => x.id === ownProps.currentChannel.id) ? true : false
+    )
   }
 }
 

@@ -8,14 +8,14 @@ import Block from '../components/block/block'
 
 
 //Actions
-import { selectBlock } from '../store/actions/blocks'
+import { fetchBlock } from '../store/actions/blocks'
 import {fetchUserInfo} from '../store/actions/users'
 
 
-const BlockContainer = ({blocks, userShow, selectBlock}) => {
+const BlockContainer = ({blocks, userShow, showBlock}) => {
   return (
   <div className="row">
-    {blocks.map(block => <Block key={block.id} block={block} selectBlock={selectBlock}
+    {blocks.map(block => <Block key={block.id} block={block} showBlock={showBlock}
     userShow={userShow}/>
     )}
   </div>
@@ -24,8 +24,8 @@ const BlockContainer = ({blocks, userShow, selectBlock}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    selectBlock: (block) => {
-    return dispatch(selectBlock(block))
+    showBlock: (block) => {
+    return dispatch(fetchBlock(block))
   },
     userShow: (user) => {
     return dispatch(fetchUserInfo(user))

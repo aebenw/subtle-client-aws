@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom'
 //Components
 import By from '../user/by'
 
-const Block = ({block, selectBlock, userShow}) => {
+const Block = ({block, showBlock, userShow}) => {
   return(
     <div  className="card" >
-      <div className="section" onClick={() => selectBlock(block)}>
-      <Link to={`/block/${block.id}`}>
+      <div className="section" onClick={() => showBlock(block.id)}>
+      <Link to={{pathname:`/block/${block.id}`, state : block.id}}>
         {block.content}
       </Link>
     </div>

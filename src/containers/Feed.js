@@ -32,6 +32,7 @@ class Feed extends Component {
     this.props.getContent()
   }
 
+
   shouldComponentUpdate(nextProps){
     return this.props.currentUser === nextProps.currentUser ?  false :  true
   }
@@ -39,7 +40,7 @@ class Feed extends Component {
 
   render(){
     const { currentUser, content, userShow, selectChannel, selectBlock } = this.props
-    console.log(content)
+
     return (
       <Fragment>
 
@@ -50,7 +51,6 @@ class Feed extends Component {
 
           {content.map(x => {
             if (x.authors){
-              console.log(x, "in channels")
               return (
                 <Fragment>
                 <h3>New Channel</h3>
@@ -58,7 +58,6 @@ class Feed extends Component {
                 </Fragment>
               )
             } else if (x.content){
-              console.log(x, "in block")
               return (
                 <Fragment>
                 <h3>New Block</h3>
@@ -67,7 +66,6 @@ class Feed extends Component {
               </Fragment>
               )
             } else if(x.email){
-              console.log(x, "in user")
               return (
                 <Fragment>
                 <h3>New User</h3>
