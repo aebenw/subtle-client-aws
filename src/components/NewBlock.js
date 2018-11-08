@@ -26,6 +26,10 @@ class NewBlock extends Component {
     })
   }
 
+  shouldComponentUpdate(nextProps, nextState){
+    return nextState !== this.state ? false : true
+  }
+
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createBlock(this.state, this.props.isMine)
