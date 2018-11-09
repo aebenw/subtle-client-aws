@@ -12,7 +12,7 @@ const Channel = ({channel, channelShow, userShow}) => {
           {channel.name}
           </Link>
         </div>
-        <div className="section">
+        <div className="section author">
           <p>Made by: </p>
           {channel.authors.map(author =>
             <By key={author.id} user={author} userShow={userShow}/>)}

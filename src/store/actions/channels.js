@@ -1,6 +1,6 @@
 import { URL, HEADERS } from '../../constants'
 
-export const selectChannel = (channel) => ({type: "SELECT_CHANNEL", channel})
+export const showChannel = (channel) => ({type: "SELECT_CHANNEL", channel})
 
 /////////// ADDING A NEW CHANNEL TO USER'S CHANNEL /////
 
@@ -16,7 +16,7 @@ export function createChannel(channel){
     }).then(r => r.json())
     .then(r => {
       return (
-        dispatch(selectChannel(r)),
+        dispatch(showChannel(r)),
         dispatch(addToUserChannel(r)))
     })
   }
@@ -26,6 +26,6 @@ export function fetchChannel(channel){
   return (dispatch) => {
     return fetch(URL + `channels/${channel.id}`)
     .then(r => r.json())
-    .then(r => dispatch(selectChannel(r)))
+    .then(r => dispatch(showChannel(r)))
   }
 }
