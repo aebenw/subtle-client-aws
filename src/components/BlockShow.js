@@ -1,9 +1,11 @@
 import React,{ Fragment, Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
+
 
 //ACTIONS
 import { createComment, addChannelBlock } from '../store/actions/blocks'
+import { showChannel } from '../store/actions/channels'
 
 
 //COMPONENTS
@@ -118,6 +120,17 @@ class BlockShow extends Component  {
   }
 
 
+  appearsOn = () => {
+    return this.props.currentBlock.channels.map(channel => {
+      return (
+        <Link to={`/channel/${channel.name}`}>
+        <li onClick={() => this.props.showChannel(channel)}>{channel.name}</li>
+        </Link>
+      )
+      }
+    )
+  }
+
   render(){
     const {currentBlock} = this.props
     console.log(currentBlock, "block show render")
@@ -133,6 +146,14 @@ class BlockShow extends Component  {
             {this.state.options ? this.selectOptions() : null}
           </select>
           <button onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
+          { currentBlock.channels ?
+          <ul>
+            <h2>Appears on: </h2>
+              {this.appearsOn()}
+          </ul>
+          : null
+          }
+
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
           {currentBlock.comments ?
             <CommentContainer comments={currentBlock.comments} />
@@ -163,6 +184,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     addChannelBlock: (ids) => {
       return dispatch(addChannelBlock(ids))
+    },
+    showChannel: (channel) => {
+      return dispatch(showChannel(channel))
     }
   }
 

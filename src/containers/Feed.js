@@ -15,7 +15,7 @@ import User from '../components/user/user'
 
 //ACTIONS
 import { selectBlock } from '../store/actions/blocks'
-import { selectChannel } from '../store/actions/channels'
+import { showChannel } from '../store/actions/channels'
 //Feed renders full data for blocks and channels
   //For now, doing what I'm doing elsewhere, which is another fetch rather then just showing the info I have.
     //To do this i need to either reconfig data or the way i'm rendering from the feed
@@ -45,7 +45,7 @@ class Feed extends Component {
     const { currentUser, content, userShow, channelShow, blockShow } = this.props
 
 
-
+    console.log(content[0].image)
 
     return (
       <Fragment >
@@ -108,7 +108,7 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(getContent())
     },
     channelShow: (channel) => {
-      return dispatch(selectChannel(channel))
+      return dispatch(showChannel(channel))
     },
     userShow: (user) => {
       return dispatch(fetchUserInfo(user))

@@ -257,6 +257,7 @@ justify-content: center;
 
 
 
+
 .col-sm,
 [class^='col-sm-'],
 [class^='col-sm-offset-'],
@@ -702,6 +703,11 @@ justify-content: center;
   height: 100%;
   align-items: stretch;
 }
+
+.section.author {
+  padding-top: 11px;
+}
+
 
 .card > .section.media {
   height: 200px;

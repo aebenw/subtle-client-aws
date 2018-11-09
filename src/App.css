@@ -698,6 +698,11 @@ a:hover, a:focus {
   font-size: 1em;
 }
 
+.author {
+  padding-top: 11px;
+}
+
+
 /*
   Custom elements for card elements.
 */
