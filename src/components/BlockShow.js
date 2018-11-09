@@ -56,14 +56,13 @@ class BlockShow extends Component  {
 
   handleSelectSubmit = (e) => {
     e.preventDefault()
-    console.log(this.state.options)
     let copy = [...this.state.options]
     let filtered = copy.filter(x => x.id != this.state.value)
 
     this.setState({
       ...this.state,
       options: filtered
-    }, () => console.log(this.state))
+    })
 
     let body = {
       channel_block:{
@@ -111,7 +110,6 @@ class BlockShow extends Component  {
 
   render(){
     const {currentBlock} = this.props
-    console.log(this.state.options, "options inside render")
     return(
       <Fragment>
         { currentBlock ?

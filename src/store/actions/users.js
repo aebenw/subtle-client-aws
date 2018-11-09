@@ -1,5 +1,4 @@
 import { URL, HEADERS } from '../../constants'
-// export const URL = "http://localhost:3000/api/v1/"
 
 const errorAction = (error) => ({type: "LOGIN_ERROR", error})
 const loginAction = (user) => ({ type: "LOGIN_USER", user})

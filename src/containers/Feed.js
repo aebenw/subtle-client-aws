@@ -58,7 +58,7 @@ class Feed extends Component {
               return (
                 <Fragment>
 
-                <Channel key={x.id} userShow={userShow} channel={x} selectChannel={channelShow}/>
+                <Channel key={x.id} userShow={userShow} channel={x} channelShow={channelShow}/>
                 </Fragment>
               )
             } else if (x.content){
