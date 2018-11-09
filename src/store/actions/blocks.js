@@ -30,10 +30,21 @@ export function fetchBlock(id){
   }
 }
 
+export function addChannelBlock(ids){
+  return (dispatch) => {
+    return fetch(URL + `ChannelBlock`, {
+      method: "POST",
+      headers: HEADERS,
+      body: JSON.stringify(ids)
+    })
+    .then(r => r.json())
+    .then(console.log)
+  }
+}
+
 
 
 export function createComment(comment) {
-  console.log(comment)
   return (dispatch) => {
     return fetch(URL + "comments", {
       method: "POST",

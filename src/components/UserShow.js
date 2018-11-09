@@ -17,7 +17,7 @@ const UserShow = ({ userShow, currentUserId, addFriend, rmFriend, friendly, hist
           <div className="row">
             <div className="col-sm-3"><h1>{userShow.name}'s Profile</h1></div>
             <div className="col-sm-offset-9">
-              {isFriend ? <button class="inverse" onClick={() => {rmFriend(currentUserId, userShow); history.goBack()}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}</div>
+              {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, userShow); history.goBack()}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}</div>
           </div>
           <ChannelContainer channels={userShow.channels} />
         </Fragment>

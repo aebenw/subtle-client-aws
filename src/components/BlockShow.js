@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 
 //ACTIONS
-import { createComment } from '../store/actions/blocks'
+import { createComment, addChannelBlock } from '../store/actions/blocks'
+
 
 //COMPONENTS
 import CommentContainer from '../containers/CommentContainer'
@@ -24,67 +25,104 @@ class BlockShow extends Component  {
           block_id: this.props.history.location.state
         }
       },
-      select: ''
+      value: '',
+      options: ''
     }
   }
 
 
-
-  // options = () => {
-  //   let arr = []
-  //   this.props.userChannels.map(chan => {
-  //     let option = {
-  //       value: `${chan.id}`, label: `${chan.name}`
-  //     }
-  //     return arr.push(option)
-  //   })
-  // }
-
-  options = () => {
-    return this.props.userChannels.map(chan => {
-      return(
-        <option value={chan.id}>{chan.name}</option>
-      )
+  selectOptions = () => {
+    return this.state.options.map(chan => {
+    return(<option key={chan.id} value={chan.id}>{chan.name}</option>)
     })
   }
 
+  componentDidUpdate(prevProps){
+    if(this.props.currentBlock !== prevProps.currentBlock){
+      let difference = this.options()
+      this.setState({
+        ...this.state,
+          options: difference
+      })
+    }
+  }
+
+  options = () => {
+    let channelIds = this.props.currentBlock.channels.map(x => x.id)
+    return this.props.userChannels.filter(x => !channelIds.includes(x.id))
+    }
+
+
+
+  handleSelectSubmit = (e) => {
+    e.preventDefault()
+    console.log(this.state.options)
+    let copy = [...this.state.options]
+    let filtered = copy.filter(x => x.id != this.state.value)
+
+    this.setState({
+      ...this.state,
+      options: filtered
+    }, () => console.log(this.state))
+
+    let body = {
+      channel_block:{
+      channel_id: this.state.value,
+      block_id: this.state.comment.comment.block_id
+      }
+    }
+    this.props.addChannelBlock(body)
+  }
 
   handleCommentChange = (e) => {
-    console.log(e)
+    this.setState({
+      comment: {
+        comment: {
+          content: ''
+      }}
+    })
+  }
+
+  //IDEALLY, CLICK A BUTTON WHICH THEN ALLOWS FOR A DROPDOWN
+
+  handleSelectChange = (e) => {
+    this.setState({
+      value: e.target.value
+    }, () => console.log(this.state, "after selection"))
+
+  }
+
+  handleFormSubmit = (e) => {
+    e.preventDefault()
     this.setState({
       comment: {
         comment: {
         ...this.state.comment.comment,
       [e.target.name]: e.target.value
       }}
-    }, console.log(this.state))
+
+    })
+    this.props.addComment(this.state.comment)
   }
 
-  handleSelectSubmit = () => {
-     console.log(this.state.select)
-  }
-
-  handleFormSubmit = (e) => {
-    e.preventDefault()
-    debugger
-    this.props.addComment(this.state)
-  }
-
-  shouldComponentUpdate(nextProps, nextState){
-    return nextState !== this.state ? false : true
-  }
+  // shouldComponentUpdate(nextProps, nextState){
+  //   return nextState !== this.state ? false : true
+  // }
 
   render(){
     const {currentBlock} = this.props
+    console.log(this.state.options, "options inside render")
     return(
       <Fragment>
         { currentBlock ?
+
         <Fragment>
           <h1>{currentBlock.content}</h1>
-          <select>
-            {this.options()}
-          </select>
 
+          <select value={this.state.value} onChange={ this.handleSelectChange}>
+            {this.state.options ? this.selectOptions() : null}
+          </select>
+          <button onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
           {currentBlock.comments ?
             <CommentContainer comments={currentBlock.comments} />
@@ -112,6 +150,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addComment: (comment) => {
       return dispatch(createComment(comment))
+    },
+    addChannelBlock: (ids) => {
+      return dispatch(addChannelBlock(ids))
     }
   }
 
