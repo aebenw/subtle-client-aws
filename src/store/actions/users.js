@@ -74,7 +74,6 @@ export function fetchUserInfo(user){
 }
 
 export function addFriend(currUser, user){
-  console.log("inside add friend funtion")
   const body = {
     relationship: {
       follower_id: currUser,
@@ -92,7 +91,6 @@ export function addFriend(currUser, user){
 }
 
 export function rmFriend(currUser, user){
-  console.log("inside delete friend funtion")
   const body = {
     relationship: {
       follower_id: currUser,

@@ -39,10 +39,13 @@ class Feed extends Component {
 
 
   render(){
-    const { currentUser, content, userShow, selectChannel, selectBlock } = this.props
+    const { currentUser, content, userShow, channelShow, blockShow } = this.props
+
+
+
 
     return (
-      <Fragment>
+      <main class="col-sm-12 col-md-8 col-lg-9">
 
         {content ?
           <Fragment>
@@ -54,14 +57,14 @@ class Feed extends Component {
               return (
                 <Fragment>
                 <h3>New Channel</h3>
-                <Channel key={x.id} userShow={userShow} channel={x} selectChannel={selectChannel}/>
+                <Channel key={x.id} userShow={userShow} channel={x} selectChannel={channelShow}/>
                 </Fragment>
               )
             } else if (x.content){
               return (
                 <Fragment>
                 <h3>New Block</h3>
-                <Block key={x.id} block={x} selectBlock={selectBlock}
+                <Block key={x.id} block={x} showBlock={blockShow}
               userShow={userShow}/>
               </Fragment>
               )
@@ -82,7 +85,7 @@ class Feed extends Component {
 
 
         : <div className="spinner"></div>}
-      </Fragment>
+      </main>
     )
   }
 
@@ -98,13 +101,13 @@ const mapDispatchToProps = (dispatch) => {
     getContent: () => {
       return dispatch(getContent())
     },
-    selectChannel: (channel) => {
+    channelShow: (channel) => {
       return dispatch(selectChannel(channel))
     },
     userShow: (user) => {
       return dispatch(fetchUserInfo(user))
     },
-    selectBlock: (block) => {
+    blockShow: (block) => {
     return dispatch(selectBlock(block))
     }
   }

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react'
+import React, { Fragment } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -12,7 +12,6 @@ import {fetchUserInfo} from '../store/actions/users'
 
 const ChannelShow = (props) => {
     const {currentChannel, userShow} = props
-    console.log(currentChannel)
     return(
       <Fragment>
       {currentChannel ?
