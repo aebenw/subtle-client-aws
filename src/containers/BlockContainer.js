@@ -12,10 +12,10 @@ import { fetchBlock } from '../store/actions/blocks'
 import {fetchUserInfo} from '../store/actions/users'
 
 
-const BlockContainer = ({blocks, userShow, showBlock}) => {
+const BlockContainer = ({blocks, userShow, blockShow}) => {
   return (
   <div className="row">
-    {blocks.map(block => <Block key={block.id} block={block} showBlock={showBlock}
+    {blocks.map(block => <Block key={block.id} block={block} blockShow={blockShow}
     userShow={userShow}/>
     )}
   </div>
@@ -24,7 +24,7 @@ const BlockContainer = ({blocks, userShow, showBlock}) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    showBlock: (block) => {
+    blockShow: (block) => {
     return dispatch(fetchBlock(block))
   },
     userShow: (user) => {
