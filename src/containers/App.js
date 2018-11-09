@@ -16,6 +16,7 @@ import LoggedInNav from '../components/LoggedInNav'
 import Welcome from './Welcome'
 import Feed from './Feed'
 import Login from '../components/Login'
+import SideBar from '../containers/SideBar'
 import SignUp from '../components/SignUp'
 import Profile from '../containers/Profile'
 import ChannelShow from '../components/ChannelShow'
@@ -54,6 +55,8 @@ class App extends Component {
           {currentUser.email ?
             <LoggedInNav currentUser={currentUser}/>
           : <LoggedOutNav />}
+          {/* <SideBar/> */}
+          <div className="container">
           <Route exact path='/' render={routerProps => <Welcome {...routerProps}/>} />
           <Route exact path='/signup' render={routerProps => <SignUp {...routerProps}/>} />
           <Route exact path='/login' render={routerProps => <Login {...routerProps}/>} />
@@ -66,8 +69,8 @@ class App extends Component {
           <Route  exact path={`/explore/people`} render={routerProps => <NotFriendContainer {...routerProps}/>} />
           <Route  path={`/channel/:channelID`} render={routerProps => <ChannelShow {...routerProps}/>} />
           <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
+        </div>
         </Fragment>
-
 
         </Fragment>
 

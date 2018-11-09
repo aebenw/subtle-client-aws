@@ -237,7 +237,7 @@ a:hover, a:focus {
   Definitions for the grid system, cards and containers.
 */
 .container {
-  margin: 0 auto;
+  /* margin: 0 auto; */
   padding: 0 calc(1.5 * var(--universal-padding));
 }
 
@@ -246,7 +246,16 @@ a:hover, a:focus {
   display: flex;
   flex: 0 1 auto;
   flex-flow: row wrap;
+  align-items: center;
+justify-content: center;
 }
+
+/* #feed{
+  margin: 0 auto;
+
+} */
+
+
 
 .col-sm,
 [class^='col-sm-'],
@@ -648,18 +657,30 @@ a:hover, a:focus {
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  /* flex-direction: column; */
   justify-content: space-between;
   align-self: center;
   position: relative;
-  width: 100%;
+  /* width: 100vw;
+  height: 100vw;
   background: var(--card-back-color);
   color: var(--card-fore-color);
   border: 0.0625rem solid var(--card-border-color);
   border-radius: var(--universal-border-radius);
   margin: var(--universal-margin);
   overflow: hidden;
+  max-width: 240px;
+  max-height: 240px; */ */
+  display: flex 1 1 285px;
+  width: 500px;
+  text-align: center;
+  margin: 0 20px 60px 20px;
+  position: relative;
+  display: inline-block;
+  background: #fff;
+  user-select: none;
+
 }
 
 @media screen and (min-width: 320px) {
@@ -671,13 +692,15 @@ a:hover, a:focus {
 .card > .section {
   background: var(--card-back-color);
   color: var(--card-fore-color);
-  box-sizing: border-box;
   margin: 0;
   border: 0;
   border-radius: 0;
   border-bottom: 0.0625rem solid var(--card-border-color);
-  padding: var(--universal-padding);
+  padding-top: 40%;
+  /* padding: var(--universal-padding); */
   width: 100%;
+  height: 100%;
+  align-items: stretch;
 }
 
 .card > .section.media {
@@ -689,6 +712,17 @@ a:hover, a:focus {
 
 .card > .section:last-child {
   border-bottom: 0;
+
+}
+.card > .section:first-child {
+  border-bottom: 0;
+  /* height: 80%; */
+  text-align:center;
+}
+.card > .section:last-child * {
+  border-bottom: 0;
+  display: inline;
+  font-size: 1em;
 }
 
 /*
@@ -1064,7 +1098,7 @@ header {
   height: 3.1875rem;
   background: var(--header-back-color);
   color: var(--header-fore-color);
-  border-bottom: 0.0625rem solid var(--header-border-color);
+  /* border-bottom: 0.0625rem solid var(--header-border-color); */
   padding: calc(var(--universal-padding) / 4) 0;
   white-space: nowrap;
   overflow-x: auto;

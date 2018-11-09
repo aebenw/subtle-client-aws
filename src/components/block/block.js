@@ -12,7 +12,7 @@ const Block = ({block, showBlock, userShow}) => {
         {block.content}
       </Link>
     </div>
-      <div className="section">
+      <div className="section author">
         <span style={{display :"inline"}}><p>Author: </p>
           <By key={block.id} user={block.author} userShow={userShow}/></span>
       </div>

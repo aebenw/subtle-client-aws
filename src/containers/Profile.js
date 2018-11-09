@@ -35,7 +35,7 @@ class Profile extends Component {
           </div>
         </Fragment>
       :
-      <div className="spinner"></div>
+      <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
     }
 
     </Fragment>

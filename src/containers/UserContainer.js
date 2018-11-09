@@ -19,9 +19,10 @@ const UserContainer = ({ users, userShow, type }) => {
     <div className="row">
         {users.map(user => <User key={user.id} user={user} userShow={userShow}/>)}
     </div>
-    :
-    <div class="spinner"></div>}
-    </Fragment>
+    : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>}
+
+  </Fragment>
+
   )
 
 }

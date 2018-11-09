@@ -45,25 +45,25 @@ class Feed extends Component {
 
 
     return (
-      <main class="col-sm-12 col-md-8 col-lg-9">
-
+      <Fragment >
+        <div id="feed" className="row">
+          <div className="col-lg-5">
         {content ?
           <Fragment>
+
           <h1>{currentUser.name}'s Feed</h1>
           <div className="row">
-
           {content.map(x => {
             if (x.authors){
               return (
                 <Fragment>
-                <h3>New Channel</h3>
+
                 <Channel key={x.id} userShow={userShow} channel={x} selectChannel={channelShow}/>
                 </Fragment>
               )
             } else if (x.content){
               return (
                 <Fragment>
-                <h3>New Block</h3>
                 <Block key={x.id} block={x} showBlock={blockShow}
               userShow={userShow}/>
               </Fragment>
@@ -71,7 +71,6 @@ class Feed extends Component {
             } else if(x.email){
               return (
                 <Fragment>
-                <h3>New User</h3>
                 <User key={x.id} user={x} userShow={userShow}/>
                 </Fragment>
               )
@@ -79,13 +78,15 @@ class Feed extends Component {
 
           }
           )}
-        </div>
+          </div>
         </Fragment>
 
 
 
-        : <div className="spinner"></div>}
-      </main>
+        : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>}
+      </div>
+      </div>
+      </Fragment>
     )
   }
 

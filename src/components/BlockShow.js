@@ -131,7 +131,7 @@ class BlockShow extends Component  {
           <input type="submit" value={this.state.comment.content} />
           </form>
         </Fragment>
-        : <div className="spinner"></div>
+        : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
         }
       </Fragment>
     )

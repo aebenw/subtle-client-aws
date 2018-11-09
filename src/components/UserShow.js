@@ -13,16 +13,15 @@ const UserShow = ({ userShow, currentUserId, addFriend, rmFriend, friendly, hist
       <Fragment>
       {userShow ?
         <Fragment>
-
           <div className="row">
-            <div className="col-sm-3"><h1>{userShow.name}'s Profile</h1></div>
-            <div className="col-sm-offset-9">
+                <div className="col-sm-3" style={{"text-align": "left", display: "inline" }}><h1>{userShow.name}'s Profile</h1></div>
+                <div className="col-sm-offset-9">
               {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, userShow); history.goBack()}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}</div>
           </div>
           <ChannelContainer channels={userShow.channels} />
         </Fragment>
       :
-      <div className="spinner"></div>
+      <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
     }
     </Fragment>
     )
