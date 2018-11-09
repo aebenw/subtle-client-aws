@@ -31,6 +31,18 @@ class BlockShow extends Component  {
   }
 
 
+  componentDidMount() {
+    if (!this.state.options && this.props.currentBlock){
+      if (this.props.currentBlock.channels){
+        let difference = this.options()
+        this.setState({
+          ...this.state,
+            options: difference
+          })
+        }
+      }
+    }
+
   selectOptions = () => {
     return this.state.options.map(chan => {
     return(<option key={chan.id} value={chan.id}>{chan.name}</option>)
@@ -48,6 +60,7 @@ class BlockShow extends Component  {
   }
 
   options = () => {
+    console.log(this.state)
     let channelIds = this.props.currentBlock.channels.map(x => x.id)
     return this.props.userChannels.filter(x => !channelIds.includes(x.id))
     }
@@ -87,7 +100,7 @@ class BlockShow extends Component  {
   handleSelectChange = (e) => {
     this.setState({
       value: e.target.value
-    }, () => console.log(this.state, "after selection"))
+    })
 
   }
 
@@ -104,12 +117,11 @@ class BlockShow extends Component  {
     this.props.addComment(this.state.comment)
   }
 
-  // shouldComponentUpdate(nextProps, nextState){
-  //   return nextState !== this.state ? false : true
-  // }
 
   render(){
     const {currentBlock} = this.props
+    console.log(currentBlock, "block show render")
+    console.log(this.state, "state block show render")
     return(
       <Fragment>
         { currentBlock ?
@@ -129,7 +141,7 @@ class BlockShow extends Component  {
           <input type="submit" value={this.state.comment.content} />
           </form>
         </Fragment>
-        : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
+        : <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>
         }
       </Fragment>
     )

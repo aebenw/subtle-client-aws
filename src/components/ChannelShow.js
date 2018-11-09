@@ -12,7 +12,6 @@ import {fetchUserInfo} from '../store/actions/users'
 
 const ChannelShow = (props) => {
     const {currentChannel, userShow} = props
-    debugger
     return(
       <Fragment>
       {currentChannel ?
@@ -31,7 +30,7 @@ const ChannelShow = (props) => {
       </Link>
     }
     </Fragment>
-    : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
+    : <center><div style={{"margin-top": "10em"}} className="spinner tertiary"></div></center>
     }
   </Fragment>
     )

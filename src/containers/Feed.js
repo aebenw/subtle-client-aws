@@ -16,6 +16,9 @@ import User from '../components/user/user'
 //ACTIONS
 import { selectBlock } from '../store/actions/blocks'
 import { selectChannel } from '../store/actions/channels'
+//Feed renders full data for blocks and channels
+  //For now, doing what I'm doing elsewhere, which is another fetch rather then just showing the info I have.
+    //To do this i need to either reconfig data or the way i'm rendering from the feed
 import {fetchUserInfo} from '../store/actions/users'
 
 
@@ -33,9 +36,9 @@ class Feed extends Component {
   }
 
 
-  shouldComponentUpdate(nextProps){
-    return this.props.currentUser === nextProps.currentUser ?  false :  true
-  }
+  // shouldComponentUpdate(nextProps){
+  //   return this.props.currentUser === nextProps.currentUser ?  false :  true
+  // }
 
 
   render(){
@@ -50,8 +53,10 @@ class Feed extends Component {
           <div className="col-lg-5">
         {content ?
           <Fragment>
-
+            {currentUser.name ?
           <h1>{currentUser.name}'s Feed</h1>
+          : null}
+
           <div className="row">
           {content.map(x => {
             if (x.authors){
@@ -64,7 +69,7 @@ class Feed extends Component {
             } else if (x.content){
               return (
                 <Fragment>
-                <Block key={x.id} block={x} showBlock={blockShow}
+                <Block key={x.id} block={x} blockShow={blockShow}
               userShow={userShow}/>
               </Fragment>
               )

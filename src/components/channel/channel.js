@@ -7,7 +7,7 @@ import By from '../user/by'
 const Channel = ({channel, channelShow, userShow}) => {
   return(
       <div key={channel.name} className="card" >
-        <div className="section" onClick={() => channelShow(channel.id)}>
+        <div className="section" onClick={() => channelShow(channel)}>
           <Link to={{pathname: `/channel/${channel.name}`, state: channel.id}}>
           {channel.name}
           </Link>

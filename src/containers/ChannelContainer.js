@@ -1,6 +1,5 @@
 import React,{Fragment} from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 
 //Components
 import Channel from '../components/channel/channel'
