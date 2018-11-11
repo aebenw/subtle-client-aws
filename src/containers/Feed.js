@@ -44,7 +44,6 @@ class Feed extends Component {
   render(){
     const { currentUser, content, userShow, channelShow, blockShow } = this.props
 
-
     // console.log(content[0].image)
 
     return (
