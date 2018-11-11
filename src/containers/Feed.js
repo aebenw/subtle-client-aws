@@ -45,7 +45,7 @@ class Feed extends Component {
     const { currentUser, content, userShow, channelShow, blockShow } = this.props
 
 
-    console.log(content[0].image)
+    // console.log(content[0].image)
 
     return (
       <Fragment >
