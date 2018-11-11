@@ -1,4 +1,4 @@
-import { URL, HEADERS } from '../../constants'
+import { MINURL, URL, HEADERS } from '../../constants'
 
 export const selectBlock = (block) => ({type: "SELECT_BLOCK", block})
 
@@ -54,5 +54,25 @@ export function createComment(comment) {
     .then(r => {
       return (dispatch(addCommentToBlock(r)))
     })
+  }
+}
+
+export function attatchBlobToBlock(file, id) {
+  let body = {
+    block: {
+      file: file
+    }
+  }
+  return (dispatch) => {
+    return fetch(URL + `blocks/${id}`, {
+      method: "PATCH",
+      headers: HEADERS,
+      body: JSON.stringify(body)
+    })
+    .then(r => r.json())
+    .then(r => {
+      debugger
+      r.file = MINURL + r.file
+      return dispatch(selectBlock(r))})
   }
 }
