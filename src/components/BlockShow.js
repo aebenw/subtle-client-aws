@@ -131,6 +131,12 @@ class BlockShow extends Component  {
     )
   }
 
+  media = () => {
+    return (
+      <img src={this.props.currentBlock.file ? this.props.currentBlock.file : this.props.currentBlock.image} className="section media" />
+    )
+  }
+
   render(){
     const {currentBlock} = this.props
     console.log(currentBlock, "block show render")
@@ -141,6 +147,7 @@ class BlockShow extends Component  {
 
         <Fragment>
           <h1>{currentBlock.content}</h1>
+          {this.media()}
 
           <select value={this.state.value} onChange={ this.handleSelectChange}>
             {this.state.options ? this.selectOptions() : null}
