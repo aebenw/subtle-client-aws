@@ -1,7 +1,10 @@
-import React,{ Component } from 'react'
+import React,{ Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import { createBlock } from '../store/actions/blocks'
+import { createBlock, attatchBlobToBlock } from '../store/actions/blocks'
+
+import ActiveStorageProvider from 'react-activestorage-provider'
+
 
 
 
@@ -13,8 +16,10 @@ class NewBlock extends Component {
     block: {
       content: '',
       user_id: this.props.currentUser.id,
+      file: ''
     },
-    channels:  [this.props.currentChannel.id]
+    channels:  [this.props.currentChannel.id],
+    success: false
   }}
 
   handleChange = (e) => {
@@ -36,6 +41,17 @@ class NewBlock extends Component {
     .then(res => this.props.history.push(`/block/${res.block.id}`))
   }
 
+  response = (e) => {
+    console.log(e)
+    this.setState({
+
+      block: {
+        ...this.state.block,
+      file: e.file.name
+    }
+  }, console.log(this.state))
+    e.state = null
+  }
 
 
 
@@ -48,6 +64,64 @@ class NewBlock extends Component {
       <div>
         <label>New Block Name</label>
         <input type="text" name="content" onChange={(e) => this.handleChange(e)}/>
+        <ActiveStorageProvider
+      endpoint={{
+        path: `api/vi/blocks`,
+        model: 'Blocks',
+        host: "5e9c4f4a.ngrok.io",
+        attribute: 'file',
+        method: 'POST'
+      }}
+      // headers={ {responseHeader: ['Content-Type', 'Content-Md5' ]}}
+      // directUploadsPath={"/rail/active_storage/direct_uploads"}
+      // onSuccess={(e) =>
+      //   this.response(e)}
+      // onSubmit={e =>
+      //   this.response(e)}
+      render={({ handleUpload, uploads, ready }) => (
+        <div>
+          <input
+            type="file"
+            disabled={!ready}
+            onChange={e => {
+              return handleUpload(e.currentTarget.files)}}
+          />
+
+          {uploads.map(upload => {
+            switch (upload.state) {
+              case 'waiting':
+                return <p key={upload.id}>Waiting to upload {upload.file.name}</p>
+              case 'uploading':
+                return (
+                  <p key={upload.id}>
+                    Uploading {upload.file.name}: {upload.progress}%
+                  </p>
+                )
+              case 'error':
+                return (
+                  <Fragment>
+                  <p key={upload.id}>
+                    Error uploading {upload.file.name}: {upload.error}
+                  </p>
+                  </Fragment>
+                )
+              case 'finished':
+                return (
+                  <Fragment>
+                  {this.response(upload)}
+                  <p key={upload.id}>Finished uploading {upload.file.name}</p>
+                  </Fragment>)
+
+              default:
+              return null;
+            }
+          })}
+        </div>
+      )}
+    />
+
+
+
         <input type="submit"/>
       </div>
     </div>
@@ -62,6 +136,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     createBlock: (block, channels) => {
       return dispatch(createBlock(block, channels))
+    },
+    attatchBlob: (file, id) => {
+      dispatch(attatchBlobToBlock(file, id))
     }
   }
 }

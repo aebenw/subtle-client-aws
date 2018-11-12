@@ -8,7 +8,7 @@ export const getContent = () => {
             .then(r => r.json())
             .then(r => {
               // debugger
-              r.content.forEach(x => x.file ? x.file = MINURL + x.file : x)
+              // r.content.forEach(x => x.file ? x.file = MINURL + x.file : x)
               // debugger
               return dispatch(contentAction(r))})
   }

@@ -71,8 +71,6 @@ export function attatchBlobToBlock(file, id) {
     })
     .then(r => r.json())
     .then(r => {
-      debugger
-      r.file = MINURL + r.file
       return dispatch(selectBlock(r))})
   }
 }
