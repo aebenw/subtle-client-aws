@@ -53,7 +53,10 @@ class Feed extends Component {
         {content ?
           <Fragment>
             {currentUser.name ?
+              <div className ="col-sm-2">
+
           <h1>{currentUser.name}'s Feed</h1>
+          </div>
           : null}
 
           <div className="row">
