@@ -68,16 +68,16 @@ class NewBlock extends Component {
       endpoint={{
         path: `api/vi/blocks`,
         model: 'Blocks',
-        host: "5e9c4f4a.ngrok.io",
+        host: "49a21af3.ngrok.io",
         attribute: 'file',
         method: 'POST'
       }}
       // headers={ {responseHeader: ['Content-Type', 'Content-Md5' ]}}
       // directUploadsPath={"/rail/active_storage/direct_uploads"}
-      // onSuccess={(e) =>
-      //   this.response(e)}
-      // onSubmit={e =>
-      //   this.response(e)}
+      onSuccess={(e) =>
+        this.response(e)}
+      onSubmit={e =>
+        this.response(e)}
       render={({ handleUpload, uploads, ready }) => (
         <div>
           <input
@@ -98,6 +98,7 @@ class NewBlock extends Component {
                   </p>
                 )
               case 'error':
+              debugger
                 return (
                   <Fragment>
                   <p key={upload.id}>
