@@ -24,7 +24,6 @@ class Profile extends Component {
 
   render(){
     const { currentUser } = this.props
-    // host: 'c3cb7511.ngrok.io',
 
     return (
       <Fragment>
@@ -32,12 +31,16 @@ class Profile extends Component {
 
         {this.props.currentUser.name ?
           <Fragment>
+          <div className="row">
+            <div className ="col-sm-2">
           <h1>{currentUser.name}'s Profile</h1>
+          </div>
           <ChannelContainer channels={currentUser.channels} />
           <div className="card">
           <Link to={`/channels/new`}>
             <h2>+++++</h2>
           </Link>
+          </div>
           </div>
         </Fragment>
       :
