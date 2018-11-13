@@ -9,6 +9,7 @@ import {getContent} from '../store/actions/feed'
 import Channel from '../components/channel/channel'
 import Block from '../components/block/block'
 import User from '../components/user/user'
+import Header from '../components/UserHeader'
 
 
 
@@ -55,7 +56,7 @@ class Feed extends Component {
             {currentUser.name ?
               <div className ="col-sm-2">
 
-          <h1>{currentUser.name}'s Feed</h1>
+          <Header info={"Feed"}/>
           </div>
           : null}
 

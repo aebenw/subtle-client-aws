@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { token } from '../constants'
 import { setHistory } from '../store/actions/users'
 import ChannelContainer from './ChannelContainer'
-import Dropzone from "react-dropzone";
+import UserHeader from '../components/UserHeader'
 
 
 class Profile extends Component {
@@ -29,12 +29,10 @@ class Profile extends Component {
       <Fragment>
 
 
-        {this.props.currentUser.name ?
+        {currentUser.name ?
           <Fragment>
           <div className="row">
-            <div className ="col-sm-2">
-          <h1>{currentUser.name}'s Profile</h1>
-          </div>
+          <UserHeader info={currentUser.name} friends={currentUser.friends} channels={currentUser.channels}/>
           <ChannelContainer channels={currentUser.channels} />
           <div className="card">
           <Link to={`/channels/new`}>

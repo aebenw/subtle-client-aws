@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { createBlock, attatchBlobToBlock } from '../store/actions/blocks'
 
+
+import Dropzone from "react-dropzone";
 import ActiveStorageProvider from 'react-activestorage-provider'
 
 
@@ -68,7 +70,7 @@ class NewBlock extends Component {
       endpoint={{
         path: `api/vi/blocks`,
         model: 'Blocks',
-        host: "49a21af3.ngrok.io",
+        host: "40679644.ngrok.io",
         attribute: 'file',
         method: 'POST'
       }}
