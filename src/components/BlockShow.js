@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom'
 
 //ACTIONS
 import { createComment, addChannelBlock } from '../store/actions/blocks'
-import { showChannel } from '../store/actions/channels'
+import { fetchChannel } from '../store/actions/channels'
 
 
 //COMPONENTS
@@ -193,7 +193,7 @@ const mapDispatchToProps = (dispatch) => {
       return dispatch(addChannelBlock(ids))
     },
     showChannel: (channel) => {
-      return dispatch(showChannel(channel))
+      return dispatch(fetchChannel(channel))
     }
   }
 
