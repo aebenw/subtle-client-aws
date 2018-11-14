@@ -133,7 +133,7 @@ class BlockShow extends Component  {
 
   media = () => {
     return (
-      <img src={this.props.currentBlock.file ? this.props.currentBlock.file : this.props.currentBlock.image} className="section media" />
+      <div id="block-img"><img src={this.props.currentBlock.file ? this.props.currentBlock.file : this.props.currentBlock.image} className="section media" /></div>
     )
   }
 
@@ -145,14 +145,18 @@ class BlockShow extends Component  {
       <Fragment>
         { currentBlock ?
 
-        <Fragment>
-          <h1>{currentBlock.content}</h1>
+        <div id="feed" className="row  block-page">
+          <div className="col-4-lg">
           {this.media()}
+          </div>
 
+          <div className="col-sm-4 block-form">
+          <h4>{currentBlock.content}</h4>
           <select value={this.state.value} onChange={ this.handleSelectChange}>
             {this.state.options ? this.selectOptions() : null}
           </select>
-          <button onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
+          <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
+          <Fragment>
           { currentBlock.channels ?
           <ul>
             <h2>Appears on: </h2>
@@ -160,6 +164,8 @@ class BlockShow extends Component  {
           </ul>
           : null
           }
+          </Fragment>
+
 
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
           {currentBlock.comments ?
@@ -168,7 +174,8 @@ class BlockShow extends Component  {
           <textarea name="content" style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleCommentChange(e)}></textarea>
           <input type="submit" value={this.state.comment.content} />
           </form>
-        </Fragment>
+        </div>
+        </div>
         : <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>
         }
       </Fragment>

@@ -16,8 +16,7 @@ const ChannelShow = (props) => {
       <Fragment>
       {currentChannel ?
       <Fragment>
-      <h1>{currentChannel.name}</h1>
-      <h3>Made by: </h3>{currentChannel.authors.map(author => <By key={author.id} user={author} userShow={userShow}/>)}
+      {currentChannel.authors.map(author => <By key={author.id} user={author} userShow={userShow}/>)}/{currentChannel.name}
 
       {currentChannel.blocks ?
       <BlockContainer blocks={currentChannel.blocks}/>

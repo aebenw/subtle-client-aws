@@ -2,6 +2,7 @@ import React,{ Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { createBlock, attatchBlobToBlock } from '../store/actions/blocks'
+import { NGROK } from '../constants'
 
 
 import Dropzone from "react-dropzone";
@@ -70,7 +71,7 @@ class NewBlock extends Component {
       endpoint={{
         path: `api/vi/blocks`,
         model: 'Blocks',
-        host: "40679644.ngrok.io",
+        host: NGROK,
         attribute: 'file',
         method: 'POST'
       }}

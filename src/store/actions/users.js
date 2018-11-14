@@ -93,7 +93,7 @@ export function rmFriend(currUser, user){
   const body = {
     relationship: {
       follower_id: currUser,
-      followed_id: user.id
+      followed_id: user
       }
     }
   return (dispatch) => {

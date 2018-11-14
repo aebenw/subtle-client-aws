@@ -16,9 +16,7 @@ const CommentContainer = ({ comments }) => {
 const Comment = ({ comment }) => {
   return(
     <Fragment>
-      <p>{comment.content}</p>
-      <p>Author {comment.author.name}</p>
-
+    <blockquote cite={comment.author.name}>{comment.content}</blockquote>
     </Fragment>
   )
 }
