@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
 import ChannelContainer from '../containers/ChannelContainer'
-import UserHeader from '../components/UserHeader'
+import ProfileHeader from '../components/ProfileHeader'
 
 
 
@@ -13,7 +13,7 @@ const UserShow = ({ userShow }) => {
       <Fragment>
       {userShow ?
         <Fragment>
-          <UserHeader userShow={userShow}/>
+          <ProfileHeader user={userShow}/>
           <ChannelContainer channels={userShow.channels} />
         </Fragment>
       :

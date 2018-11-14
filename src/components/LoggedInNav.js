@@ -17,46 +17,48 @@ class LoggedInNav extends Component {
 
   render(){
     // const { activeItem } = this.state
-    return(
-     <Fragment>
-     <ul className="heading">
-     <li>
-       <NavLink className="button head-button" exact to="/home">
-       Subtle
-       </NavLink>
 
-       <ul className="dropdown">
-       <li>
-       <NavLink className="button head-button" exact to="/home">
-         Home
-       </NavLink>
-       </li>
-       <li>
-       <NavLink className="button head-button" exact to="/profile">
-         Profile
-       </NavLink>
-       </li>
-       <li>
-       <NavLink className="button head-button" exact to="/friends">
-         Friends
-       </NavLink>
-       </li>
-       <li>
-       <NavLink className="button head-button" exact to="/explore/people">
-         Find Friends
-       </NavLink>
-       </li>
-       </ul>
+      return(
+        <Fragment>
+        <div className="logged-in">
+        <ul className="heading">
+        <li>
+          <NavLink className="button head-button" exact to="/home">
+          Subtle
+          </NavLink>
 
-       </li>
-     </ul>
+          <ul className="dropdown">
+          <li>
+          <NavLink className="button head-button" exact to="/home">
+            Home
+          </NavLink>
+          </li>
+          <li>
+          <NavLink className="button head-button" exact to="/profile">
+            Profile
+          </NavLink>
+          </li>
+          <li>
+          <NavLink className="button head-button" exact to="/friends">
+            Friends
+          </NavLink>
+          </li>
+          <li>
+          <NavLink className="button head-button" exact to="/explore/people">
+            Find Friends
+          </NavLink>
+          </li>
+          </ul>
 
-     <button className="button logout" onClick={() => this.delteJWT()}>
-       Log Out
-     </button>
+          </li>
+        </ul>
 
-     </Fragment>
-   )
+        <button className="button logout" onClick={() => this.delteJWT()}>
+          Log Out
+        </button>
+        </div>
+        </Fragment>
+    )
   }
 }
 

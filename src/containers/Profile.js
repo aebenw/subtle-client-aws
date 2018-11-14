@@ -34,7 +34,7 @@ class Profile extends Component {
 
         {currentUser.name ?
           <Fragment>
-          <ProfileHeader info={currentUser.name} friends={currentUser.friends} channels={currentUser.channels}/>
+          <ProfileHeader user={currentUser}/>
 
           <ChannelContainer channels={currentUser.channels} />
           <div className="card">
