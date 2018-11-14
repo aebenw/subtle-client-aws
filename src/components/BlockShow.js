@@ -28,7 +28,8 @@ class BlockShow extends Component  {
         }
       },
       value: '',
-      options: ''
+      options: '',
+      appearsOn: this.props.channels
     }
   }
 
@@ -45,24 +46,25 @@ class BlockShow extends Component  {
       }
     }
 
-  selectOptions = () => {
-    return this.state.options.map(chan => {
-    return(<option key={chan.id} value={chan.id}>{chan.name}</option>)
-    })
-  }
+
 
   componentDidUpdate(prevProps){
     if(this.props.currentBlock !== prevProps.currentBlock){
       let difference = this.options()
       this.setState({
         ...this.state,
-          options: difference
+          options: difference,
       })
     }
   }
 
+  selectOptions = () => {
+    return this.state.options.map(chan => {
+      return(<option key={chan.id} value={chan.id}>{chan.name}</option>)
+    })
+  }
+
   options = () => {
-    console.log(this.state)
     let channelIds = this.props.currentBlock.channels.map(x => x.id)
     return this.props.userChannels.filter(x => !channelIds.includes(x.id))
     }
@@ -72,7 +74,8 @@ class BlockShow extends Component  {
   handleSelectSubmit = (e) => {
     e.preventDefault()
     let copy = [...this.state.options]
-    let filtered = copy.filter(x => x.id != this.state.value)
+    let chanId = parseInt(this.state.value)
+    let filtered = copy.filter(x => x.id != chanId)
 
     this.setState({
       ...this.state,
@@ -80,8 +83,8 @@ class BlockShow extends Component  {
     })
 
     let body = {
-      channel_block:{
-      channel_id: this.state.value,
+      channel_block: {
+      channel_id: chanId,
       block_id: this.state.comment.comment.block_id
       }
     }
@@ -92,9 +95,11 @@ class BlockShow extends Component  {
     this.setState({
       comment: {
         comment: {
-          content: ''
+        ...this.state.comment.comment,
+      [e.target.name]: e.target.value
       }}
-    })
+
+    }, () => console.log(this.state))
   }
 
   //IDEALLY, CLICK A BUTTON WHICH THEN ALLOWS FOR A DROPDOWN
@@ -111,11 +116,11 @@ class BlockShow extends Component  {
     this.setState({
       comment: {
         comment: {
-        ...this.state.comment.comment,
-      [e.target.name]: e.target.value
+          ...this.state.comment.comment,
+          content: ''
       }}
+    }, () => console.log(this.state))
 
-    })
     this.props.addComment(this.state.comment)
   }
 
@@ -139,8 +144,7 @@ class BlockShow extends Component  {
 
   render(){
     const {currentBlock} = this.props
-    console.log(currentBlock, "block show render")
-    console.log(this.state, "state block show render")
+    console.log(currentBlock, "scanning for new channels")
     return(
       <Fragment>
         { currentBlock ?
@@ -171,8 +175,8 @@ class BlockShow extends Component  {
           {currentBlock.comments ?
             <CommentContainer comments={currentBlock.comments} />
             : null}
-          <textarea name="content" style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleCommentChange(e)}></textarea>
-          <input type="submit" value={this.state.comment.content} />
+          <textarea name="content" value={this.state.comment.comment.content} style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleCommentChange(e)}></textarea>
+          <input type="submit" />
           </form>
         </div>
         </div>
@@ -184,6 +188,7 @@ class BlockShow extends Component  {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state.blocks)
   return {
     currentBlock: state.blocks.currentBlock,
     userId: state.users.currentUser.id,
