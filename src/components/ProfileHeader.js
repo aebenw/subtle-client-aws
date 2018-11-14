@@ -12,10 +12,9 @@ import { rmFriend } from '../store/actions/users'
 
 
 
-const header = ({user, showChannel, userShow, currentUserId, friendly}) => {
+const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history}) => {
   let isFriend
-  if (user.id === currentUserId){ isFriend = friendly() }
-
+  if (user.id !== currentUserId){ isFriend = friendly() }
   return (
     <Fragment>
 
@@ -28,7 +27,7 @@ const header = ({user, showChannel, userShow, currentUserId, friendly}) => {
         null
         :
         <div className="col-sm-offset-9">
-            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}
+            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
         </div>
       }
     </div>

@@ -16,7 +16,10 @@ const header = ({userShow, currentUserId, addFriend, rmFriend, friendly, history
         <h1>{userShow.name}</h1>
       </div>
       <div className="col-sm-offset-9">
-          {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, userShow.id); history.goBack()}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}
+          {isFriend ?
+            <button className="inverse" onClick={() => {rmFriend(currentUserId, userShow.id)}}>Remove Friend</button>
+
+            : <button onClick={() => addFriend(currentUserId, userShow.id)} className="inverse">Add Friend</button>}
       </div>
     </div>
       <div className="row">
@@ -36,8 +39,8 @@ const header = ({userShow, currentUserId, addFriend, rmFriend, friendly, history
   )
 }
 
-const friendly = (state, user) => {
-  return state.find(x => x.id === user) ? true : false
+const friendly = (friends, user) => {
+  return friends.find(x => x.id === user) ? true : false
 }
 
 

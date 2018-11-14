@@ -21,7 +21,7 @@ export default function userReducer(state = {currentUser: {}}, action){
         return {...state, currentUser: {...state.currentUser, channels: newArr}}
 
       // case "ADD_BLOCK":
-      // 
+      //
       // let copy = [...state.currentUser.channels]
       // let channelId = action.block.channels[0].id
       // let chan = copy.find(x => x.id === channelId)
@@ -30,12 +30,12 @@ export default function userReducer(state = {currentUser: {}}, action){
 
       case "ADD_FRIEND":
       let newFriends = [...state.currentUser.friends, action.user]
-      let notFriends = state.currentUser.not_friends.filter(x => x.id !== action.user.id)
+      let notFriends = state.currentUser.not_friends.filter(x => x.id !== action.user)
         return {...state, currentUser: {...state.currentUser, friends: newFriends, not_friends: notFriends}}
 
       case "RM_FRIEND":
       let newNotFriends = [...state.currentUser.not_friends, action.user]
-      let lessFriends = state.currentUser.friends.filter(x => x.id !== action.user.id)
+      let lessFriends = state.currentUser.friends.filter(x => x.id !== action.user)
         return {...state, currentUser: {...state.currentUser, friends: lessFriends, not_friends: newNotFriends}}
 
 
