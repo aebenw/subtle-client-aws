@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -18,39 +18,52 @@ class LoggedInNav extends Component {
   render(){
     // const { activeItem } = this.state
       return(
-        <header>
-          <NavLink className="button" exact to="/home">
+        <Fragment>
+        <ul className="heading">
+        <li>
+          <NavLink className="button head-button" exact to="/home">
           Subtle
           </NavLink>
+
           <ul className="dropdown">
           <li>
-          <NavLink className="button" exact to="/home">
+          <NavLink className="button head-button" exact to="/home">
             Home
           </NavLink>
           </li>
           <li>
-          <NavLink className="button" exact to="/profile">
-            My Profile
+          <NavLink className="button head-button" exact to="/profile">
+            Profile
           </NavLink>
           </li>
           <li>
-          <NavLink className="button" exact to="/friends">
+          <NavLink className="button head-button" exact to="/friends">
             Friends
           </NavLink>
           </li>
           <li>
-          <NavLink className="button" exact to="/explore/people">
+          <NavLink className="button head-button" exact to="/explore/people">
             Find Friends
           </NavLink>
           </li>
           </ul>
-          <button className="button" onClick={() => this.delteJWT()}>
-            Log Out
-          </button>
-        </header>
+
+          </li>
+        </ul>
+
+        <button className="button logout" onClick={() => this.delteJWT()}>
+          Log Out
+        </button>
+
+        </Fragment>
     )
   }
 }
+
+// <NavLink className="button" exact to="/profile">
+// <NavLink className="button" exact to="/friends">
+// <NavLink className="button" exact to="/explore/people">
+
 
 
 const mapDispatchToProps = (dispatch) => {
