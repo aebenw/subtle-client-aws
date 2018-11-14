@@ -17,6 +17,7 @@ class LoggedInNav extends Component {
 
   render(){
     // const { activeItem } = this.state
+
       return(
         <Fragment>
         <div className="logged-in">
