@@ -19,6 +19,7 @@ class LoggedInNav extends Component {
     // const { activeItem } = this.state
       return(
         <Fragment>
+        <div className="logged-in">
         <ul className="heading">
         <li>
           <NavLink className="button head-button" exact to="/home">
@@ -54,7 +55,7 @@ class LoggedInNav extends Component {
         <button className="button logout" onClick={() => this.delteJWT()}>
           Log Out
         </button>
-
+        </div>
         </Fragment>
     )
   }

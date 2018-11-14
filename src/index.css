@@ -257,7 +257,6 @@ a:hover, a:focus {
   align-items: center;
   justify-content: center;
   border-top: inset;
-  border-left: inset;
   padding-top: 1em;
 }
 #block-feed{
@@ -266,7 +265,6 @@ a:hover, a:focus {
   align-items: center;
   justify-content: center;
   border-top: inset;
-  border-left: inset;
   padding-top: 1em;
 }
 
@@ -778,9 +776,15 @@ a:hover, a:focus {
   margin-left: 0px;
   padding-left: 0px;
 }
-/* .profile > h1, h4 {
-  margin-left: 0px
-} */
+.profile > h1, h4 {
+  border-bottom: solid;
+  font-style:italic;
+}
+.profile > .row > .col-4-sm {
+  width: 10em;
+}
+
+
 
 .card > .section.media {
   height: 200px;
@@ -2439,7 +2443,7 @@ box-sizing: border-box;
       border-color: var(--button-hover-border-color);
     }
 
-    ul li{
+    .logged-in ul li{
         display: inline-block;
         /* position: relative; */
         line-height: 21px;
@@ -2498,3 +2502,7 @@ box-sizing: border-box;
         }
     /* margin-left: 1px;
     margin-top: 0px; */
+
+    .col-6-sm  ul  li {
+      list-style-type: none
+    }
