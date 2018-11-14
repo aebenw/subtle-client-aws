@@ -13,7 +13,7 @@ import {fetchUserInfo} from '../store/actions/users'
 const ChannelContainer = props => {
   return(
     <Fragment>
-    <div className="row">
+    <div id="feed" className="row">
     {props.channels.map(channel => <Channel key={channel.id} userShow={props.userShow} channel={channel} channelShow={props.channelShow}/>)}
     </div>
     </Fragment>

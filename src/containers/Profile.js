@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 import { token } from '../constants'
 import { setHistory } from '../store/actions/users'
 import ChannelContainer from './ChannelContainer'
-import UserHeader from '../components/UserHeader'
+import ProfileHeader from '../components/ProfileHeader'
 
 
 class Profile extends Component {
@@ -27,18 +27,20 @@ class Profile extends Component {
 
     return (
       <Fragment>
+      <div id="feed" className="row">
+        <div className="col-lg-10">
+
 
 
         {currentUser.name ?
           <Fragment>
-          <div className="row">
-          <UserHeader info={currentUser.name} friends={currentUser.friends} channels={currentUser.channels}/>
+          <ProfileHeader info={currentUser.name} friends={currentUser.friends} channels={currentUser.channels}/>
+
           <ChannelContainer channels={currentUser.channels} />
           <div className="card">
           <Link to={`/channels/new`}>
             <h2>+++++</h2>
           </Link>
-          </div>
           </div>
         </Fragment>
       :
@@ -48,7 +50,8 @@ class Profile extends Component {
 
 
 
-
+    </div>
+    </div>
     </Fragment>
     )
   }

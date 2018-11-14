@@ -9,7 +9,7 @@ import {getContent} from '../store/actions/feed'
 import Channel from '../components/channel/channel'
 import Block from '../components/block/block'
 import User from '../components/user/user'
-import Header from '../components/UserHeader'
+import Header from '../components/ProfileHeader'
 
 
 
@@ -50,17 +50,17 @@ class Feed extends Component {
     return (
       <Fragment >
         <div id="feed" className="row">
-          <div className="col-lg-5">
+          <div className="col-lg-10">
         {content ?
           <Fragment>
             {currentUser.name ?
-              <div className ="col-sm-2">
+              // <div className ="col-sm-2">
 
           <Header info={"Feed"}/>
-          </div>
+          // </div>
           : null}
 
-          <div className="row">
+          <div id="feed" className="row">
           {content.map(x => {
             if (x.authors){
               return (
