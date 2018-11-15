@@ -363,7 +363,6 @@ padding-top: 1em;
   margin-left: 6.5em;
   height: 27em;
 }
->>>>>>> master
 
 
 
@@ -818,8 +817,6 @@ padding-top: 1em;
   padding-top: 11px;
 }
 
-<<<<<<< HEAD
-=======
 .profile {
   margin-left: 0px;
   /* padding-left: 4.5px;
@@ -841,7 +838,7 @@ padding-top: 1em;
 
 }
 
->>>>>>> master
+
 
 .card > .section.media {
   height: 200px;
@@ -1120,8 +1117,7 @@ a[role="button"]:focus, label[role="button"]:hover, label[role="button"]:focus, 
   border-color: var(--button-hover-border-color);
 }
 
-<<<<<<< HEAD
-=======
+
 button:focus{
   outline:none;
 
@@ -1138,7 +1134,6 @@ button:focus{
 
 }
 
->>>>>>> master
 input:disabled, input[disabled], textarea:disabled, textarea[disabled], select:disabled, select[disabled], button:disabled, button[disabled], .button:disabled, .button[disabled], [role="button"]:disabled, [role="button"][disabled] {
   cursor: not-allowed;
   opacity: 0.75;
@@ -1306,8 +1301,6 @@ ul li ul.dropdown li{
 }
 
 
-<<<<<<< HEAD
-=======
 nav {
   background: var(--nav-back-color);
   color: var(--nav-fore-color);
@@ -1316,7 +1309,6 @@ nav {
   margin: var(--universal-margin);
 }
 
->>>>>>> master
 nav {
   background: var(--nav-back-color);
   color: var(--nav-fore-color);
