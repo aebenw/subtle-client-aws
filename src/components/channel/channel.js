@@ -7,11 +7,11 @@ import By from '../user/by'
 const Channel = ({channel, channelShow, userShow}) => {
   return(
       <div key={channel.name} className="card  channel-card" >
-        <div className="section" onClick={() => channelShow(channel)}>
-          <Link to={{pathname: `/channel/${channel.name}`, state: channel.id}}>
+      <Link to={{pathname: `/channel/${channel.name}`, state: channel.id}}>
+        <div className="section" style={{"padding-top": "40%"}}onClick={() => channelShow(channel)}>
           {channel.name}
-          </Link>
         </div>
+        </Link>
         <div className="section author">
           {channel.authors.map(author =>
             <By key={author.id} user={author} userShow={userShow}/>)}

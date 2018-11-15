@@ -11,7 +11,7 @@ import {fetchUserInfo} from '../store/actions/users'
 
 
 const ChannelShow = (props) => {
-    const {currentChannel, userShow} = props
+    const {currentChannel, userShow, isMine} = props
     return(
       <Fragment>
       {currentChannel ?
@@ -22,11 +22,11 @@ const ChannelShow = (props) => {
       <BlockContainer blocks={currentChannel.blocks}/>
       : null
       }
-      { currentChannel.private ? null
-      :
-      <Link to={`/blocks/new`}>
+      { isMine() || !currentChannel.private ? <Link to={`/blocks/new`}>
         <h2>+++++</h2>
       </Link>
+      : null
+
     }
     </Fragment>
     : <center><div style={{"margin-top": "10em"}} className="spinner tertiary"></div></center>
@@ -35,8 +35,12 @@ const ChannelShow = (props) => {
     )
 }
 
-const mapStateToProps = (state) => {
-  return { currentChannel: state.channels.currentChannel }
+const mapStateToProps = (state, ownProps) => {
+  return {
+    currentChannel: state.channels.currentChannel,
+    currentUserId: state.users.currentUser.id,
+    isMine: () => state.channels.currentChannel.authors.find(x => x.id === state.users.currentUser.id) ? true : false
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {

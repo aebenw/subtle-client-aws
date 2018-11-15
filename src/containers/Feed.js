@@ -58,14 +58,14 @@ class Feed extends Component {
           <div id="feed" className="row">
           {content.map(x => {
             if (x.authors){
-              debugger
+
               return (
                 <Fragment>
                 <Channel key={x.id} userShow={userShow} channel={x} channelShow={channelShow}/>
                 </Fragment>
               )
             } else if (x.content){
-              debugger
+
               return (
                 <Fragment>
                 <Block key={x.id} block={x} blockShow={blockShow}
@@ -73,7 +73,7 @@ class Feed extends Component {
               </Fragment>
               )
             } else if(x.email){
-              debugger
+              
               return (
                 <Fragment>
                 <User key={x.id} user={x} userShow={userShow}/>

@@ -1,5 +1,5 @@
 import React,{ Fragment } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 import { lister } from '../functions/index'
@@ -24,7 +24,11 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
         <h1 className="profile">{user.name}</h1>
       </div>
       { user.id === currentUserId ?
-        null
+        <div className="col-sm-offset-9">
+          <Link to={'user/edit'}>
+            <button className="inverse">Edit Profile</button>
+            </Link>
+        </div>
         :
         <div className="col-sm-offset-9">
             {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
@@ -47,6 +51,7 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
   )
 
 }
+
 
 const friendly = (state, user) => {
   return state.find(x => x.id === user) ? true : false

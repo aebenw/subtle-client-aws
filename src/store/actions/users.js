@@ -72,6 +72,17 @@ export function fetchUserInfo(user){
   }
 }
 
+export function editUser(info, id){
+  return (dispatch) => {
+    return fetch(URL + `users/${id}`, {
+      method: "PATCH",
+      headers: HEADERS, 
+      body: JSON.stringify(info)
+    }).then(r => r.json())
+      .then(r => dispatch(loginUser(r)))
+  }
+}
+
 export function addFriend(currUser, user){
   const body = {
     relationship: {

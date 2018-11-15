@@ -15,7 +15,7 @@ import LoggedInNav from '../components/LoggedInNav'
 
 import Welcome from './Welcome'
 import Feed from './Feed'
-import Login from '../components/Login'
+import Login from '../components/login'
 import SideBar from '../containers/SideBar'
 import SignUp from '../components/SignUp'
 import Profile from '../containers/Profile'
@@ -24,6 +24,7 @@ import NewChannel from '../components/NewChannel'
 import NewBlock from '../components/NewBlock'
 import BlockShow from '../components/BlockShow'
 import UserShow from '../components/UserShow'
+import Edit from '../components/user/edit'
 import {FriendContainer, NotFriendContainer} from '../containers/UserContainer'
 
 
@@ -69,6 +70,7 @@ class App extends Component {
           <Route  exact path={`/explore/people`} render={routerProps => <NotFriendContainer {...routerProps}/>} />
           <Route  path={`/channel/:channelID`} render={routerProps => <ChannelShow {...routerProps}/>} />
           <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
+          <Route  path={`/user/edit`} render={routerProps => <Edit {...routerProps}/>} />
         </div>
         </Fragment>
 
