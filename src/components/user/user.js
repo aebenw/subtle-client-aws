@@ -8,7 +8,7 @@ const User = ({user, userShow}) => {
 
   return(
     <Fragment>
-      <div key={user.id} className="card" onClick={() => userShow(user.id)}>
+      <div key={user.id}  className="card user-card" onClick={() => userShow(user.id)}>
         <div className="section author">
         <Link to={{pathname: `/users/${user.name}`, state: user.id}}>
         {user.name}

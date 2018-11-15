@@ -28,6 +28,7 @@
 
 html {
   font-size: 16px;
+  height: 100%
 }
 
 b, del, em, i, ins, q, span, strong, u {
@@ -67,6 +68,7 @@ abbr[title] {
 
 input {
   overflow: visible;
+  outline: none
 }
 
 img {
@@ -228,19 +230,31 @@ a:visited {
   color: var(--a-link-color);
 }
 
-a:hover, a:focus {
-  text-decoration: overline;
-}
+/* a:hover, a:focus {
+  font-style: oblique 10deg;
+} */
 
 /*
   Definitions for the grid system, cards and containers.
 */
+.big-container {
+  /* margin: 0 auto; */
+  padding: 0 calc(1.5 * var(--universal-padding));
+  padding-left: 0;
+  border-top: inset;
+  border-left: inset;
+  margin-left: 4.6em;
+  border-color: black;
+  border-width: 1.7px;
+    margin-top: -1.5px;
+
+
+}
 .container {
   /* margin: 0 auto; */
   padding: 0 calc(1.5 * var(--universal-padding));
   padding-left: 10px;
-
-  margin-left: 4em;
+  margin-left: 4.6em;
 
 }
 
@@ -256,8 +270,20 @@ a:hover, a:focus {
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
-  border-top: inset;
-  padding-top: 1em;
+  border-top: solid;
+  padding-top: 4.5em;
+  /* border-top: inset; */
+
+}
+
+#user-feed{
+  margin: 0 auto;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4.5em;
+  /* border-top: inset; */
+
 }
 #block-feed{
   margin: 0 auto;
@@ -273,13 +299,39 @@ a:hover, a:focus {
   border: solid;
   border-color: black #003aff #50ff00b5 black;
   -webkit-transition: margin 0.5s ease-out;
--moz-transition: margin 0.5s ease-out;
--o-transition: margin 0.5s ease-out;
+  -moz-transition: margin 0.5s ease-out;
+  -o-transition: margin 0.5s ease-out;
 }
 
 .channel-card:hover {
-    margin-right: 5px;
-    margin-top: -4px;
+  font-style: oblique 10deg;
+  color: #666;
+  cursor: pointer;
+  border-width: 2px;
+  border-left: #ff0000;
+  border-top: #ff0000;
+  border-width: 2px
+
+}
+
+
+.user-card {
+  border: solid;
+  border-color:  #003aff black black #50ff00b5 ;
+  -webkit-transition: margin 0.5s ease-out;
+  -moz-transition: margin 0.5s ease-out;
+  -o-transition: margin 0.5s ease-out;
+}
+
+.user-card:hover {
+  font-style: oblique 10deg;
+  color: #666;
+  cursor: pointer;
+  border-width: 2px;
+  border-left: #ff0000;
+  border-top: #ff0000;
+  border-width: 2px
+
 }
 
 .block-page{
@@ -774,16 +826,24 @@ a:hover, a:focus {
 
 .profile {
   margin-left: 0px;
-  padding-left: 0px;
+  /* padding-left: 4.5px;
+  padding-top: 2.3em;
+  height: 24.5em; */
 }
-.profile > h1, h4 {
+/* .profile > h1,  h4 {
   border-bottom: solid;
   font-style:italic;
-}
-.profile > .row > .col-4-sm {
+} */
+/* .profile > .row  > .col-4-sm {
   width: 10em;
-}
+} */
+.container.profile{
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+    padding-left: 4.5em;
+    padding-bottom: 2.5em;
 
+}
 
 
 .card > .section.media {
@@ -872,15 +932,13 @@ a:hover, a:focus {
 form {
   background: var(--form-back-color);
   color: var(--form-fore-color);
-  border: 0.0625rem solid var(--form-border-color);
-  border-radius: var(--universal-border-radius);
+  border: 0.0625rem solid #111;
   margin: var(--universal-margin);
-  padding: calc(2 * var(--universal-padding)) var(--universal-padding);
+  padding: calc(2 * var(--universal-padding)) calc(1.2 * var(--universal-padding));
 }
 
 fieldset {
-  border: 0.0625rem solid var(--form-border-color);
-  border-radius: var(--universal-border-radius);
+  border: 0.0625rem solid #ffa800;
   margin: calc(var(--universal-margin) / 4);
   padding: var(--universal-padding);
 }
@@ -953,15 +1011,13 @@ input:not([type]), [type="text"], [type="email"], [type="number"], [type="search
   resize: none;
   background: var(--input-back-color);
   color: var(--input-fore-color);
-  border: 0.0625rem solid var(--input-border-color);
-  border-radius: var(--universal-border-radius);
+  border: 0.0625rem solid #111;
   margin: calc(var(--universal-margin) / 2);
-  padding: var(--universal-padding) calc(1.5 * var(--universal-padding));
 }
 
 input:not([type="button"]):not([type="submit"]):not([type="reset"]):hover, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus, textarea:hover, textarea:focus, select:hover, select:focus {
-  border-color: var(--input-focus-color);
-  box-shadow: none;
+    border-color: #02d14c;
+      box-shadow: none;
 }
 
 input:not([type="button"]):not([type="submit"]):not([type="reset"]):invalid, input:not([type="button"]):not([type="submit"]):not([type="reset"]):focus:invalid, textarea:invalid, textarea:focus:invalid, select:invalid, select:focus:invalid {
@@ -1044,7 +1100,7 @@ button {
   text-transform: none;
 }
 
-button, [type="button"], [type="submit"], [type="reset"],
+button, [type="button"], [type="file"], [type="submit"], [type="reset"],
 a.button, label.button, .button,
 a[role="button"], label[role="button"], [role="button"] {
   display: inline-block;
@@ -1066,6 +1122,11 @@ a[role="button"]:focus, label[role="button"]:hover, label[role="button"]:focus, 
   background: #003aff;
   color: #ffffff;
   border-color: var(--button-hover-border-color);
+}
+
+button:focus{
+  outline:none;
+
 }
 
 .add-button {
@@ -1651,6 +1712,10 @@ table.striped tr:nth-of-type(2n) > td {
   --table-body-hover-back-color: #90caf9;
 }
 
+.root {
+  min-height: 100%;
+}
+
 table.hoverable tr:hover, table.hoverable tr:hover > td, table.hoverable tr:focus, table.hoverable tr:focus > td {
   background: var(--table-body-hover-back-color);
 }
@@ -1772,13 +1837,13 @@ mark.inline-block {
   margin-top: calc(2 * var(--universal-margin));
 }
 
-:root {
+/* :root {
   --modal-overlay-color: rgba(0, 0, 0, 0.45);
   --modal-close-color: #444;
   --modal-close-hover-color: #f0f0f0;
-}
+} */
 
-[type="checkbox"].modal {
+/* [type="checkbox"].modal {
   height: 1px;
   width: 1px;
   margin: -1px;
@@ -1882,7 +1947,7 @@ mark.inline-block {
   margin: 0;
   opacity: 0;
   cursor: pointer;
-}
+} */
 
 :root {
   --collapse-label-back-color: #e8e8e8;
@@ -2456,6 +2521,19 @@ box-sizing: border-box;
         color: #333;
         text-decoration: none;
     }
+
+
+
+    ul {
+      text-decoration: none
+    }
+    li {
+      text-decoration: none
+    }
+    a {
+      text-decoration: none
+    }
+
     ul li a:hover{
         color: #fff;
         background: #939393;
@@ -2499,10 +2577,26 @@ box-sizing: border-box;
           border: 0.12rem solid #003aff;
           margin-top: 0;
           margin-right: 0;
+          padding-bottom: 7.5px;
+
         }
     /* margin-left: 1px;
     margin-top: 0px; */
 
     .col-6-sm  ul  li {
       list-style-type: none
+    }
+
+    input {
+      outline:none;
+    }
+
+    .list * {
+      padding-left: 0px;
+
+    }
+
+    .list a li {
+      text-decoration: none;
+      list-style-type: none;
     }

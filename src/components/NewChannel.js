@@ -33,18 +33,24 @@ class NewChannel extends Component {
 
   render(){
     return(
+      <div id="user-feed" className="row">
+      <center>
+      <div className="col-5-lg">
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <fieldset>
     <legend>New Channel</legend>
       <div className="input-group fluid">
       <div>
-        <label>New Channel Name</label>
+        <label>Name</label>
         <input type="text" name="name" onChange={(e) => this.handleChange(e)}/>
         <input type="submit"/>
       </div>
     </div>
   </fieldset>
 </form>
+</div>
+</center>
+</div>
     )
   }
 }

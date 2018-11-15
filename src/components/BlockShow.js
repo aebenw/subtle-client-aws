@@ -149,7 +149,7 @@ class BlockShow extends Component  {
       <Fragment>
         { currentBlock ?
 
-        <div id="feed" className="row  block-page">
+        <div id="user-feed" className="row  block-page">
           <div className="col-4-lg">
           {this.media()}
           </div>
@@ -162,7 +162,7 @@ class BlockShow extends Component  {
           <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
           <Fragment>
           { currentBlock.channels ?
-          <ul>
+          <ul className="list">
             <h2>Appears on: </h2>
               {this.appearsOn()}
           </ul>
@@ -172,9 +172,11 @@ class BlockShow extends Component  {
 
 
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
+          <div>
           {currentBlock.comments ?
             <CommentContainer comments={currentBlock.comments} />
             : null}
+          </div>
           <textarea name="content" value={this.state.comment.comment.content} style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleCommentChange(e)}></textarea>
           <input type="submit" />
           </form>

@@ -56,7 +56,7 @@ class App extends Component {
             <LoggedInNav currentUser={currentUser}/>
           : <LoggedOutNav />}
           {/* <SideBar/> */}
-          <div className="container">
+          <div className="big-container">
           <Route exact path='/' render={routerProps => <Welcome {...routerProps}/>} />
           <Route exact path='/signup' render={routerProps => <SignUp {...routerProps}/>} />
           <Route exact path='/login' render={routerProps => <Login {...routerProps}/>} />
@@ -71,6 +71,7 @@ class App extends Component {
           <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
         </div>
         </Fragment>
+
 
         </Fragment>
 

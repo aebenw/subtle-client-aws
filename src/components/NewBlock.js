@@ -60,13 +60,27 @@ class NewBlock extends Component {
 
   render(){
     return(
+      <div id="user-feed" className="row">
+      <div className="col-5-lg">
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <fieldset>
           <legend>New Block</legend>
-      <div className="input-group fluid">
-      <div>
-        <label>New Block Name</label>
-        <input type="text" name="content" onChange={(e) => this.handleChange(e)}/>
+      <div className="input-group">
+      <div className="row">
+      <div className='col-5-lg'>
+        <label>Name</label>
+        </div>
+        <div className='col-5-lg'>
+        <input type="text" name="content" style={{"position": "relative",
+    "left": "4px"}} onChange={(e) => this.handleChange(e)}/>
+        </div>
+        </div>
+        <div className="row">
+        <div className='col-5-lg'>
+        <textarea style={{"position": "relative",
+    "left": "63px"}} name="content" placeholder="Content" onChange={(e) => this.handleChange(e)}></textarea>
+        </div>
+        </div>
         <ActiveStorageProvider
       endpoint={{
         path: `api/vi/blocks`,
@@ -128,9 +142,10 @@ class NewBlock extends Component {
 
         <input type="submit"/>
       </div>
-    </div>
   </fieldset>
 </form>
+</div>
+</div>
     )
   }
 }
