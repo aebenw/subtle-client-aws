@@ -33,6 +33,8 @@ class SignUp extends React.Component {
   render(){
     return(
       <React.Fragment>
+      <div id="user-feed" className="row">
+      <div className="col-5-lg">
       <form onSubmit={(e) => this.handSubmit(e)}>
         <fieldset>
         <label>Name:</label>
@@ -48,6 +50,8 @@ class SignUp extends React.Component {
           <button type="submit">Sign Up</button>
         </fieldset>
       </form>
+      </div>
+      </div>
       </React.Fragment>
     )
   }

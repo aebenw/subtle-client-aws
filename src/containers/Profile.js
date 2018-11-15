@@ -37,19 +37,6 @@ class Profile extends Component {
           <Fragment>
           <ProfileHeader user={currentUser}/>
 
-          <a href="#modal">Modal</a>
-
-          <section class="modal--show" id="modal-text" tabindex="-1"
-        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
-
-    <div class="modal-inner">
-        <header id="modal-label"><h4>hello there</h4></header>
-        <div class="modal-content"><h4>hello there</h4></div>
-    </div>
-
-    <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
-        data-dismiss="modal">?</a>
-</section>
 
           <ChannelContainer channels={currentUser.channels} />
           <div className="card">
@@ -67,6 +54,22 @@ class Profile extends Component {
   }
 
 }
+
+
+// <a href="#modal">Modal</a>
+//
+// <section class="modal--show" id="modal-text" tabindex="-1"
+// role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+//
+// <div class="modal-inner">
+// <header id="modal-label"><h4>hello there</h4></header>
+// <div class="modal-content"><h4>hello there</h4></div>
+// </div>
+//
+// <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+// data-dismiss="modal">?</a>
+// </section>
+
 
 const mapStateToProps = (state) => {
   return {currentUser: state.users.currentUser}
