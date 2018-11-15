@@ -30,6 +30,8 @@ class Login extends React.Component {
   render(){
     return(
       <React.Fragment>
+      <div id="user-feed" className="row">
+      <div className="col-5-lg">
         <form onSubmit={(e) => this.handSubmit(e)}>
           <fieldset>
             <legend>Log In</legend>
@@ -42,6 +44,8 @@ class Login extends React.Component {
             <button type="submit">Log In</button>
         </fieldset>
       </form>
+      </div>
+      </div>
     </React.Fragment>
     )
   }

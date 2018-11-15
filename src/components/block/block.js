@@ -6,7 +6,7 @@ import By from '../user/by'
 
 const Block = ({block, blockShow, userShow}) => {
   return(
-    <div  className="card" >
+    <div  className="card user-card" >
       <Link to={{pathname:`/block/${block.id}`, state : block.id}}>
       <img src={block.file ? block.file : block.image} className="section media" onClick={() => blockShow(block)}/>
       </Link>
