@@ -6,9 +6,9 @@ const CommentContainer = ({ comments }) => {
 
 
   return(
-    <Fragment>
+    <div className="col-12-lg">
       {comments.map(comment => <Comment key={comment.id} comment={comment}/>)}
-    </Fragment>
+      </div>
   )
 
 }

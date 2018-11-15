@@ -9,7 +9,7 @@ import {getContent} from '../store/actions/feed'
 import Channel from '../components/channel/channel'
 import Block from '../components/block/block'
 import User from '../components/user/user'
-import Header from '../components/ProfileHeader'
+import ProfileHeader from '../components/ProfileHeader'
 
 
 
@@ -53,12 +53,7 @@ class Feed extends Component {
           <div className="col-lg-10">
         {content ?
           <Fragment>
-            {currentUser.name ?
-              // <div className ="col-sm-2">
 
-          <Header info={"Feed"}/>
-          // </div>
-          : null}
 
           <div id="feed" className="row">
           {content.map(x => {
@@ -100,7 +95,12 @@ class Feed extends Component {
 
 }
 
-
+// {currentUser.name ?
+//   // <div className ="col-sm-2">
+//
+// <ProfileHeader currentUser={currentUser}/>
+// // </div>
+// : null}
 
 const mapDispatchToProps = (dispatch) => {
   return {

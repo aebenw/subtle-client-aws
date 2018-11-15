@@ -16,7 +16,7 @@ const UserContainer = ({ users, userShow, type }) => {
   return(
     <Fragment>
     {users ?
-    <div className="row">
+    <div id="user-feed" className="row">
         {users.map(user => <User key={user.id} user={user} userShow={userShow}/>)}
     </div>
     : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>}

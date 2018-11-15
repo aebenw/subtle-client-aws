@@ -5,6 +5,7 @@ export const selectBlock = (block) => ({type: "SELECT_BLOCK", block})
 //for now, doing one block for one channel
 export const addBlockToChannel = (block) => ({type:"ADD_BLOCK", block })
 export const addCommentToBlock = (comment) => ({type:"ADD_COMMENT", comment })
+export const addChannelToBlock = (channel) => ({type: "ADD_CHANNEL", channel})
 
 
 
@@ -38,7 +39,9 @@ export function addChannelBlock(ids){
       body: JSON.stringify(ids)
     })
     .then(r => r.json())
-    .then(console.log)
+    .then(r => {
+      return dispatch(addChannelToBlock(r))
+    })
   }
 }
 
