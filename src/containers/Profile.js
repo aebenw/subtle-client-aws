@@ -20,6 +20,8 @@ class Profile extends Component {
   }
 
 
+  // <div id="feed" className="row">
+  //   <div className="col-lg-10">
 
 
   render(){
@@ -27,14 +29,27 @@ class Profile extends Component {
 
     return (
       <Fragment>
-      <div id="feed" className="row">
-        <div className="col-lg-10">
+
 
 
 
         {currentUser.name ?
           <Fragment>
           <ProfileHeader user={currentUser}/>
+
+          <a href="#modal">Modal</a>
+
+          <section class="modal--show" id="modal-text" tabindex="-1"
+        role="dialog" aria-labelledby="modal-label" aria-hidden="true">
+
+    <div class="modal-inner">
+        <header id="modal-label"><h4>hello there</h4></header>
+        <div class="modal-content"><h4>hello there</h4></div>
+    </div>
+
+    <a href="#!" class="modal-close" title="Close this modal" data-close="Close"
+        data-dismiss="modal">?</a>
+</section>
 
           <ChannelContainer channels={currentUser.channels} />
           <div className="card">
@@ -47,11 +62,6 @@ class Profile extends Component {
       <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
     }
 
-
-
-
-    </div>
-    </div>
     </Fragment>
     )
   }
