@@ -10,8 +10,8 @@ class NewChannel extends Component {
     state = {
       channel: {
         name: '',
+        user_id: this.props.currentUser.id
       },
-      users: [this.props.currentUser.id]
     }
 
 

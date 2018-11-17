@@ -39,11 +39,7 @@ class Profile extends Component {
 
 
           <ChannelContainer channels={currentUser.channels} />
-          <div className="card">
-          <Link to={`/channels/new`}>
-            <h2>+++++</h2>
-          </Link>
-          </div>
+
         </Fragment>
       :
       <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>

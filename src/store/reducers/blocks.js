@@ -3,7 +3,7 @@ export default function blockReducer(state = {}, action){
     case "SELECT_BLOCK":
       return {...state, currentBlock: action.block};
 
-      case "ADD_CHANNEL":
+      case "ADD_CHANNEL_BLOCK":
         let copy =  [...state.currentBlock.channels, action.channel]
         return {...state, currentBlock: {...state.currentBlock, channels: copy}}
 

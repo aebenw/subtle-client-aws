@@ -24,11 +24,15 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
         <h1 className="profile">{user.name}</h1>
       </div>
       { user.id === currentUserId ?
+        <Fragment>
+
+
         <div className="col-sm-offset-9">
           <Link to={'user/edit'}>
             <button className="inverse">Edit Profile</button>
             </Link>
         </div>
+        </Fragment>
         :
         <div className="col-sm-offset-9">
             {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
@@ -43,6 +47,17 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
         <div className="col-6-sm">
           <h4>Friends</h4>
           <ul>{lister(user.friends, userShow)}</ul>
+        </div>
+        <div className="col-5-sm">
+
+        { user.id === currentUserId ?
+        <div className="col-sm-offset-9" style={{"padding-left": "230px"}}>
+        <Link to={`/channels/new`}>
+        <button className="inverse" >+++++</button>
+        </Link>
+        </div>
+        : null
+      }
         </div>
       </div>
     </div>

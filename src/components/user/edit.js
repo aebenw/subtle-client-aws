@@ -17,7 +17,7 @@ class EditUser extends Component {
       id: props.currentUser.id,
       name: props.currentUser.name,
       description: props.currentUser.description,
-      file: ''
+      profile: ''
     },
   }}
 
@@ -44,12 +44,12 @@ class EditUser extends Component {
     console.log(e)
     this.setState({
 
-      block: {
+      user: {
         ...this.state.user,
-      file: e.file.name
+      profile: e.file.name
     }
   }, console.log(this.state))
-    // e.state = null
+    e.state = null
   }
 
 
@@ -74,7 +74,7 @@ class EditUser extends Component {
         <div className="row">
         <div className='col-5-lg'>
         <textarea style={{"position": "relative",
-    "left": "63px"}} name="content" placeholder="description" onChange={(e) => this.handleChange(e)}></textarea>
+    "left": "63px"}} name="description" placeholder="description" onChange={(e) => this.handleChange(e)}></textarea>
         </div>
         </div>
         <div className="row">
@@ -82,10 +82,10 @@ class EditUser extends Component {
         <label>Profile Picture</label>
         <ActiveStorageProvider
       endpoint={{
-        path: `api/vi/blocks`,
-        model: 'Blocks',
+        path: `api/vi/users`,
+        model: 'users',
         host: NGROK,
-        attribute: 'file',
+        attribute: 'profile',
         method: 'POST'
       }}
       // headers={ {responseHeader: ['Content-Type', 'Content-Md5' ]}}
