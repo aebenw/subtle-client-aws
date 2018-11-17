@@ -2636,3 +2636,7 @@ box-sizing: border-box;
     #root{
       min-height: 50em
     }
+
+    .add-btn:hover:after {
+      content: "+++++"
+    }

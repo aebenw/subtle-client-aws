@@ -41,7 +41,9 @@ class NewBlock extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createBlock(this.state, this.props.isMine)
-    .then(res => this.props.history.push(`/block/${res.block.id}`))
+    .then(res => (
+      this.props.history.state = res.id, this.props.history.push(`/block/${res.block.id}`))
+    )
   }
 
   response = (e) => {

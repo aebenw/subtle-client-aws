@@ -44,6 +44,16 @@ class BlockShow extends Component  {
           })
         }
       }
+      if(this.props.currentBlock){
+        this.setState({
+          comment: {
+            comment: {
+              ...this.state.comment.comment,
+              block_id: this.props.currentBlock.id
+            }
+          }
+        })
+      }
     }
 
 
@@ -107,12 +117,13 @@ class BlockShow extends Component  {
   handleSelectChange = (e) => {
     this.setState({
       value: e.target.value
-    })
+    }, () => console.log(this.state))
 
   }
 
   handleFormSubmit = (e) => {
     e.preventDefault()
+    this.props.addComment(this.state.comment)
     this.setState({
       comment: {
         comment: {
@@ -121,7 +132,6 @@ class BlockShow extends Component  {
       }}
     }, () => console.log(this.state))
 
-    this.props.addComment(this.state.comment)
   }
 
 
