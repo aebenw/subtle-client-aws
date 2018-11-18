@@ -18,23 +18,23 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
   return (
     <Fragment>
 
-    <div className="container profile">
-    <div className="row">
-      <div className="col-5-sm">
-        <h1 className="profile">{user.name}</h1>
-      </div>
-      { user.id === currentUserId ?
-        <Fragment>
+      <div className="container profile">
+        <div className="row">
+          <div className="col-5-sm">
+            <h1 className="profile">{user.name}</h1>
+          </div>
+          { user.id === currentUserId ?
+            <Fragment>
 
 
-        <div className="col-sm-offset-9">
-          <Link to={'user/edit'}>
-            <button className="inverse">Edit Profile</button>
-            </Link>
-        </div>
-        </Fragment>
-        :
-        <div className="col-sm-offset-9">
+              <div className="col-sm-offset-9">
+                <Link to={'user/edit'}>
+                  <button className="inverse">Edit Profile</button>
+                </Link>
+              </div>
+            </Fragment>
+          :
+          <div className="col-sm-offset-9">
             {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
         </div>
       }

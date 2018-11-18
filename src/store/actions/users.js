@@ -79,7 +79,7 @@ export function editUser(info, id){
       headers: HEADERS, 
       body: JSON.stringify(info)
     }).then(r => r.json())
-      .then(r => dispatch(loginUser(r)))
+      .then(r => dispatch(loginAction(r)))
   }
 }
 
