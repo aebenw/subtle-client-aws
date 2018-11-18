@@ -10,6 +10,9 @@ const User = ({user, userShow}) => {
     <Fragment>
       <div key={user.id}  className="card user-card" onClick={() => userShow(user.id)}>
       <Link to={{pathname: `/users/${user.name}`, state: user.id}}>
+      <img src={user.file ? user.file : user.image} className="section media" />
+      </Link>
+      <Link to={{pathname: `/users/${user.name}`, state: user.id}}>
         <div className="section author">
         {user.name}
       </div>
