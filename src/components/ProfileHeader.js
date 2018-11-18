@@ -36,14 +36,26 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
           :
           <div className="col-sm-offset-9">
             {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
+          </div>
+          }
         </div>
-      }
-    </div>
-      <div className="row">
-        <div className="col-6-sm">
-          <h4 className="profile">Channels</h4>
-          <ul>{lister(user.channels, showChannel)}</ul>
-        </div>
+        <div className="row">
+          <div className="col-6-sm">
+            <h4 className="profile">Bio</h4>
+            {user.description ?
+              <p> {user.description} </p>
+            :
+            <p>No Bio available</p>
+            }
+          </div>
+          <div className="col-6-sm">
+            <h4 className="picture">pic</h4>
+            {user.file ?
+              <img src={user.file}/>
+            :
+            <p>No Bio available</p>
+            }
+          </div>
         <div className="col-6-sm">
           <h4>Friends</h4>
           <ul>{lister(user.friends, userShow)}</ul>

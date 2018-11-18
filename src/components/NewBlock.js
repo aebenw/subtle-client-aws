@@ -5,7 +5,6 @@ import { createBlock, attatchBlobToBlock } from '../store/actions/blocks'
 import { NGROK } from '../constants'
 
 
-import Dropzone from "react-dropzone";
 import ActiveStorageProvider from 'react-activestorage-provider'
 
 
