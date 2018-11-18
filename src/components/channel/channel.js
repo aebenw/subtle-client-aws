@@ -12,14 +12,16 @@ const Channel = ({channel, channelShow, userShow}) => {
           {channel.name}
         </div>
         </Link>
-        <div className="section author">
-          {channel.authors.map(author =>
-            <By key={author.id} user={author} userShow={userShow}/>)}
-        </div>
+
       </div>
     )
 
 
 }
+
+// <div className="section author">
+//   {channel.authors.map(author =>
+//     <By key={author.id} user={author} userShow={userShow}/>)}
+// </div>
 
 export default Channel
