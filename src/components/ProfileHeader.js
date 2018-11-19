@@ -12,7 +12,7 @@ import { rmFriend } from '../store/actions/users'
 
 
 
-const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history}) => {
+const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history, changeView }) => {
   let isFriend
   if (user.id !== currentUserId){ isFriend = friendly() }
   return (
@@ -53,19 +53,10 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
             {user.file ?
               <img src={user.file}/>
             :
-            <p>No Bio available</p>
+            <p>No pic available</p>
             }
           </div>
-        <div className="col-6-sm">
-          <h4>Friends</h4>
-          <ul>{lister(user.friends, userShow)}</ul>
-        </div>
-        <div className="col-6-sm">
-          <h4>Followed Channels</h4>
-          { user.channel_follow ?
-          <ul>{lister(user.channel_follow, showChannel)}</ul>
-          : null  }
-        </div>
+
         <div className="col-5-sm">
 
         { user.id === currentUserId ?
@@ -76,6 +67,24 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
         </div>
         : null
       }
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12-sm">
+          <div className="logged-in">
+
+          <button className="button head-button" onClick={() => changeView("channels")}>
+            Channels
+          </button>
+
+          <button className="button head-button" onClick={() => changeView("myFriends")}>
+            Friends
+          </button>
+
+          <button className="button head-button" onClick={() => changeView("followedChannels")}>
+            Followed Channels
+          </button>
+        </div>
         </div>
       </div>
     </div>
