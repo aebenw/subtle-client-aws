@@ -2,8 +2,6 @@ import React,{ Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { lister } from '../functions/index'
-
 import { fetchChannel } from '../store/actions/channels'
 import {fetchUserInfo} from '../store/actions/users'
 import { addFriend } from '../store/actions/users'
@@ -51,7 +49,7 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
           <div className="col-6-sm">
             <h4 className="picture">pic</h4>
             {user.file ?
-              <img src={user.file}/>
+              <img src={user.file} alt="profile"/>
             :
             <p>No pic available</p>
             }
@@ -60,7 +58,7 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
         <div className="col-5-sm">
 
         { user.id === currentUserId ?
-        <div className="col-sm-offset-9" style={{"padding-left": "230px"}}>
+        <div className="col-sm-offset-9" style={{"paddingLeft": "230px"}}>
         <Link to={`/channels/new`}>
         <button className="inverse" >+++++</button>
         </Link>

@@ -2151,6 +2151,7 @@ progress.inline {
   width: 1.25rem;
   height: 1.25rem;
   animation: spinner-donut-anim 1.2s linear infinite;
+  margin-top: 10em
 }
 
 /*

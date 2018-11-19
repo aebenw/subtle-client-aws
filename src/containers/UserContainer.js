@@ -1,6 +1,6 @@
 import React,{Fragment} from 'react'
 import { connect } from 'react-redux'
-import { withRouter, NavLink } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 //Components
 import User from '../components/user/user'

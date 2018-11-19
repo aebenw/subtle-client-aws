@@ -20,7 +20,7 @@ class UserShow extends Component {
       changeView = (change) => {
          return this.setState({
           view: change
-        }, () => console.log(this.state))
+        })
       }
 
       container = () => {
@@ -51,7 +51,7 @@ class UserShow extends Component {
           {this.container()}
         </Fragment>
       :
-      <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
+      <center><div className="spinner tertiary"></div></center>
     }
     </Fragment>
     )

@@ -1,7 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
-
 
 //Components
 import Block from '../components/block/block'

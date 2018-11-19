@@ -1,4 +1,4 @@
-import { MINURL, URL } from '../../constants'
+import { URL } from '../../constants'
 
 const contentAction = (content) => ({type: "NEW_CONTENT", content})
 

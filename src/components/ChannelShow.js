@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 
-import By from './user/by'
 
 import {lister} from '../functions'
 
@@ -56,7 +55,7 @@ const ChannelShow = (props) => {
             : null
             }
           </Fragment>
-        : <center><div style={{"margin-top": "10em"}} className="spinner tertiary"></div></center>
+        : <center><div className="spinner tertiary"></div></center>
         }
       </Fragment>
     )

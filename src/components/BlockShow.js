@@ -138,7 +138,7 @@ class BlockShow extends Component  {
   appearsOn = () => {
     return this.props.currentBlock.channels.map(channel => {
       return (
-        <Link to={`/channel/${channel.name}`}>
+        <Link key={channel.id} to={`/channel/${channel.name}`}>
         <li onClick={() => this.props.showChannel(channel)}>{channel.name}</li>
         </Link>
       )
@@ -148,7 +148,7 @@ class BlockShow extends Component  {
 
   media = () => {
     return (
-      <div id="block-img"><img src={this.props.currentBlock.file ? this.props.currentBlock.file : this.props.currentBlock.image} className="section media" /></div>
+      <div id="block-img"><img src={this.props.currentBlock.file ? this.props.currentBlock.file : this.props.currentBlock.image} className="section media"  alt="block"/></div>
     )
   }
 
@@ -192,7 +192,7 @@ class BlockShow extends Component  {
           </form>
         </div>
         </div>
-        : <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>
+        : <center><div className="spinner tertiary"></div></center>
         }
       </Fragment>
     )

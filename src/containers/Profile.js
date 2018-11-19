@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { token } from '../constants'
 import { setHistory } from '../store/actions/users'
 import ChannelContainer from './ChannelContainer'
@@ -67,7 +67,7 @@ class Profile extends Component {
 
         </Fragment>
       :
-      <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
+      <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>
     }
 
     </Fragment>
