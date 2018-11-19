@@ -60,6 +60,12 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
           <h4>Friends</h4>
           <ul>{lister(user.friends, userShow)}</ul>
         </div>
+        <div className="col-6-sm">
+          <h4>Followed Channels</h4>
+          { user.channel_follow ?
+          <ul>{lister(user.channel_follow, showChannel)}</ul>
+          : null  }
+        </div>
         <div className="col-5-sm">
 
         { user.id === currentUserId ?

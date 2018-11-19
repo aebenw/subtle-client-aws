@@ -38,6 +38,10 @@ export default function userReducer(state = {currentUser: {}}, action){
       let lessFriends = state.currentUser.friends.filter(x => x.id !== action.user)
         return {...state, currentUser: {...state.currentUser, friends: lessFriends, not_friends: newNotFriends}}
 
+      case "ADD_FOLLOWED_CHANNEL":
+      let followed_channels = [...state.currUser.followed_channels, action.channel]
+      return  {...state, currentUser: {...state.currentUser, followed_channel: followed_channels}}
+
 
 
     default:

@@ -9,13 +9,13 @@ const header = ({userShow, currentUserId, addFriend, rmFriend, friendly, history
   const isFriend = friendly()
   return (
       <Fragment>
-      {userShow ?
-    <div className="container">
-    <div className="row">
-      <div className="col-5-sm">
-        <h1>{userShow.name}</h1>
-      </div>
-      <div className="col-sm-offset-9">
+        {userShow ?
+          <div className="container">
+            <div className="row">
+              <div className="col-5-sm">
+                <h1>{userShow.name}</h1>
+              </div>
+              <div className="col-sm-offset-9">
           {isFriend ?
             <button className="inverse" onClick={() => {rmFriend(currentUserId, userShow.id)}}>Remove Friend</button>
 
