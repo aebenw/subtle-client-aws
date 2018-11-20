@@ -34,6 +34,11 @@ const mapFriendsToProps = (state) => {
     type: "FRIEND"
   }
 }
+const mapUserToProps = (state) => {
+  return {
+    users: state.users.userShow.friends,
+  }
+}
 
 const mapUsersToProps = (state) => {
   return {
@@ -50,6 +55,8 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
+const UserFriendContainer = withRouter(connect(mapUserToProps, mapDispatchToProps )(UserContainer))
+
 
 const FriendContainer = withRouter(connect(mapFriendsToProps, mapDispatchToProps )(UserContainer))
 
@@ -57,5 +64,6 @@ const NotFriendContainer = withRouter(connect(mapUsersToProps, mapDispatchToProp
 
 export {
   FriendContainer,
-  NotFriendContainer
+  NotFriendContainer,
+  UserFriendContainer
 }

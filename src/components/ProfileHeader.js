@@ -17,8 +17,26 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
     <Fragment>
 
       <div className="container profile">
-        <div className="row">
-          <div className="col-5-sm">
+          <div className="row">
+          <div className="col-4-sm">
+
+      {
+        user.file ?
+          <div  className="profile-pic user-card">
+          <img src={user.file} className="section media" alt="profile"/>
+        </div>
+        :
+        <div className="card user-card" >
+        <div className="section">
+          <h3> {user.name[0]}</h3>
+        </div>
+        </div>
+      }
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-5-sm">
             <h1 className="profile">{user.name}</h1>
           </div>
           { user.id === currentUserId ?
@@ -46,14 +64,7 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
             <p>No Bio available</p>
             }
           </div>
-          <div className="col-6-sm">
-            <h4 className="picture">pic</h4>
-            {user.file ?
-              <img src={user.file} alt="profile"/>
-            :
-            <p>No pic available</p>
-            }
-          </div>
+
 
         <div className="col-5-sm">
 

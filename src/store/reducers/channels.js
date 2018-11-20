@@ -11,6 +11,13 @@ export default function channelReducer(state = {}, action){
       let followers = [...state.currentChannel.followers, action.user]
         return {...state, currentChannel: {...state.currentChannel, followers: followers}};
 
+    case "RM_FOLLOWER":
+      let filteredFollowers = state.currentChannel.followers.filter(x => x.id !== action.user.id)
+        return {...state, currentChannel: {...state.currentChannel, followers: filteredFollowers}};
+
+      case "RM_CURR_CHANNEL":
+        return {...state, currentChannel: {}};
+
 
     default:
     return state;
