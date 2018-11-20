@@ -1,4 +1,4 @@
-import { MINURL, URL, HEADERS } from '../../constants'
+import { URL, HEADERS } from '../../constants'
 
 export const selectBlock = (block) => ({type: "SELECT_BLOCK", block})
 

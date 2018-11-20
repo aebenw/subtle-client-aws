@@ -1,14 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { token } from '../constants'
 import { setHistory } from '../store/actions/users'
 import ChannelContainer from './ChannelContainer'
 import ProfileHeader from '../components/ProfileHeader'
+import {FriendContainer} from './UserContainer'
 
 
 class Profile extends Component {
-
+  state = {
+    view: "channels"
+  }
 
   componentDidMount() {
     if (token && !this.props.currentUser.name) {
@@ -20,8 +23,30 @@ class Profile extends Component {
   }
 
 
-  // <div id="feed" className="row">
-  //   <div className="col-lg-10">
+  changeView = (change) => {
+     return this.setState({
+      view: change
+    }, () => console.log(this.state))
+  }
+
+  container = () => {
+    const { view } = this.state
+    const { currentUser } = this.props
+
+    if(view === "channels") {
+      return (
+        <ChannelContainer channels={currentUser.channels} />
+      )
+    } else if(view === "myFriends"){
+      return (
+        <FriendContainer/>
+      )
+    } else if(view === "followedChannels"){
+      return (
+        <ChannelContainer channels={currentUser.channel_follow}/>
+      )
+    }
+  }
 
 
   render(){
@@ -35,14 +60,14 @@ class Profile extends Component {
 
         {currentUser.name ?
           <Fragment>
-          <ProfileHeader user={currentUser}/>
+          <ProfileHeader user={currentUser} changeView={this.changeView}/>
 
 
-          <ChannelContainer channels={currentUser.channels} />
+          {this.container()}
 
         </Fragment>
       :
-      <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>
+      <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>
     }
 
     </Fragment>

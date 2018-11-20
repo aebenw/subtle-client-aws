@@ -29,7 +29,7 @@ class LoggedInNav extends Component {
 
           <ul className="dropdown">
           <li>
-          <NavLink className="button head-button" style={{"border-top-width": "1px"}} exact to="/home">
+          <NavLink className="button head-button" style={{"borderTopWidth": "1px"}} exact to="/home">
             Home
           </NavLink>
           </li>

@@ -2,8 +2,6 @@ import React,{ Fragment } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { lister } from '../functions/index'
-
 import { fetchChannel } from '../store/actions/channels'
 import {fetchUserInfo} from '../store/actions/users'
 import { addFriend } from '../store/actions/users'
@@ -12,15 +10,33 @@ import { rmFriend } from '../store/actions/users'
 
 
 
-const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history}) => {
+const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history, changeView }) => {
   let isFriend
   if (user.id !== currentUserId){ isFriend = friendly() }
   return (
     <Fragment>
 
       <div className="container profile">
-        <div className="row">
-          <div className="col-5-sm">
+          <div className="row">
+          <div className="col-4-sm">
+
+      {
+        user.file ?
+          <div  className="profile-pic user-card">
+          <img src={user.file} className="section media" alt="profile"/>
+        </div>
+        :
+        <div className="card user-card" >
+        <div className="section">
+          <h3> {user.name[0]}</h3>
+        </div>
+        </div>
+      }
+        </div>
+      </div>
+
+      <div className="row">
+        <div className="col-5-sm">
             <h1 className="profile">{user.name}</h1>
           </div>
           { user.id === currentUserId ?
@@ -48,28 +64,36 @@ const header = ({user, showChannel, userShow, currentUserId, addFriend, rmFriend
             <p>No Bio available</p>
             }
           </div>
-          <div className="col-6-sm">
-            <h4 className="picture">pic</h4>
-            {user.file ?
-              <img src={user.file}/>
-            :
-            <p>No Bio available</p>
-            }
-          </div>
-        <div className="col-6-sm">
-          <h4>Friends</h4>
-          <ul>{lister(user.friends, userShow)}</ul>
-        </div>
+
+
         <div className="col-5-sm">
 
         { user.id === currentUserId ?
-        <div className="col-sm-offset-9" style={{"padding-left": "230px"}}>
+        <div className="col-sm-offset-9" style={{"paddingLeft": "230px"}}>
         <Link to={`/channels/new`}>
         <button className="inverse" >+++++</button>
         </Link>
         </div>
         : null
       }
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-12-sm">
+          <div className="logged-in">
+
+          <button className="button head-button" onClick={() => changeView("channels")}>
+            Channels
+          </button>
+
+          <button className="button head-button" onClick={() => changeView("myFriends")}>
+            Friends
+          </button>
+
+          <button className="button head-button" onClick={() => changeView("followedChannels")}>
+            Followed Channels
+          </button>
+        </div>
         </div>
       </div>
     </div>

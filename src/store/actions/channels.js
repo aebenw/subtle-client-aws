@@ -2,9 +2,22 @@ import { URL, HEADERS } from '../../constants'
 
 export const showChannel = (channel) => ({type: "SELECT_CHANNEL", channel})
 
+export const addFollower = (user) => ({type: "ADD_FOLLOWER", user})
+
+export const rmFollower = (user) => ({type: "RM_FOLLOWER", user})
+
+export const addFollowedChannel = (channel) => ({type: "ADD_FOLLOWED_CHANNEL", channel})
+
+export const rmFollowedChannel = (channel) => ({type: "RM_FOLLOWED_CHANNEL", channel})
+
 /////////// ADDING A NEW CHANNEL TO USER'S CHANNEL /////
 
 export const addToUserChannel  = (channel) => ({ type: "ADD_CHANNEL", channel})
+
+export const rmCurrChannel  = () => ({ type: "RM_CURR_CHANNEL"})
+
+
+export const rmChannelFromUser  = (channelId) => ({ type: "DELETE_CHANNEL", channelId})
 
 
 export function createChannel(channel){
@@ -16,8 +29,7 @@ export function createChannel(channel){
     }).then(r => r.json())
     .then(r => {
       return (
-        dispatch(showChannel(r)),
-        dispatch(addToUserChannel(r)))
+        dispatch(showChannel(r)))
     })
   }
 }
@@ -28,4 +40,59 @@ export function fetchChannel(channel){
     .then(r => r.json())
     .then(r => dispatch(showChannel(r)))
   }
+}
+
+
+export function followChannel(user, channel){
+  let body = {
+    channel: {
+      id: channel,
+      user_id: user
+    }
+  }
+
+  return (dispatch) => {
+    return fetch(URL + `channels/followers`, {
+      method: `POST`,
+      headers: HEADERS,
+      body: JSON.stringify(body)
+    })
+    .then(r => r.json())
+    .then(r => dispatch(addFollower(r)))
+  }
+}
+export function unFollowChannel(user, channel){
+  let body = {
+    channel: {
+      id: channel,
+      user_id: user
+    }
+  }
+
+  return (dispatch) => {
+    return fetch(URL + `channels/followers`, {
+      method: `DELETE`,
+      headers: HEADERS,
+      body: JSON.stringify(body)
+    })
+    .then(r => r.json())
+    .then(r => (
+      dispatch(rmFollower(r.user)),
+      dispatch(rmFollowedChannel(r.channel))
+
+    ))
+  }
+}
+
+export function deleteChannel(channel){
+  return (dispatch) => {
+    return fetch(URL + `channels/${channel}`, {
+      method: "DELETE",
+      headers: HEADERS,
+      body: JSON.stringify(channel)
+    }).then(() =>
+      dispatch(rmChannelFromUser(channel))
+    )
+  }
+
 }

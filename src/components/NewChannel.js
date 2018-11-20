@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { createChannel } from '../store/actions/channels'
+import _ from "lodash"
 
 
 
@@ -12,6 +13,7 @@ class NewChannel extends Component {
         name: '',
         user_id: this.props.currentUser.id
       },
+      collab: ''
     }
 
 
@@ -27,11 +29,22 @@ class NewChannel extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    debugger
     this.props.createChannel(this.state)
-    .then(res => this.props.history.push(`/channel/${res.channel.name}`))
+    .then(res =>{
+      console.log(res)
+      return this.props.history.push(`/channel/${res.channel.name}`)})
+  }
+
+  handleColabChange = (e) => {
+    this.setState({
+      collab: e.value
+    }, () => this.state)
+
   }
 
   render(){
+    const {collab} = this.state
     return(
       <div id="user-feed" className="row">
       <center>
@@ -43,6 +56,8 @@ class NewChannel extends Component {
       <div>
         <label>Name</label>
         <input type="text" name="name" onChange={(e) => this.handleChange(e)}/>
+        <label>Collaborators</label>
+        <input type="text" name="collab" value={collab} onChange={_.debounce(this.handleColabChange, 300)}/>
         <input type="submit"/>
       </div>
     </div>

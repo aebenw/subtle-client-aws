@@ -9,7 +9,6 @@ import {getContent} from '../store/actions/feed'
 import Channel from '../components/channel/channel'
 import Block from '../components/block/block'
 import User from '../components/user/user'
-import ProfileHeader from '../components/ProfileHeader'
 
 
 
@@ -43,7 +42,7 @@ class Feed extends Component {
 
 
   render(){
-    const { currentUser, content, userShow, channelShow, blockShow } = this.props
+    const { content, userShow, channelShow, blockShow } = this.props
 
     // console.log(content[0].image)
 
@@ -73,7 +72,7 @@ class Feed extends Component {
               </Fragment>
               )
             } else if(x.email){
-              
+
               return (
                 <Fragment>
                 <User key={x.id} user={x} userShow={userShow}/>
@@ -88,7 +87,7 @@ class Feed extends Component {
 
 
 
-        : <center><div style={{"margin-top": "10em"}} class="spinner tertiary"></div></center>}
+        : <center><div className="spinner tertiary"></div></center>}
       </div>
       </div>
       </Fragment>

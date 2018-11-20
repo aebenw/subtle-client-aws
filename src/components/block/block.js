@@ -8,7 +8,7 @@ const Block = ({block, blockShow, userShow}) => {
   return(
     <div  className="card user-card" >
       <Link to={{pathname:`/block/${block.id}`, state : block.id}}>
-      <img src={block.file ? block.file : block.image} className="section media" onClick={() => blockShow(block)}/>
+      <img src={block.file ? block.file : block.image} className="section media" onClick={() => blockShow(block)} alt="block"/>
       </Link>
       <div className="section author">
         <span style={{display :"inline"}}><p>Author: </p>
