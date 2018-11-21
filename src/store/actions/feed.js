@@ -1,15 +1,17 @@
-import { URL } from '../../constants'
+import { URL, HEADERS } from '../../constants'
 
 const contentAction = (content) => ({type: "NEW_CONTENT", content})
 
-export const getContent = () => {
+export const getContent = (id) => {
+
+  console.log(`feeds/${id}`)
   return (dispatch) => {
-    return fetch(URL + "/content")
+    return fetch(URL + `feeds/${id}`, {
+      method: "GET",
+      headers: HEADERS,
+    })
             .then(r => r.json())
             .then(r => {
-              // debugger
-              // r.content.forEach(x => x.file ? x.file = MINURL + x.file : x)
-              // debugger
               return dispatch(contentAction(r))})
   }
 }

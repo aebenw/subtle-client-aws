@@ -32,19 +32,25 @@ class Feed extends Component {
     else if (!token && !this.props.currentUser.email) {
       this.props.history.push('/')
     }
-    this.props.getContent()
+
+    if(this.props.currentUser.email){
+      console.log("comp did mount", this.props.currentUser.id)
+      return this.props.getContent(this.props.currentUser.id)
+    }
   }
 
 
-  // shouldComponentUpdate(nextProps){
-  //   return this.props.currentUser === nextProps.currentUser ?  false :  true
+  // shouldComponentUpdate(prevProps) {
+  //   if(prevProps.currentUser.id === "undefined"){
+  //     this.props.getContent(this.props.currentUser.id)
+  //   }
   // }
 
 
   render(){
-    const { content, userShow, channelShow, blockShow } = this.props
+    const { content, userShow, channelShow, blockShow, currentUser } = this.props
 
-    // console.log(content[0].image)
+    console.log(currentUser)
 
     return (
       <Fragment >
@@ -108,8 +114,8 @@ const mapDispatchToProps = (dispatch) => {
     setHistory: (history) => {
       return dispatch(setHistory(history))
     },
-    getContent: () => {
-      return dispatch(getContent())
+    getContent: (id) => {
+      return dispatch(getContent(id))
     },
     channelShow: (channel) => {
       return dispatch(showChannel(channel))

@@ -130,7 +130,7 @@ class BlockShow extends Component  {
           ...this.state.comment.comment,
           content: ''
       }}
-    }, () => console.log(this.state))
+    })
 
   }
 
