@@ -59,7 +59,6 @@ export function followChannel(user, channel){
     })
     .then(r => r.json())
     .then(r => {
-      debugger
       return dispatch(addFollower(r.user)),
       dispatch(addFollowedChannel(r.channel))
     })

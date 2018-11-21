@@ -33,8 +33,9 @@ class App extends Component {
 
   componentDidMount(){
     if (token && !this.props.currentUser.name && (this.props.history.location.pathname !== '/')) {
-      this.props.getContent()
-      .then(()=>  this.props.fetchWithToken(token) )
+      // this.props.getContent()
+      // .then(()=>
+      this.props.fetchWithToken(token)
       .then(() => this.props.history.push(this.props.history.location.pathname))
     } else if (token && !this.props.currentUser.name ) {
       this.props.fetchWithToken(token)
