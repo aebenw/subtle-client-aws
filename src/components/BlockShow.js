@@ -154,17 +154,17 @@ class BlockShow extends Component  {
 
   render(){
     const {currentBlock} = this.props
-    console.log(currentBlock, "scanning for new channels")
     return(
       <Fragment>
         { currentBlock ?
 
-        <div id="user-feed" className="row  block-page">
+        <div id="block-feed" className="row  block-page">
+          <div className="row">
           <div className="col-4-lg">
           {this.media()}
           </div>
 
-          <div className="col-sm-4 block-form">
+          <div className="col-sm-5 block-form">
           <h4>{currentBlock.content}</h4>
           <select value={this.state.value} onChange={ this.handleSelectChange}>
             {this.state.options ? this.selectOptions() : null}
@@ -192,6 +192,8 @@ class BlockShow extends Component  {
           </form>
         </div>
         </div>
+              </div>
+
         : <center><div className="spinner tertiary"></div></center>
         }
       </Fragment>

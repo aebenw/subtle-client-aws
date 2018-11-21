@@ -7,6 +7,9 @@ import {fetchUserInfo} from '../store/actions/users'
 import { addFriend } from '../store/actions/users'
 import { rmFriend } from '../store/actions/users'
 
+import { NO_PROFILE } from '../constants'
+
+
 
 
 
@@ -43,12 +46,12 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
 
       {
         user.file ?
-          <div  className="profile-pic user-card">
+          <div  className="profile-pic">
           <img src={user.file} className="section media" alt="profile"/>
         </div>
         :
-        <div className="profile-pic user-card" >
-          <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-icon%2Fuser-image-with-black-background_318-34564.jpg&f=1" className="section media" alt="profile"/>
+        <div className="profile-pic" >
+          <img src={NO_PROFILE}  className="section media" alt="profile"/>
         </div>
       }
         </div>

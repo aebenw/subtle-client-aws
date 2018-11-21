@@ -285,15 +285,12 @@ a:visited {
   align-items: center;
   justify-content: center;
   padding-top: 4.5em;
-  /* border-top: inset; */
 
 }
 #block-feed{
   margin: 0 auto;
   flex-flow: row wrap;
   align-items: center;
-  justify-content: center;
-  border-top: inset;
   padding-top: 1em;
 }
 
@@ -344,15 +341,13 @@ a:visited {
   /* margin-right: 964.552; */
   padding-right: 0em;
   height: 483px;
-  width: 1222px;
   justify-content: normal;
 
 }
 
 #block-img {
-  width: 33em;
-  height: 25em;
-  margin-left: -5.5em;
+  width: 24em;
+  height: auto;
 }
 
 .block-card {
@@ -795,6 +790,11 @@ a:visited {
 
 }
 .profile-pic {
+  border: solid;
+  border-color:  #003aff black black #50ff00b5 ;
+  -webkit-transition: margin 0.5s ease-out;
+  -moz-transition: margin 0.5s ease-out;
+  -o-transition: margin 0.5s ease-out;
   /* display: flex;
   /* flex-direction: column; */
   justify-content: space-between;
