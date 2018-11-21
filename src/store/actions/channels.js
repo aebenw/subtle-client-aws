@@ -58,7 +58,11 @@ export function followChannel(user, channel){
       body: JSON.stringify(body)
     })
     .then(r => r.json())
-    .then(r => dispatch(addFollower(r)))
+    .then(r => {
+      debugger
+      return dispatch(addFollower(r.user)),
+      dispatch(addFollowedChannel(r.channel))
+    })
   }
 }
 export function unFollowChannel(user, channel){
