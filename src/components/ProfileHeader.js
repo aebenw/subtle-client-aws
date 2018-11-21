@@ -17,8 +17,29 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
     <Fragment>
 
       <div className="container profile">
-          <div className="row">
-          <div className="col-4-sm">
+        <div className="row">
+        <div className="col-5-sm">
+          <h1 className="profile">{user.name}</h1>
+        </div>
+                  { user.id === currentUserId ?
+            <Fragment>
+
+
+              <div className="col-sm-offset-7">
+                <Link to={'user/edit'}>
+                  <button className="inverse">Edit Profile</button>
+                </Link>
+              </div>
+            </Fragment>
+          :
+          <div className="col-sm-offset-7">
+            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
+          </div>
+          }
+          </div>
+
+        <div className="row">
+        <div className="col-4-sm">
 
       {
         user.file ?
@@ -26,35 +47,14 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
           <img src={user.file} className="section media" alt="profile"/>
         </div>
         :
-        <div className="card user-card" >
-        <div className="section">
-          <h3> {user.name[0]}</h3>
-        </div>
+        <div className="profile-pic user-card" >
+          <img src="https://proxy.duckduckgo.com/iu/?u=https%3A%2F%2Fimage.freepik.com%2Ffree-icon%2Fuser-image-with-black-background_318-34564.jpg&f=1" className="section media" alt="profile"/>
         </div>
       }
         </div>
       </div>
 
-      <div className="row">
-        <div className="col-5-sm">
-            <h1 className="profile">{user.name}</h1>
-          </div>
-          { user.id === currentUserId ?
-            <Fragment>
 
-
-              <div className="col-sm-offset-9">
-                <Link to={'user/edit'}>
-                  <button className="inverse">Edit Profile</button>
-                </Link>
-              </div>
-            </Fragment>
-          :
-          <div className="col-sm-offset-9">
-            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
-          </div>
-          }
-        </div>
         <div className="row">
           <div className="col-6-sm">
             <h4 className="profile">Bio</h4>
@@ -66,17 +66,15 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
           </div>
 
 
-        <div className="col-5-sm">
 
         { user.id === currentUserId ?
-        <div className="col-sm-offset-9" style={{"paddingLeft": "230px"}}>
+        <div className="col-sm-offset-8" >
         <Link to={`/channels/new`}>
         <button className="inverse" >+++++</button>
         </Link>
         </div>
         : null
       }
-        </div>
       </div>
       <div className="row">
         <div className="col-12-sm">

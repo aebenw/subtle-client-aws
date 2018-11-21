@@ -816,7 +816,8 @@ a:visited {
   display: inline-block;
   background: #fff;
   user-select: none;
-  padding-bottom: 20%;
+  padding-bottom: 0px;
+  width: 30%;
 
 }
 
