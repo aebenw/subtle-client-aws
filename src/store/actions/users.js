@@ -76,7 +76,7 @@ export function editUser(info, id){
   return (dispatch) => {
     return fetch(URL + `users/${id}`, {
       method: "PATCH",
-      headers: HEADERS, 
+      headers: HEADERS,
       body: JSON.stringify(info)
     }).then(r => r.json())
       .then(r => dispatch(loginAction(r)))
