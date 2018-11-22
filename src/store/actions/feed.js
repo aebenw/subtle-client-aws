@@ -3,8 +3,6 @@ import { URL, HEADERS } from '../../constants'
 const contentAction = (content) => ({type: "NEW_CONTENT", content})
 
 export const getContent = (id) => {
-
-  console.log(`feeds/${id}`)
   return (dispatch) => {
     return fetch(URL + `feeds/${id}`, {
       method: "GET",

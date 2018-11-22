@@ -2,7 +2,7 @@
 
 export const token = localStorage.getItem("jwt");
 // export const URL = "http://localhost:3000/api/v1/"
-export const NGROK = "8f1d5e76.ngrok.io"
+export const NGROK = "e95a9378.ngrok.io"
 export const URL = "http://" + NGROK + "/api/v1/"
 export const HEADERS = {"Content-Type": "application/json",
 Accept: "application/json"}

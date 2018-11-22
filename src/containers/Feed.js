@@ -10,6 +10,10 @@ import Channel from '../components/channel/channel'
 import Block from '../components/block/block'
 import User from '../components/user/user'
 
+//Containers
+import BlockContainer from './BlockContainer'
+import ChannelContainer from './ChannelContainer'
+
 
 
 
@@ -40,55 +44,82 @@ class Feed extends Component {
   }
 
 
-  // shouldComponentUpdate(prevProps) {
-  //   if(prevProps.currentUser.id === "undefined"){
-  //     this.props.getContent(this.props.currentUser.id)
-  //   }
-  // }
+  sortContent = () => {
+    const { content, userShow } = this.props
+    return content.feed.map(x => {
+      if (x.type === "friends" && x.content.length){
+        return (
+          <Fragment>
+          <div className="row">
+            <div className="col-12-lg">
+          <center><h3>{x.user.name} became friends with</h3></center>
+          </div>
+          </div>
+          <div id="feed" className="row">
+          {x.content.map(c => <User user={c} userShow={userShow}/>)}
+          </div>
+          </Fragment>
+        )
+
+      }
+      else if (x.type === "followed_channels" && x.content.length){
+        return (
+          <Fragment>
+          <div className="row">
+            <div className="col-12-lg">
+          <center><h3>{x.user.name} started following these channels </h3></center>
+          </div>
+          </div>
+
+          <ChannelContainer channels={x.content}/>
+
+          </Fragment>
+        )
+
+      }
+      else if(x.type === "blocks" && x.content.length){
+        return (
+          <Fragment>
+          <div className="row">
+            <div className="col-12-lg">
+          <center><h3>{x.user.name} made blocks</h3></center>
+          </div>
+          </div>
+          <BlockContainer blocks={x.content}/>
+          </Fragment>
+        )
+
+      } else if (x.type === "channels" && x.content.length){
+        return (
+          <Fragment>
+          <div className="row">
+            <div className="col-12-lg">
+          <center><h3>{x.user.name} made channels</h3></center>
+          </div>
+          </div>
+
+          <ChannelContainer channels={x.content}/>
+
+          </Fragment>
+        )
+      }
+    })
+  }
 
 
   render(){
     const { content, userShow, channelShow, blockShow, currentUser } = this.props
 
-    console.log(currentUser)
 
     return (
       <Fragment >
-        <div id="user-feed" className="row">
+        <div id="home-feed" className="row">
           <div className="col-lg-10">
         {content ?
           <Fragment>
 
 
-          <div id="feed" className="row">
-          {content.map(x => {
-            if (x.authors){
-
-              return (
-                <Fragment>
-                <Channel key={x.id} userShow={userShow} channel={x} channelShow={channelShow}/>
-                </Fragment>
-              )
-            } else if (x.content){
-
-              return (
-                <Fragment>
-                <Block key={x.id} block={x} blockShow={blockShow}
-              userShow={userShow}/>
-              </Fragment>
-              )
-            } else if(x.email){
-
-              return (
-                <Fragment>
-                <User key={x.id} user={x} userShow={userShow}/>
-                </Fragment>
-              )
-            }
-
-          }
-          )}
-          </div>
+            {this.sortContent()}
         </Fragment>
 
 
