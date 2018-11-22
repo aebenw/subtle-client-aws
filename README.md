@@ -4,10 +4,10 @@ A Rails backend for _Subtle_
 
   API URL - https://murmuring-oasis-50773.herokuapp.com/api/v1
 
-Subtle is a social networking app that allows
 
 
 Project Description
+
   Subtle is a social networking app akin to pintrest that uses a Ruby on Rails API and a React/Redux front end interface. It uses AWS for image storage and is live on Heroku.
 
   As a user, you can make channels which have a title and description. As a user you can follow someone else's channel.
