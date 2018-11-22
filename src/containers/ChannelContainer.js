@@ -14,14 +14,14 @@ const ChannelContainer = props => {
   return(
     <Fragment>
 
-    <div id="feed" className="row">
     {props.channels ?
       <Fragment>
+        <div id="feed" className="row">
     {props.channels.map(channel => <Channel key={channel.id} userShow={props.userShow} channel={channel} channelShow={props.channelShow}/>)}
+  </div>
     </Fragment>
     : <h4>No Channels</h4>
     }
-    </div>
     </Fragment>
   )
 }
