@@ -30,7 +30,7 @@ export default function userReducer(state = {currentUser: {}}, action){
 
       case "ADD_FRIEND":
       let newFriends = [...state.currentUser.friends, action.user]
-      let notFriends = state.currentUser.not_friends.filter(x => x.id !== action.user)
+      let notFriends = state.currentUser.not_friends.filter(x => x.id !== action.user.id)
         return {...state, currentUser: {...state.currentUser, friends: newFriends, not_friends: notFriends}}
 
       case "RM_FRIEND":
