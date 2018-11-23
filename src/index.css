@@ -1151,9 +1151,8 @@ a[role="button"], label[role="button"], [role="button"] {
   color: #003aff;
 }
 
-button:hover, button:focus, [type="button"]:hover, [type="button"]:focus, [type="submit"]:hover, [type="submit"]:focus, [type="reset"]:hover, [type="reset"]:focus,
-a.button:hover,
-a.button:focus, label.button:hover, label.button:focus, .button:hover, .button:focus,
+button:hover, [type="button"]:hover, [type="button"]:focus, [type="submit"]:hover, [type="submit"]:focus, [type="reset"]:hover, [type="reset"]:focus,
+a.button:hover, label.button:hover, label.button:focus, .button:hover,
 a[role="button"]:hover,
 a[role="button"]:focus, label[role="button"]:hover, label[role="button"]:focus, [role="button"]:hover, [role="button"]:focus {
   background: #003aff;
@@ -2527,6 +2526,7 @@ box-sizing: border-box;
           padding-left: 8px;
           min-width: 100%;
           width: 4.7em;
+          border-width: 2px;
 
 
 
