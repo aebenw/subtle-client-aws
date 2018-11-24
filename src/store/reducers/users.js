@@ -20,14 +20,6 @@ export default function userReducer(state = {currentUser: {}}, action){
 
         return {...state, currentUser: {...state.currentUser, channels: newArr}}
 
-      // case "ADD_BLOCK":
-      //
-      // let copy = [...state.currentUser.channels]
-      // let channelId = action.block.channels[0].id
-      // let chan = copy.find(x => x.id === channelId)
-      // chan.blocks.push(action.block)
-      //     return {...state, currentUser: {...state.currentUser, channels: copy}}
-
       case "ADD_FRIEND":
       let newFriends = [...state.currentUser.friends, action.user]
       let notFriends = state.currentUser.not_friends.filter(x => x.id !== action.user.id)
@@ -45,7 +37,6 @@ export default function userReducer(state = {currentUser: {}}, action){
 
       case "RM_FOLLOWED_CHANNEL":
       let filteredFollow = state.currentUser.channel_follow.filter(x => x.id !== action.channel.id)
-      debugger
       return  {...state, currentUser: {...state.currentUser, channel_follow: filteredFollow}};
 
       case "DELETE_CHANNEL":

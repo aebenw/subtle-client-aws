@@ -174,8 +174,6 @@ class BlockShow extends Component  {
 
   render(){
     const {currentBlock} = this.props
-    // debugger
-    // console.log("state of currentBlock", this.state)
     return(
       <Fragment>
         { currentBlock ?
@@ -228,7 +226,6 @@ class BlockShow extends Component  {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.blocks)
   return {
     currentBlock: state.blocks.currentBlock,
     userId: state.users.currentUser.id,
