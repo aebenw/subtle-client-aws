@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { withRouter, Link } from 'react-router-dom'
 
 
-import {lister} from '../functions'
 
 //COMPONENTS
 import ChannelHeader  from './ChannelHeader'
@@ -14,7 +13,7 @@ import BlockContainer from '../containers/BlockContainer'
 
 //ACTIONS
 import {fetchUserInfo} from '../store/actions/users'
-import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel, fetchChannel} from '../store/actions/channels'
+import { fetchChannel } from '../store/actions/channels'
 
 
 

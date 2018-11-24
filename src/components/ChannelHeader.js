@@ -7,12 +7,6 @@ import {fetchUserInfo} from '../store/actions/users'
 import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel, fetchChannel} from '../store/actions/channels'
 
 
-
-
-
-
-
-
 class ChannelHeader extends Component {
 
    delete = (channel) => {
@@ -41,23 +35,26 @@ class ChannelHeader extends Component {
     }
 
   render(){
-    const {currentChannel, showChannel, isMine, userShow, currentUserId, friendly, history, changeView, view} = this.props
+    const {currentChannel, isMine, userShow, changeView, view} = this.props
   return (
   <Fragment>
   <div className="container profile">
     <div className="row">
       <div className="col-5-sm">
-        <h3> Channel </h3>
+        <h4 className="profile"> Channel </h4>
+        <h4>/{currentChannel.name}</h4>
+        </div>
+        <div className="col-5-sm">
+        <h4> Author </h4>
         <Link to={{pathname: `/users/${currentChannel.authors[0].id}`, state: currentChannel.authors[0].id}}>
         <h4 onClick={() => userShow(currentChannel.authors[0].id)}>
           {currentChannel.authors[0].name}
         </h4>
       </Link>
-      <h4>/{currentChannel.name}</h4>
     </div>
 
     {isMine() ?
-      <div className="col-sm-offset-9">
+      <div className="col-sm-offset-8">
       <button className="inverse" onClick={() => this.delete( currentChannel.id)}>Delete Channel</button>
         </div>
     :
@@ -78,7 +75,7 @@ class ChannelHeader extends Component {
       </button>
     </div>
     { (isMine() || !currentChannel.private) && view === "blocks" ?
-    <div className="col-sm-offset-5" style={{ "margin-left": "15.7em"}}>
+    <div className="col-sm-offset-8" style={{ "marginLeft": "20em"}}>
     <Link to={`/blocks/new`}>
     <button className="inverse" >+++++</button>
     </Link>

@@ -85,7 +85,8 @@ class BlockShow extends Component  {
       this.setState({
         ...this.state,
           options: difference,
-      })
+          value: this.state.options[0]
+      }, () => console.log(this.state))
     }
   }
 
@@ -110,8 +111,9 @@ class BlockShow extends Component  {
 
     this.setState({
       ...this.state,
-      options: filtered
-    })
+      options: filtered,
+      value: this.state.options[0]
+    }, () => this.state)
 
     let body = {
       channel_block: {
