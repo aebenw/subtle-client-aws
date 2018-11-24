@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 
 import {lister} from '../functions'
@@ -68,7 +67,13 @@ class ChannelShow extends Component {
               <div className="row">
                 <div className="col-5-sm">
                   <h3> Channel </h3>
-                  <h4 onClick={() => userShow(currentChannel.authors[0].id)}>{currentChannel.authors[0].name}/{currentChannel.name}</h4>
+                  <Link to={{pathname: `/users/${currentChannel.authors[0].id}`, state: currentChannel.authors[0].id}}>
+                  <h4 onClick={() => userShow(currentChannel.authors[0].id)}>
+                    {currentChannel.authors[0].name}
+                  </h4>
+                    </Link>
+                  <h4>/{currentChannel.name}</h4>
+
                 </div>
               </div>
 

@@ -29,10 +29,8 @@ class NewChannel extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    debugger
     this.props.createChannel(this.state)
     .then(res =>{
-      console.log(res)
       return this.props.history.push(`/channel/${res.channel.id}`)})
   }
 
