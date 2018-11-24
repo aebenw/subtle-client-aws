@@ -26,7 +26,7 @@ class Profile extends Component {
   changeView = (change) => {
      return this.setState({
       view: change
-    }, () => console.log(this.state))
+    })
   }
 
   container = () => {

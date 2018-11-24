@@ -47,6 +47,12 @@ const mapUsersToProps = (state) => {
   }
 }
 
+const mapFollowersToProps = (state) => {
+  return {
+    users: state.channels.currentChannel.followers
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     userShow: (user) => {
@@ -62,8 +68,11 @@ const FriendContainer = withRouter(connect(mapFriendsToProps, mapDispatchToProps
 
 const NotFriendContainer = withRouter(connect(mapUsersToProps, mapDispatchToProps )(UserContainer))
 
+const ChannelFollowerContainer = withRouter(connect(mapFollowersToProps, mapDispatchToProps )(UserContainer))
+
 export {
   FriendContainer,
   NotFriendContainer,
-  UserFriendContainer
+  UserFriendContainer,
+  ChannelFollowerContainer
 }
