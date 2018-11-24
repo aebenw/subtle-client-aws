@@ -33,8 +33,6 @@ class App extends Component {
 
   componentDidMount(){
     if (token && !this.props.currentUser.name && (this.props.history.location.pathname !== '/')) {
-      // this.props.getContent()
-      // .then(()=>
       this.props.fetchWithToken(token)
       .then(() => this.props.history.push(this.props.history.location.pathname))
     } else if (token && !this.props.currentUser.name ) {
@@ -56,7 +54,6 @@ class App extends Component {
           {currentUser.email ?
             <LoggedInNav currentUser={currentUser}/>
           : <LoggedOutNav />}
-          {/* <SideBar/> */}
           <div className="big-container">
           <Route exact path='/' render={routerProps => <Welcome {...routerProps}/>} />
           <Route exact path='/signup' render={routerProps => <SignUp {...routerProps}/>} />

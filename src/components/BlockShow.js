@@ -138,8 +138,8 @@ class BlockShow extends Component  {
   appearsOn = () => {
     return this.props.currentBlock.channels.map(channel => {
       return (
-        <Link key={channel.id} to={`/channel/${channel.name}`}>
-        <li onClick={() => this.props.showChannel(channel)}>{channel.name}</li>
+        <Link key={channel.id} to={`/channel/${channel.id}`}>
+        <li onClick={() => this.props.showChannel(channel.id)}>{channel.name}</li>
         </Link>
       )
       }

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Fragment, Component } from 'react';
 import { loginUser } from '../store';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
 
-class Login extends React.Component {
+class Login extends Component {
 
   state = {
     user: {
@@ -12,10 +12,19 @@ class Login extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { history, currentUser } = this.props
+    return prevProps.currentUser !== currentUser ? history.push('/home') : null
+  }
+
   handSubmit = (e) => {
+    const { login, history, currentUser } = this.props
     e.preventDefault()
-    this.props.login(this.state)
-    .then(() => this.props.history.push('/home'))
+    login(this.state)
+    .then(() => {
+      console.log(currentUser.email)
+       return currentUser.email ? history.push('/home') : null
+    })
   }
 
   handleChange = (e) => {
@@ -28,26 +37,48 @@ class Login extends React.Component {
   }
 
   render(){
+    const { email, password } = this.state
+    const { error } = this.props
+    console.log("inside render login", this.props.currentUser)
     return(
-      <React.Fragment>
+      <Fragment>
       <div id="user-feed" className="row">
+        { error ?
+          <div className="row" style={{"width":"100%",   "align-items": "center",
+            "justify-content": "center"}}>
+          <div className=" error">
+
+          <h4>Login Error<span><p>- {error}</p></span></h4>
+        </div>
+        </div>
+        : null
+      }
+      <div className="row">
       <div className="col-5-lg">
         <form onSubmit={(e) => this.handSubmit(e)}>
           <fieldset>
             <legend>Log In</legend>
             <label>Email:</label>
-            <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
+            <input onChange={(e) => this.handleChange(e)} name="email" value={email} type="text">
             </input>
             <label>Password:</label>
-            <input onChange={(e) => this.handleChange(e)} name="password" value={this.state.password} type="password">
+            <input onChange={(e) => this.handleChange(e)} name="password" value={password} type="password">
             </input>
             <button type="submit">Log In</button>
         </fieldset>
       </form>
       </div>
+    </div>
       </div>
-    </React.Fragment>
+    </Fragment>
     )
+  }
+}
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.users.currentUser,
+    error: state.users.error
   }
 }
 
@@ -59,4 +90,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Login))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Login))

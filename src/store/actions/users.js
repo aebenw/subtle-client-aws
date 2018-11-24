@@ -10,6 +10,7 @@ const addFriendToCurr = (user) => ({type: "ADD_FRIEND", user})
 const rmFriendFromCurr = (user) => ({type: "RM_FRIEND", user})
 
 
+
 export function loginUser(user) {
   return (dispatch) => {
     return fetch(URL + "/auth", {

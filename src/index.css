@@ -931,10 +931,29 @@ a:visited {
   --card-border-color: #e8b825;
 }
 
+
 .card.error {
   --card-back-color: #b71c1c;
   --card-fore-color: #f8f8f8;
   --card-border-color: #a71a1a;
+}
+
+.error{
+  color: #D8000C;
+  background-color: #FFD2D2;
+  width: 80%;
+  align-items: center;
+  justify-content: center
+
+}
+
+.error * {
+  display: inline-block;
+  vertical-align:middle;
+  align-items: center;
+  justify-content: center
+
+
 }
 
 .card > .section.dark {

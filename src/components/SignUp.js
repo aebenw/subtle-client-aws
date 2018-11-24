@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { createUser } from '../store';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
 
 
-class SignUp extends React.Component {
+class SignUp extends Component {
 
   state = {
     user: {
@@ -15,10 +15,18 @@ class SignUp extends React.Component {
     }
   }
 
+  componentDidUpdate(prevProps) {
+    const { history, currentUser } = this.props
+    return prevProps.currentUser !== currentUser ? history.push('/home') : null
+  }
+
   handSubmit = (e) => {
+    const { createUser, history, currentUser } = this.props
     e.preventDefault()
-    this.props.createUser(this.state)
-    .then(() => this.props.history.push('/home'))
+    createUser(this.state)
+    .then(() => {
+      return currentUser.email ? history.push('/home') : null
+    })
   }
 
   handleChange = (e) => {
@@ -30,21 +38,62 @@ class SignUp extends React.Component {
     })
   }
 
+  errors = () => {
+    const { error } = this.props
+    return (
+      <ul>
+        {error.password ?
+          <li>
+            <p>Password:</p>
+              <ul>{error.password.map(x => <li>{x} </li>)}</ul>
+          </li>
+        : null
+        }
+        {error.email ?
+          <li>
+            <p>Email:</p>
+              {error.email.map(x => <p>{x}</p>)}
+          </li>
+            : null
+        }
+        {error.name ?
+          <li>
+            <p>Name:</p>
+            {error.name.map(x => <p>{x}</p>)}
+          </li>
+          : null
+        }
+      </ul>
+    )
+  }
+
   render(){
+    const { error } = this.props
+    const { name, email, password } = this.state
     return(
-      <React.Fragment>
+      <Fragment>
       <div id="user-feed" className="row">
+        { error ?
+          <div className="row" style={{"width":"100%",   "align-items": "center",
+            "justify-content": "center"}}>
+          <div className=" error">
+
+          <h4>Sign Up Error<span><p> {this.errors()}</p></span></h4>
+        </div>
+        </div>
+        : null
+      }
       <div className="col-5-lg">
       <form onSubmit={(e) => this.handSubmit(e)}>
         <fieldset>
         <label>Name:</label>
-        <input onChange={(e) => this.handleChange(e)} name="name" value={this.state.name} type="text">
+        <input onChange={(e) => this.handleChange(e)} name="name" value={name} type="text">
         </input>
         <label>Email:</label>
-        <input onChange={(e) => this.handleChange(e)} name="email" value={this.state.email} type="text">
+        <input onChange={(e) => this.handleChange(e)} name="email" value={email} type="text">
         </input>
         <label>Password:</label>
-        <input onChange={(e) => this.handleChange(e)} name="password" value={this.state.password} type="password">
+        <input onChange={(e) => this.handleChange(e)} name="password" value={password} type="password">
         </input>
 
           <button type="submit">Sign Up</button>
@@ -52,13 +101,19 @@ class SignUp extends React.Component {
       </form>
       </div>
       </div>
-      </React.Fragment>
+      </Fragment>
     )
   }
 }
-/////////// Not Sure about what to dispatch after a singup ///////////
 
-//
+
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.users.currentUser,
+    error: state.users.error
+  }
+}
+
 const mapDispatchToProps = (dispatch) => {
   return {
     createUser: (user) => {
@@ -68,4 +123,4 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 
-export default withRouter(connect(null, mapDispatchToProps)(SignUp))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SignUp))

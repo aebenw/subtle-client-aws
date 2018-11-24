@@ -20,9 +20,6 @@ import ChannelContainer from './ChannelContainer'
 //ACTIONS
 import { selectBlock } from '../store/actions/blocks'
 import { showChannel } from '../store/actions/channels'
-//Feed renders full data for blocks and channels
-  //For now, doing what I'm doing elsewhere, which is another fetch rather then just showing the info I have.
-    //To do this i need to either reconfig data or the way i'm rendering from the feed
 import {fetchUserInfo} from '../store/actions/users'
 
 
@@ -38,11 +35,15 @@ class Feed extends Component {
     }
 
     if(this.props.currentUser.email){
-      console.log("comp did mount", this.props.currentUser.id)
       return this.props.getContent(this.props.currentUser.id)
     }
   }
 
+  componentDidUpdate(prevProps){
+    if (!prevProps.currentUser.email && this.props.currentUser.email) {
+      this.props.getContent(this.props.currentUser.id)
+    }
+  }
 
   sortContent = () => {
     const { content, userShow } = this.props
@@ -101,30 +102,38 @@ class Feed extends Component {
           <ChannelContainer channels={x.content}/>
 
           </Fragment>
-        )
-      }
-    })
+        )}
+      })
   }
 
 
+
   render(){
-    const { content, userShow, channelShow, blockShow, currentUser } = this.props
-
-
+    const { content, channelShow, blockShow, currentUser, noFeed } = this.props
     return (
       <Fragment >
         <div id="home-feed" className="row">
           <div className="col-lg-10">
         {content ?
           <Fragment>
-
-
             {this.sortContent()}
+          </Fragment>
+          : null
+        }
+        {noFeed ?
+        <Fragment>
+          <div className="row">
+            <div className="col-12-lg">
+          <center><h3>{noFeed}</h3></center>
+          </div>
+          </div>
         </Fragment>
+      : null
+      }
 
 
-
-        : <center><div className="spinner tertiary"></div></center>}
+        {!noFeed && !content ? <center><div className="spinner tertiary"></div></center>
+      : null }
       </div>
       </div>
       </Fragment>
@@ -133,12 +142,6 @@ class Feed extends Component {
 
 }
 
-// {currentUser.name ?
-//   // <div className ="col-sm-2">
-//
-// <ProfileHeader currentUser={currentUser}/>
-// // </div>
-// : null}
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -163,7 +166,8 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     currentUser: state.users.currentUser,
-    content: state.feed.feedContent
+    content: state.feed.feedContent,
+    noFeed: state.feed.noFeed
   }
 }
 

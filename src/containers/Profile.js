@@ -51,6 +51,7 @@ class Profile extends Component {
 
   render(){
     const { currentUser } = this.props
+    const { view } = this.state
 
     return (
       <Fragment>
@@ -60,7 +61,7 @@ class Profile extends Component {
 
         {currentUser.name ?
           <Fragment>
-          <ProfileHeader user={currentUser} changeView={this.changeView}/>
+          <ProfileHeader user={currentUser} changeView={this.changeView} view={view}/>
 
 
           {this.container()}

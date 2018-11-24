@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 
 const Channel = ({channel, channelShow, userShow}) => {
   return(
-      <div key={channel.name} className="card  channel-card" >
-      <Link to={{pathname: `/channel/${channel.name}`, state: channel.id}}>
-        <div className="section" style={{"paddingTop": "40%"}}onClick={() => channelShow(channel)}>
+      <div key={channel.id} className="card  channel-card" >
+      <Link to={{pathname: `/channel/${channel.id}`, state: channel.id}}>
+        <div className="section" style={{"paddingTop": "40%"}}onClick={() => channelShow(channel.id)}>
           {channel.name}
         </div>
         </Link>
