@@ -13,7 +13,7 @@ import { NO_PROFILE } from '../constants'
 
 
 
-const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history, changeView }) => {
+const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history, changeView, view }) => {
   let isFriend
   if (user.id !== currentUserId){ isFriend = friendly() }
   return (
@@ -67,36 +67,38 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
             <p>No Bio available</p>
             }
           </div>
+          </div>
+        </div>
 
 
 
-        { user.id === currentUserId ?
-        <div className="col-sm-offset-8" >
+
+
+      <div className="row">
+            <div className="col-12-sm" style={{"margin-left": "2em"}}>
+
+          <button className="button head-button" onClick={() => changeView("channels")}>
+            Channels
+          </button>
+        </div>
+        <div className="col-12-sm">
+          <button className="button head-button" onClick={() => changeView("myFriends")}>
+            Friends
+          </button>
+        </div>
+        <div className="col-12-sm">
+          <button className="button head-button" onClick={() => changeView("followedChannels")}>
+            Followed Channels
+          </button>
+        </div>
+        { user.id === currentUserId && view === "channels" ?
+        <div className="col-sm-offset-5" style={{ "margin-left": "15.7em"}}>
         <Link to={`/channels/new`}>
         <button className="inverse" >+++++</button>
         </Link>
         </div>
         : null
       }
-      </div>
-      <div className="row">
-        <div className="col-12-sm">
-          <div className="logged-in">
-
-          <button className="button head-button" onClick={() => changeView("channels")}>
-            Channels
-          </button>
-
-          <button className="button head-button" onClick={() => changeView("myFriends")}>
-            Friends
-          </button>
-
-          <button className="button head-button" onClick={() => changeView("followedChannels")}>
-            Followed Channels
-          </button>
-        </div>
-        </div>
-      </div>
     </div>
 
     </Fragment>

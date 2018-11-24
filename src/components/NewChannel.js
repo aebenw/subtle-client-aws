@@ -33,7 +33,7 @@ class NewChannel extends Component {
     this.props.createChannel(this.state)
     .then(res =>{
       console.log(res)
-      return this.props.history.push(`/channel/${res.channel.name}`)})
+      return this.props.history.push(`/channel/${res.channel.id}`)})
   }
 
   handleColabChange = (e) => {

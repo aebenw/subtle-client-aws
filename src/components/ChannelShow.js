@@ -9,11 +9,27 @@ import {lister} from '../functions'
 
 import BlockContainer from '../containers/BlockContainer'
 import {fetchUserInfo} from '../store/actions/users'
-import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel} from '../store/actions/channels'
+import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel, fetchChannel} from '../store/actions/channels'
 
 
 
 class ChannelShow extends Component {
+
+
+
+  componentDidUpdate(prevProps){
+    const { pathname } = this.props.history.location
+    const { currentUserId, currentChannel } = this.props
+
+    if (!prevProps.currentUserId && currentUserId && !currentChannel){
+
+      let id = pathname.substr(pathname
+        .lastIndexOf('/') + 1);
+      id = parseInt(id)
+
+      this.props.showChannel(id)
+    }
+  }
 
     delete = (channel) => {
       const { deleteChannel, history, rmCurrChannel } = this.props
@@ -21,12 +37,6 @@ class ChannelShow extends Component {
       deleteChannel(channel)
       .then(() => history.goBack(),
       rmCurrChannel)
-    }
-
-    shouldComponentUpdate(nextProps){
-      if (!nextProps.currentChannel){
-        return false
-      } else{return true}
     }
 
     amFollowing = () => {
@@ -48,6 +58,7 @@ class ChannelShow extends Component {
     }
 
     render(){
+
     const {currentChannel, userShow, isMine, history} = this.props
     return(
       <Fragment>
@@ -121,8 +132,13 @@ const mapDispatchToProps = (dispatch) => {
     deleteChannel: (channel) => {
       return dispatch(deleteChannel(channel))
     },
-    rmCurrChannel: () => dispatch(rmCurrChannel())
+    rmCurrChannel: () =>
+     dispatch(rmCurrChannel()),
+
+    showChannel: (channel) =>
+     dispatch(fetchChannel(channel))
   }
 }
+
 
 export default withRouter (connect(mapStateToProps, mapDispatchToProps)(ChannelShow))

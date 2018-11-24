@@ -36,7 +36,7 @@ export function createChannel(channel){
 
 export function fetchChannel(channel){
   return (dispatch) => {
-    return fetch(URL + `channels/${channel.id}`)
+    return fetch(URL + `channels/${channel}`)
     .then(r => r.json())
     .then(r => dispatch(showChannel(r)))
   }
