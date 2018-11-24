@@ -1,7 +1,7 @@
 import React,{Fragment, Component} from 'react';
 import { connect } from 'react-redux'
 import { token } from '../constants'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { setHistory } from '../store/actions/users'
 import {getContent} from '../store/actions/feed'
 
@@ -53,7 +53,11 @@ class Feed extends Component {
           <Fragment>
           <div className="row">
             <div className="col-12-lg">
-          <center><h3>{x.user.name} became friends with</h3></center>
+          <center>
+            <Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
+            <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
+          </Link>
+          <h3> became friends with</h3></center>
           </div>
           </div>
           <div id="feed" className="row">
@@ -68,7 +72,12 @@ class Feed extends Component {
           <Fragment>
           <div className="row">
             <div className="col-12-lg">
-          <center><h3>{x.user.name} started following these channels </h3></center>
+          <center>
+            <Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
+            <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
+            </Link>
+            <h3> started following these channels</h3>
+          </center>
           </div>
           </div>
 
@@ -83,7 +92,11 @@ class Feed extends Component {
           <Fragment>
           <div className="row">
             <div className="col-12-lg">
-          <center><h3>{x.user.name} made blocks</h3></center>
+          <center><Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
+          <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
+          </Link>
+          <h3>made blocks</h3>
+        </center>
           </div>
           </div>
           <BlockContainer blocks={x.content}/>
@@ -95,7 +108,11 @@ class Feed extends Component {
           <Fragment>
           <div className="row">
             <div className="col-12-lg">
-          <center><h3>{x.user.name} made channels</h3></center>
+          <center><Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
+          <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
+          </Link>
+          <h3> made channels</h3>
+        </center>
           </div>
           </div>
 

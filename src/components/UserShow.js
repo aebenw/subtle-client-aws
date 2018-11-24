@@ -2,10 +2,14 @@ import React, { Fragment, Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
+//ACTIONS
+import { fetchUserInfo } from '../store/actions/users'
+
+//CONTAINERS
 import {UserFriendContainer} from '../containers/UserContainer'
-
-
 import ChannelContainer from '../containers/ChannelContainer'
+
+//COMPONENTS
 import ProfileHeader from '../components/ProfileHeader'
 
 
@@ -24,12 +28,28 @@ class UserShow extends Component {
       }
 
       componentDidUpdate(prevProps){
-        if(this.props.userShow !== prevProps.userShow){
+        const { pathname } = this.props.history.location
+        const { currentUserId, userShow, fetchUserInfo } = this.props
+
+        if (!prevProps.currentUserId && currentUserId && !userShow){
+
+          let id = pathname.substr(pathname
+            .lastIndexOf('/') + 1);
+          id = parseInt(id)
+
+          fetchUserInfo(id)
+        }
+
+        if(userShow !== prevProps.userShow){
           this.setState({
             view: 'channels'
           })
         }
+
       }
+
+
+
 
       container = () => {
         const { view } = this.state
@@ -78,9 +98,17 @@ class UserShow extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
+    currentUserId: state.users.currentUser.id,
     userShow: state.users.userShow
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchUserInfo: (user) =>
+    dispatch(fetchUserInfo(user))
+  }
+}
 
-export default withRouter(connect(mapStateToProps)(UserShow))
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(UserShow))

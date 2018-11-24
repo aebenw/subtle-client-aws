@@ -29,7 +29,9 @@ export function createChannel(channel){
     }).then(r => r.json())
     .then(r => {
       return (
-        dispatch(showChannel(r)))
+        dispatch(showChannel(r)),
+        dispatch(addToUserChannel(r))
+      )
     })
   }
 }

@@ -25,7 +25,7 @@ export function createBlock(block) {
 
 export function fetchBlock(block){
   return (dispatch) => {
-    return fetch(URL + `blocks/${block.id}`)
+    return fetch(URL + `blocks/${block}`)
     .then(r => r.json())
     .then(r => dispatch(selectBlock(r)))
   }

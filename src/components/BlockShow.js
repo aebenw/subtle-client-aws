@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom'
 
 
 //ACTIONS
-import { createComment, addChannelBlock } from '../store/actions/blocks'
+import { createComment, addChannelBlock, fetchBlock } from '../store/actions/blocks'
 import { fetchChannel } from '../store/actions/channels'
 
 
@@ -28,7 +28,7 @@ class BlockShow extends Component  {
         }
       },
       value: '',
-      options: '',
+      options: [],
       appearsOn: this.props.channels
     }
   }
@@ -59,7 +59,28 @@ class BlockShow extends Component  {
 
 
   componentDidUpdate(prevProps){
-    if(this.props.currentBlock !== prevProps.currentBlock){
+    const { pathname } = this.props.history.location
+    const { currentUserId, currentBlock, fetchBlock } = this.props
+
+    if (!prevProps.currentUserId && currentUserId && !currentBlock){
+
+      let id = pathname.substr(pathname
+        .lastIndexOf('/') + 1);
+      id = parseInt(id)
+      this.setState({
+        comment:{
+          comment:{
+            ...this.state.comment.comment,
+            block_id: id
+          }
+        }
+      })
+
+      fetchBlock(id)
+    }
+
+
+    if(currentBlock !== prevProps.currentBlock){
       let difference = this.options()
       this.setState({
         ...this.state,
@@ -109,15 +130,14 @@ class BlockShow extends Component  {
       [e.target.name]: e.target.value
       }}
 
-    }, () => console.log(this.state))
+    })
   }
 
-  //IDEALLY, CLICK A BUTTON WHICH THEN ALLOWS FOR A DROPDOWN
 
   handleSelectChange = (e) => {
     this.setState({
       value: e.target.value
-    }, () => console.log(this.state))
+    })
 
   }
 
@@ -154,6 +174,8 @@ class BlockShow extends Component  {
 
   render(){
     const {currentBlock} = this.props
+    // debugger
+    // console.log("state of currentBlock", this.state)
     return(
       <Fragment>
         { currentBlock ?
@@ -166,10 +188,14 @@ class BlockShow extends Component  {
 
           <div className="col-sm-5 block-form">
           <h4>{currentBlock.content}</h4>
-          <select value={this.state.value} onChange={ this.handleSelectChange}>
-            {this.state.options ? this.selectOptions() : null}
+
+          {this.state.options[0] ?
+            <Fragment>
+          <select value={this.state.value} onChange={ this.handleSelectChange}> {this.selectOptions()}
           </select>
           <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
+          </Fragment>
+          : null}
           <Fragment>
           { currentBlock.channels ?
           <ul className="list">
@@ -206,6 +232,7 @@ const mapStateToProps = (state) => {
   return {
     currentBlock: state.blocks.currentBlock,
     userId: state.users.currentUser.id,
+    currentUserId: state.users.currentUser.id,
     userChannels: state.users.currentUser.channels
    }
 }
@@ -220,7 +247,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     showChannel: (channel) => {
       return dispatch(fetchChannel(channel))
-    }
+    },
+    fetchBlock: (block) =>
+    dispatch(fetchBlock(block))
   }
 
 }
