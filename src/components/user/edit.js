@@ -27,12 +27,8 @@ class EditUser extends Component {
         ...this.state.user,
       [e.target.name]: e.target.value
       }
-    }, () => console.log(this.state))
+    })
   }
-
-  // shouldComponentUpdate(nextProps, nextState){
-  //   return nextState !== this.state ? false : true
-  // }
 
   handleSubmit = (e) => {
     e.preventDefault()
@@ -41,14 +37,13 @@ class EditUser extends Component {
   }
 
   response = (e) => {
-    console.log(e)
     this.setState({
 
       user: {
         ...this.state.user,
       profile: e.file.name
     }
-  }, console.log(this.state))
+  })
     e.state = null
   }
 
@@ -88,8 +83,7 @@ class EditUser extends Component {
         attribute: 'profile',
         method: 'POST'
       }}
-      // headers={ {responseHeader: ['Content-Type', 'Content-Md5' ]}}
-      // directUploadsPath={"/rail/active_storage/direct_uploads"}
+
       onSuccess={(e) =>
         this.response(e)}
       onSubmit={e =>
@@ -114,7 +108,6 @@ class EditUser extends Component {
                   </p>
                 )
               case 'error':
-              debugger
                 return (
                   <Fragment>
                   <p key={upload.id}>
@@ -150,12 +143,6 @@ class EditUser extends Component {
     )
   }
 }
-
-
-// ,
-// attatchBlob: (file, id) => {
-//   dispatch(attatchBlobToBlock(file, id))
-// }
 
 const mapDispatchToProps = (dispatch) => {
   return {

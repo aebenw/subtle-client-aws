@@ -16,7 +16,6 @@ class LoggedInNav extends Component {
   }
 
   render(){
-    // const { activeItem } = this.state
 
       return(
         <Fragment>
@@ -61,10 +60,6 @@ class LoggedInNav extends Component {
     )
   }
 }
-
-// <NavLink className="button" exact to="/profile">
-// <NavLink className="button" exact to="/friends">
-// <NavLink className="button" exact to="/explore/people">
 
 
 

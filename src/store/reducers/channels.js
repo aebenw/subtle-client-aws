@@ -16,7 +16,6 @@ export default function channelReducer(state = {}, action){
         return {...state, currentChannel: {...state.currentChannel, followers: filteredFollowers}};
 
       case "RM_CURR_CHANNEL":
-      debugger
         return {...state, currentChannel: null};
 
 

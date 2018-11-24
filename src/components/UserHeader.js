@@ -67,8 +67,3 @@ const mapDispatchToProps = (dispatch) => {
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(header))
-
-// <div className="row">
-//       <div className="col-sm-3" style={{"text-align": "left", display: "inline" }}><h1>{userShow.name}'s Profile</h1></div>
-//
-// </div>

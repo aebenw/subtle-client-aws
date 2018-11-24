@@ -10,8 +10,6 @@ export const addFollowedChannel = (channel) => ({type: "ADD_FOLLOWED_CHANNEL", c
 
 export const rmFollowedChannel = (channel) => ({type: "RM_FOLLOWED_CHANNEL", channel})
 
-/////////// ADDING A NEW CHANNEL TO USER'S CHANNEL /////
-
 export const addToUserChannel  = (channel) => ({ type: "ADD_CHANNEL", channel})
 
 export const rmCurrChannel  = () => ({ type: "RM_CURR_CHANNEL"})

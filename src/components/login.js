@@ -22,7 +22,6 @@ class Login extends Component {
     e.preventDefault()
     login(this.state)
     .then(() => {
-      console.log(currentUser.email)
        return currentUser.email ? history.push('/home') : null
     })
   }
@@ -39,7 +38,6 @@ class Login extends Component {
   render(){
     const { email, password } = this.state
     const { error } = this.props
-    console.log("inside render login", this.props.currentUser)
     return(
       <Fragment>
       <div id="user-feed" className="row">

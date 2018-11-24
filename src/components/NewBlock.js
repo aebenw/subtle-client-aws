@@ -46,14 +46,13 @@ class NewBlock extends Component {
   }
 
   response = (e) => {
-    console.log(e)
     this.setState({
 
       block: {
         ...this.state.block,
       file: e.file.name
     }
-  }, console.log(this.state))
+  })
     e.state = null
   }
 
@@ -90,8 +89,6 @@ class NewBlock extends Component {
         attribute: 'file',
         method: 'POST'
       }}
-      // headers={ {responseHeader: ['Content-Type', 'Content-Md5' ]}}
-      // directUploadsPath={"/rail/active_storage/direct_uploads"}
       onSuccess={(e) =>
         this.response(e)}
       onSubmit={e =>
@@ -116,7 +113,6 @@ class NewBlock extends Component {
                   </p>
                 )
               case 'error':
-              debugger
                 return (
                   <Fragment>
                   <p key={upload.id}>
