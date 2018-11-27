@@ -3,8 +3,8 @@ import { withRouter, Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 
-import {fetchUserInfo} from '../store/actions/users'
-import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel, fetchChannel} from '../store/actions/channels'
+import {fetchUserInfo} from '../../store/actions/users'
+import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel, fetchChannel} from '../../store/actions/channels'
 
 
 class ChannelHeader extends Component {

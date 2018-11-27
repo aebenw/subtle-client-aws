@@ -4,12 +4,12 @@ import { withRouter, Link } from 'react-router-dom'
 
 
 //ACTIONS
-import { createComment, addChannelBlock, fetchBlock } from '../store/actions/blocks'
-import { fetchChannel } from '../store/actions/channels'
+import { createComment, addChannelBlock, fetchBlock } from '../../store/actions/blocks'
+import { fetchChannel } from '../../store/actions/channels'
 
 
 //COMPONENTS
-import CommentContainer from '../containers/CommentContainer'
+import CommentContainer from '../../containers/CommentContainer'
 
 
 

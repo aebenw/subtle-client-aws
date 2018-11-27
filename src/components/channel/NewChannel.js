@@ -1,7 +1,7 @@
 import React,{ Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import { createChannel } from '../store/actions/channels'
+import { createChannel } from '../../store/actions/channels'
 import _ from "lodash"
 
 

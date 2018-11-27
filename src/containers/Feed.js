@@ -7,7 +7,7 @@ import {getContent} from '../store/actions/feed'
 
 //Components
 import Channel from '../components/channel/channel'
-import Block from '../components/block/block'
+import Block from '../components/block/Block'
 import User from '../components/user/user'
 
 //Containers

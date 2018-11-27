@@ -1,11 +1,16 @@
 import React,{ Component, Fragment } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import { createBlock, attatchBlobToBlock } from '../store/actions/blocks'
-import { NGROK } from '../constants'
-
-
 import ActiveStorageProvider from 'react-activestorage-provider'
+
+//ACTIONS
+import { createBlock, attatchBlobToBlock } from '../../store/actions/blocks'
+
+//URL
+import { NGROK } from '../../constants'
+
+
+
 
 
 
@@ -39,7 +44,7 @@ class NewBlock extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createBlock(this.state, this.props.isMine)
+    this.props.createBlock(this.state)
     .then(res => (
       this.props.history.state = res.id, this.props.history.push(`/block/${res.block.id}`))
     )

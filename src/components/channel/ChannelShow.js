@@ -8,12 +8,12 @@ import { withRouter, Link } from 'react-router-dom'
 import ChannelHeader  from './ChannelHeader'
 
 //CONTAINERS
-import { ChannelFollowerContainer } from '../containers/UserContainer'
-import BlockContainer from '../containers/BlockContainer'
+import { ChannelFollowerContainer } from '../../containers/UserContainer'
+import BlockContainer from '../../containers/BlockContainer'
 
 //ACTIONS
-import {fetchUserInfo} from '../store/actions/users'
-import { fetchChannel } from '../store/actions/channels'
+import {fetchUserInfo} from '../../store/actions/users'
+import { fetchChannel } from '../../store/actions/channels'
 
 
 

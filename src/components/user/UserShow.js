@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
 //ACTIONS
-import { fetchUserInfo } from '../store/actions/users'
+import { fetchUserInfo } from '../../store/actions/users'
 
 //CONTAINERS
-import {UserFriendContainer} from '../containers/UserContainer'
-import ChannelContainer from '../containers/ChannelContainer'
+import {UserFriendContainer} from '../../containers/UserContainer'
+import ChannelContainer from '../../containers/ChannelContainer'
 
 //COMPONENTS
-import ProfileHeader from '../components/ProfileHeader'
+import ProfileHeader from '../ProfileHeader'
 
 
 

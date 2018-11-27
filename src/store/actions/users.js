@@ -7,7 +7,10 @@ export const setHistory = (setHistory) => ({type: "SET_HISTORY", setHistory})
 const userShow = (user) => ({type: "USER_SHOW", user})
 
 const addFriendToCurr = (user) => ({type: "ADD_FRIEND", user})
+const addCurrUserAsFriend = () => ({type: "ADD_CURR_AS_FRIEND"})
+
 const rmFriendFromCurr = (user) => ({type: "RM_FRIEND", user})
+const rmCurrUserAsFriend = () => ({type: "RM_CURR_AS_FRIEND"})
 
 
 
@@ -97,7 +100,9 @@ export function addFriend(currUser, user){
       headers: HEADERS,
       body: JSON.stringify(body)
     }).then(r => r.json())
-    .then(r => dispatch(addFriendToCurr(r)))
+    .then(r => (dispatch(addFriendToCurr(r)),
+    dispatch(addCurrUserAsFriend())
+  ))
   }
 }
 
@@ -114,6 +119,8 @@ export function rmFriend(currUser, user){
       headers: HEADERS,
       body: JSON.stringify(body)
     }).then(r => r.json())
-    .then(r => dispatch(rmFriendFromCurr(user)))
+    .then(r => (dispatch(rmFriendFromCurr(user)),
+    dispatch(rmCurrUserAsFriend())
+    ))
   }
 }

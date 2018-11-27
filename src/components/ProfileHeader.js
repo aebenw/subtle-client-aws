@@ -13,9 +13,10 @@ import { NO_PROFILE } from '../constants'
 
 
 
-const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFriend, friendly, history, changeView, view }) => {
+const header = ({ user, showChannel, userShow, currentUser, addFriend, rmFriend, friendly, history, changeView, view }) => {
   let isFriend
-  if (user.id !== currentUserId){ isFriend = friendly() }
+  if (user.id !== currentUser.id){ isFriend = friendly() }
+  console.log("Profile header")
   return (
     <Fragment>
 
@@ -24,7 +25,7 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
         <div className="col-5-sm">
           <h1 className="profile">{user.name}</h1>
         </div>
-                  { user.id === currentUserId ?
+                  { user.id === currentUser.id ?
             <Fragment>
 
 
@@ -36,7 +37,7 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
             </Fragment>
           :
           <div className="col-sm-offset-7">
-            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUserId, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUserId, user.id)} className="inverse">Add Friend</button>}
+            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUser.id, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUser.id, user.id)} className="inverse">Add Friend</button>}
           </div>
           }
           </div>
@@ -91,7 +92,7 @@ const header = ({ user, showChannel, userShow, currentUserId, addFriend, rmFrien
             Followed Channels
           </button>
         </div>
-        { user.id === currentUserId && view === "channels" ?
+        { user.id === currentUser.id && view === "channels" ?
         <div className="col-sm-offset-5" style={{ "margin-left": "15.7em"}}>
         <Link to={`/channels/new`}>
         <button className="inverse" >+++++</button>
@@ -114,7 +115,7 @@ const friendly = (state, user) => {
 
 const mapState= (state, ownProps) => {
   return {
-    currentUserId: state.users.currentUser.id,
+    currentUser: state.users.currentUser,
     friendly: () => friendly(state.users.currentUser.friends, ownProps.history.location.state)
   }
 }

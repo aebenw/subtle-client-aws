@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { createUser } from '../store';
+import { createUser } from '../../store';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom';
 
