@@ -2,7 +2,6 @@ import { URL, HEADERS } from '../../constants'
 
 const errorAction = (error) => ({type: "LOGIN_ERROR", error})
 const loginAction = (user) => ({ type: "LOGIN_USER", user})
-export const setHistory = (setHistory) => ({type: "SET_HISTORY", setHistory})
 
 const userShow = (user) => ({type: "USER_SHOW", user})
 

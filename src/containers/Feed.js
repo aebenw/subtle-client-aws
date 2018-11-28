@@ -2,13 +2,14 @@ import React,{Fragment, Component} from 'react';
 import { connect } from 'react-redux'
 import { token } from '../constants'
 import { withRouter, Link } from 'react-router-dom'
-import { setHistory } from '../store/actions/users'
 import {getContent} from '../store/actions/feed'
 
 //Components
 import Channel from '../components/channel/channel'
 import Block from '../components/block/Block'
 import User from '../components/user/user'
+import {TitleAuthor} from '../components/links/Author'
+
 
 //Containers
 import BlockContainer from './BlockContainer'
@@ -27,13 +28,6 @@ class Feed extends Component {
 
 
   componentDidMount() {
-    if (token && !this.props.currentUser.email) {
-      this.props.setHistory(this.props.history.location.pathname)
-    }
-    else if (!token && !this.props.currentUser.email) {
-      this.props.history.push('/')
-    }
-
     if(this.props.currentUser.email){
       return this.props.getContent(this.props.currentUser.id)
     }
@@ -54,9 +48,7 @@ class Feed extends Component {
           <div className="row">
             <div className="col-12-lg">
           <center>
-            <Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
-            <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
-          </Link>
+            <TitleAuthor user={x.user} />
           <h3> became friends with</h3></center>
           </div>
           </div>
@@ -73,9 +65,7 @@ class Feed extends Component {
           <div className="row">
             <div className="col-12-lg">
           <center>
-            <Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
-            <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
-            </Link>
+            <TitleAuthor user={x.user} />
             <h3> started following these channels</h3>
           </center>
           </div>
@@ -92,9 +82,8 @@ class Feed extends Component {
           <Fragment>
           <div className="row">
             <div className="col-12-lg">
-          <center><Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
-          <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
-          </Link>
+          <center>
+          <TitleAuthor user={x.user} />
           <h3>made blocks</h3>
         </center>
           </div>
@@ -162,9 +151,6 @@ class Feed extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setHistory: (history) => {
-      return dispatch(setHistory(history))
-    },
     getContent: (id) => {
       return dispatch(getContent(id))
     },

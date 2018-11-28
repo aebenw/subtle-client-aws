@@ -10,16 +10,16 @@ import { fetchChannel } from '../store/actions/channels'
 import {fetchUserInfo} from '../store/actions/users'
 
 
-const ChannelContainer = props => {
+const ChannelContainer = ({channels, userShow, channelShow}) => {
   return(
     <Fragment>
 
-    {props.channels ?
+    {channels ?
       <Fragment>
         <div id="feed" className="row">
-    {props.channels.map(channel => <Channel key={channel.id} userShow={props.userShow} channel={channel} channelShow={props.channelShow}/>)}
-  </div>
-    </Fragment>
+          {channels.map(channel => <Channel key={channel.id} userShow={userShow} channel={channel} channelShow={channelShow}/>)}
+        </div>
+      </Fragment>
     : <h4>No Channels</h4>
     }
     </Fragment>

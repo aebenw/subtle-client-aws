@@ -1,47 +1,42 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { token } from '../constants'
-import { setHistory } from '../store/actions/users'
+
 import ChannelContainer from './ChannelContainer'
 import ProfileHeader from '../components/ProfileHeader'
 import {FriendContainer} from './UserContainer'
 
+import ChangeView from '../components/buttons/ChangeView'
+import Add from '../components/buttons/Add'
+
 
 class Profile extends Component {
   state = {
-    view: "channels"
+    view: "Channels"
   }
 
-  componentDidMount() {
-    if (token && !this.props.currentUser.name) {
-    this.props.setHistory(this.props.history.location.pathname)
-    }
-    else if (!token && !this.props.currentUser.name) {
-      this.props.history.push('/')
-    }
-  }
 
 
   changeView = (change) => {
      return this.setState({
       view: change
-    })
+    }, () => console.log(this.state))
   }
 
   container = () => {
     const { view } = this.state
     const { currentUser } = this.props
 
-    if(view === "channels") {
+    if(view === "Channels") {
       return (
         <ChannelContainer channels={currentUser.channels} />
       )
-    } else if(view === "myFriends"){
+    } else if(view === "Friends"){
       return (
         <FriendContainer/>
       )
-    } else if(view === "followedChannels"){
+    } else if(view === "Followed Channels"){
       return (
         <ChannelContainer channels={currentUser.channel_follow}/>
       )
@@ -56,13 +51,19 @@ class Profile extends Component {
     return (
       <Fragment>
 
-
-
-
         {currentUser.name ?
           <Fragment>
-          <ProfileHeader user={currentUser} changeView={this.changeView} view={view}/>
+          <ProfileHeader user={currentUser}/>
 
+          <div className="row" style={{"margin-left": "2em"}}>
+            <ChangeView content={"Channels"} changeView={this.changeView}/>
+            <ChangeView content={"Friends"} changeView={this.changeView}/>
+            <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
+            { view === "Channels" ?
+            <Add content={"channels"} />
+            : null
+          }
+          </div>
 
           {this.container()}
 
@@ -97,12 +98,6 @@ const mapStateToProps = (state) => {
   return {currentUser: state.users.currentUser}
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setHistory: (history) => {
-      return dispatch(setHistory(history))
-    }
-  }
-}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Profile))
+
+export default withRouter(connect(mapStateToProps)(Profile))

@@ -11,6 +11,7 @@ import ChannelContainer from '../../containers/ChannelContainer'
 
 //COMPONENTS
 import ProfileHeader from '../ProfileHeader'
+import ChangeView from '../buttons/ChangeView'
 
 
 
@@ -18,7 +19,7 @@ import ProfileHeader from '../ProfileHeader'
 class UserShow extends Component {
 
     state = {
-      view: 'channels'
+      view: 'Channels'
     }
 
       changeView = (change) => {
@@ -42,7 +43,7 @@ class UserShow extends Component {
 
         if(userShow !== prevProps.userShow){
           this.setState({
-            view: 'channels'
+            view: 'Channels'
           })
         }
 
@@ -55,7 +56,7 @@ class UserShow extends Component {
         const { view } = this.state
         const { userShow } = this.props
 
-        if(view === "channels") {
+        if(view === "Channels") {
           return (
             <Fragment>
             {userShow.channels ?
@@ -64,11 +65,11 @@ class UserShow extends Component {
             }
           </Fragment>
           )
-        } else if(view === "myFriends"){
+        } else if(view === "Friends"){
           return (
             <UserFriendContainer/>
           )
-        } else if(view === "followedChannels"){
+        } else if(view === "Followed Channels"){
           return (
           <Fragment>
           {userShow.channel_follow[0] ?
@@ -85,7 +86,12 @@ class UserShow extends Component {
       <Fragment>
       {userShow ?
         <Fragment>
-          <ProfileHeader user={userShow} changeView={this.changeView}/>
+          <ProfileHeader user={userShow}/>
+          <div className="row" style={{"margin-left": "2em"}}>
+            <ChangeView content={"Channels"} changeView={this.changeView}/>
+            <ChangeView content={"Friends"} changeView={this.changeView}/>
+            <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
+          </div>
           {this.container()}
         </Fragment>
       :

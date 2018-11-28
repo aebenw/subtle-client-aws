@@ -7,6 +7,13 @@ import {fetchUserInfo} from '../store/actions/users'
 import { addFriend } from '../store/actions/users'
 import { rmFriend } from '../store/actions/users'
 
+
+import ProfilePic from './header/ProfilePic'
+import Column from './header/Column'
+import Title from './header/Title'
+import FollowUnfollow from './header/FollowUnfollow'
+import Edit from './buttons/Edit'
+
 import { NO_PROFILE } from '../constants'
 
 
@@ -16,92 +23,38 @@ import { NO_PROFILE } from '../constants'
 const header = ({ user, showChannel, userShow, currentUser, addFriend, rmFriend, friendly, history, changeView, view }) => {
   let isFriend
   if (user.id !== currentUser.id){ isFriend = friendly() }
-  console.log("Profile header")
   return (
     <Fragment>
 
       <div className="container profile">
         <div className="row">
-        <div className="col-5-sm">
-          <h1 className="profile">{user.name}</h1>
-        </div>
-                  { user.id === currentUser.id ?
-            <Fragment>
-
-
+          <Title content={user.name} />
+          { user.id === currentUser.id ?
               <div className="col-sm-offset-7">
-                <Link to={'user/edit'}>
-                  <button className="inverse">Edit Profile</button>
-                </Link>
+                <Edit content={"profile"} />
               </div>
-            </Fragment>
           :
-          <div className="col-sm-offset-7">
-            {isFriend ? <button className="inverse" onClick={() => {rmFriend(currentUser.id, user.id)}} >Remove Friend</button> : <button onClick={() => addFriend(currentUser.id, user.id)} className="inverse">Add Friend</button>}
-          </div>
+          <Fragment>
+            { isFriend ?
+            <FollowUnfollow method={() => rmFriend(currentUser.id, user.id)} content={'Remove Friend'}  /> :
+            <FollowUnfollow method={() => addFriend(currentUser.id, user.id)} content={'Add Friend'} />
           }
-          </div>
-
-        <div className="row">
-        <div className="col-4-sm">
-
-      {
-        user.file ?
-          <div  className="profile-pic">
-          <img src={user.file} className="section media" alt="profile"/>
-        </div>
-        :
-        <div className="profile-pic" >
-          <img src={NO_PROFILE}  className="section media" alt="profile"/>
-        </div>
-      }
-        </div>
+        </Fragment>
+        }
       </div>
-
+        { user.file ?
+        <ProfilePic src={user.file}/>
+        :
+        <ProfilePic src={NO_PROFILE}/>}
 
         <div className="row">
-          <div className="col-6-sm">
-            <h4 className="profile">Bio</h4>
             {user.description ?
-              <p> {user.description} </p>
+            <Column title={"Bio"} content={user.description}/>
             :
-            <p>No Bio available</p>
+            <Column title={"Bio"} content={'No Bio available'}/>
             }
-          </div>
-          </div>
         </div>
-
-
-
-
-
-      <div className="row">
-            <div className="col-12-sm" style={{"margin-left": "2em"}}>
-
-          <button className="button head-button" onClick={() => changeView("channels")}>
-            Channels
-          </button>
-        </div>
-        <div className="col-12-sm">
-          <button className="button head-button" onClick={() => changeView("myFriends")}>
-            Friends
-          </button>
-        </div>
-        <div className="col-12-sm">
-          <button className="button head-button" onClick={() => changeView("followedChannels")}>
-            Followed Channels
-          </button>
-        </div>
-        { user.id === currentUser.id && view === "channels" ?
-        <div className="col-sm-offset-5" style={{ "margin-left": "15.7em"}}>
-        <Link to={`/channels/new`}>
-        <button className="inverse" >+++++</button>
-        </Link>
-        </div>
-        : null
-      }
     </div>
-
     </Fragment>
   )
 

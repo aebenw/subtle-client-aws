@@ -67,7 +67,7 @@ class App extends Component {
           <Route  exact path={`/explore/people`} render={routerProps => <NotFriendContainer {...routerProps}/>} />
           <Route  path={`/channel/:channelID`} render={routerProps => <ChannelShow {...routerProps}/>} />
           <Route  path={`/block/:blockID`} render={routerProps => <BlockShow {...routerProps}/>} />
-          <Route  path={`/user/edit`} render={routerProps => <Edit {...routerProps}/>} />
+          <Route  path={`/profile/edit`} render={routerProps => <Edit {...routerProps}/>} />
         </div>
         </Fragment>
 

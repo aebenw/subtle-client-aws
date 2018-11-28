@@ -5,7 +5,7 @@ import { withRouter, Link } from 'react-router-dom'
 
 
 //COMPONENTS
-import ChannelHeader  from './ChannelHeader'
+import ChannelHeader  from '../header/ChannelHeader'
 
 //CONTAINERS
 import { ChannelFollowerContainer } from '../../containers/UserContainer'
@@ -15,11 +15,14 @@ import BlockContainer from '../../containers/BlockContainer'
 import {fetchUserInfo} from '../../store/actions/users'
 import { fetchChannel } from '../../store/actions/channels'
 
+import ChangeView from '../buttons/ChangeView'
+
+import Add from '../buttons/Add'
 
 
 class ChannelShow extends Component {
     state = {
-      view: "blocks"
+      view: "Blocks"
     }
 
 
@@ -48,11 +51,11 @@ class ChannelShow extends Component {
           const { view } = this.state
           const { currentChannel  } = this.props
 
-          if(view === "blocks") {
+          if(view === "Blocks") {
             return (
               <BlockContainer blocks={currentChannel.blocks}/>
             )
-          } else if(view === "followers"){
+          } else if(view === "Followers"){
             return (
               <Fragment>
               {currentChannel.followers[0] ?
@@ -64,16 +67,24 @@ class ChannelShow extends Component {
         }
 
     render(){
-
-    const { currentChannel } = this.props
+    const { currentChannel, isMine } = this.props
+    const { view } = this.state
     return(
       <Fragment>
         {currentChannel ?
           <Fragment>
-            <ChannelHeader currentChannel={currentChannel} changeView={this.changeView} view={this.state.view}/>
+            <ChannelHeader isMine={isMine} currentChannel={currentChannel}/>
 
+            <div className="row" style={{"margin-left": "2em"}}>
+              <ChangeView content={"Blocks"} changeView={this.changeView}/>
+              <ChangeView content={"Followers"} changeView={this.changeView}/>
+              { (isMine() || !currentChannel.private) && view === "Blocks" ?
+                <Add content={"blocks"} />
+                :
+                null
+              }
+            </div>
             {this.container()}
-
           </Fragment>
         : <center><div className="spinner tertiary"></div></center>
         }
@@ -88,6 +99,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     currentChannel: state.channels.currentChannel,
     currentUserId: state.users.currentUser.id,
+    isMine: () => state.channels.currentChannel.authors.find(x => x.id === state.users.currentUser.id) ? true : false
   }
 }
 

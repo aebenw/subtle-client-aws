@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //Components
-import By from '../user/by'
+import { CardAuthor } from '../links/Author'
 
 const Block = ({block, blockShow, userShow}) => {
   return(
@@ -12,7 +12,7 @@ const Block = ({block, blockShow, userShow}) => {
       </Link>
       <div className="section author">
         <span style={{display :"inline"}}><p>Author: </p>
-          <By key={block.id} user={block.author} userShow={userShow}/></span>
+          <CardAuthor user={block.author}/></span>
       </div>
   </div>
   )
