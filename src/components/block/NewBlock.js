@@ -6,10 +6,12 @@ import ActiveStorageProvider from 'react-activestorage-provider'
 //ACTIONS
 import { createBlock, attatchBlobToBlock } from '../../store/actions/blocks'
 
-//URL
-import { NGROK } from '../../constants'
+//COMPONENTS
+import FormInput from '../forms/Input'
+import TextArea from '../forms/TextArea'
 
 
+import ASProvider from '../activestorage/Provider'
 
 
 
@@ -21,6 +23,7 @@ class NewBlock extends Component {
     super(props)
   this.state = {
     block: {
+      name: '',
       content: '',
       user_id: this.props.currentUser.id,
       file: ''
@@ -30,12 +33,14 @@ class NewBlock extends Component {
   }}
 
   handleChange = (e) => {
+    let lowerCaseName = e.target.name.toLowerCase()
+
     this.setState({
       block: {
         ...this.state.block,
-      [e.target.name]: e.target.value
+      [lowerCaseName]: e.target.value
       }
-    })
+    }, () => console.log(this.state))
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -65,89 +70,21 @@ class NewBlock extends Component {
 
   render(){
     return(
-      <div id="user-feed" className="row">
+    <div id="user-feed" className="row">
       <div className="col-5-lg">
       <form onSubmit={(e) => this.handleSubmit(e)}>
         <fieldset>
           <legend>New Block</legend>
-      <div className="input-group">
-      <div className="row">
-      <div className='col-5-lg'>
-        <label>Name</label>
-        </div>
-        <div className='col-5-lg'>
-        <input type="text" name="content" style={{"position": "relative",
-    "left": "4px"}} onChange={(e) => this.handleChange(e)}/>
-        </div>
-        </div>
-        <div className="row">
-        <div className='col-5-lg'>
-        <textarea style={{"position": "relative",
-    "left": "63px"}} name="content" placeholder="Content" onChange={(e) => this.handleChange(e)}></textarea>
-        </div>
-        </div>
-        <ActiveStorageProvider
-      endpoint={{
-        path: `api/vi/blocks`,
-        model: 'Blocks',
-        host: NGROK,
-        attribute: 'file',
-        method: 'POST'
-      }}
-      onSuccess={(e) =>
-        this.response(e)}
-      onSubmit={e =>
-        this.response(e)}
-      render={({ handleUpload, uploads, ready }) => (
-        <div>
-          <input
-            type="file"
-            disabled={!ready}
-            onChange={e => {
-              return handleUpload(e.currentTarget.files)}}
-          />
-
-          {uploads.map(upload => {
-            switch (upload.state) {
-              case 'waiting':
-                return <p key={upload.id}>Waiting to upload {upload.file.name}</p>
-              case 'uploading':
-                return (
-                  <p key={upload.id}>
-                    Uploading {upload.file.name}: {upload.progress}%
-                  </p>
-                )
-              case 'error':
-                return (
-                  <Fragment>
-                  <p key={upload.id}>
-                    Error uploading {upload.file.name}: {upload.error}
-                  </p>
-                  </Fragment>
-                )
-              case 'finished':
-                return (
-                  <Fragment>
-                  {this.response(upload)}
-                  <p key={upload.id}>Finished uploading {upload.file.name}</p>
-                  </Fragment>)
-
-              default:
-              return null;
-            }
-          })}
-        </div>
-      )}
-    />
-
-
-
-        <input type="submit"/>
+          <div className="input-group">
+            <FormInput content={"Name"} method={this.handleChange}/>
+            <TextArea content={"Content"} method={this.handleChange}/>
+            <ASProvider method={this.response} model={"block"}/>
+            <input type="submit"/>
+          </div>
+        </fieldset>
+      </form>
       </div>
-  </fieldset>
-</form>
-</div>
-</div>
+    </div>
     )
   }
 }
