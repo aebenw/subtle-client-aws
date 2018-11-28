@@ -70,6 +70,7 @@ class SignUp extends Component {
   render(){
     const { error } = this.props
     const { name, email, password } = this.state
+    console.log(error)
     return(
       <Fragment>
       <div id="user-feed" className="row">

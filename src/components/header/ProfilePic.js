@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ProfilePic = (src) => {
+const ProfilePic = ({src}) => {
 
   return (
     <div className="row">
