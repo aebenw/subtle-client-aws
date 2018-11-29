@@ -6,9 +6,9 @@ const FormInput = ({ content, method }) => {
       <div className='col-5-lg'>
         <label>{content}:</label>
         </div>
-        <div className='col-sm-offset-3'>
-        <input type="text" name={content} style={{"position": "relative",
-  "right": "4px"}} onChange={(e) => method(e)}/>
+        <div className='col-3-sm' style={{"position": "relative",
+  "right": "4px"}}>
+        <input type="text" name={content}  onChange={(e) => method(e)}/>
       </div>
     </div>
   )
@@ -20,9 +20,9 @@ const Password = ({ content, method }) => {
       <div className='col-5-lg'>
         <label>Password:</label>
         </div>
-        <div className='col-sm-offset-3'>
-        <input type="password" name='password' style={{"position": "relative",
-  "right": "4px"}} onChange={(e) => method(e)}/>
+        <div className='col-sm-3' style={{"position": "relative",
+  "right": "-32px"}}>
+        <input type="password" name='password'  onChange={(e) => method(e)}/>
       </div>
     </div>
   )
