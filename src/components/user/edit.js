@@ -1,4 +1,4 @@
-import React,{ Component, Fragment } from 'react'
+import React,{ Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
 import { editUser } from '../../store/actions/users'
@@ -9,23 +9,22 @@ import {TextArea} from '../forms/TextArea'
 
 import ASProvider from '../activestorage/Provider'
 
-
 class EditUser extends Component {
 
   constructor(props){
     super(props)
-  this.state = {
-    user: {
-      id: props.currentUser.id,
-      name: props.currentUser.name,
-      description: props.currentUser.description,
-      profile: ''
-    },
-  }}
+    this.state = {
+      user: {
+        id: props.currentUser.id,
+        name: props.currentUser.name,
+        description: props.currentUser.description,
+        profile: ''
+      },
+    }
+  }
 
   handleChange = (e) => {
     let lowerCaseName = e.target.name.toLowerCase()
-
     this.setState({
       user: {
         ...this.state.user,
@@ -50,8 +49,6 @@ class EditUser extends Component {
   })
     e.state = null
   }
-
-
 
   render(){
     return(

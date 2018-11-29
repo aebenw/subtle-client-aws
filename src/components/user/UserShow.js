@@ -5,16 +5,11 @@ import { withRouter } from 'react-router-dom'
 //ACTIONS
 import { fetchUserInfo } from '../../store/actions/users'
 
-//CONTAINERS
-import ContentContainer from './ContentContainer'
-
-
 //COMPONENTS
 import ProfileHeader from '../ProfileHeader'
+import { UserContentContainer } from '../ContentContainer'
 import ChangeView from '../buttons/ChangeView'
-
-
-
+import Spinner from '../Spinner'
 
 class UserShow extends Component {
 
@@ -27,20 +22,16 @@ class UserShow extends Component {
     const { currentUserId, userShow, fetchUserInfo } = this.props
 
     if (!prevProps.currentUserId && currentUserId && !userShow){
-
       let id = pathname.substr(pathname
         .lastIndexOf('/') + 1);
       id = parseInt(id)
-
       fetchUserInfo(id)
     }
-
     if(userShow !== prevProps.userShow){
       this.setState({
         view: 'Channels'
       })
     }
-
   }
 
   changeView = (change) => {
@@ -62,12 +53,12 @@ class UserShow extends Component {
             <ChangeView content={"Friends"} changeView={this.changeView}/>
             <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
           </div>
-          <ContentContainer user={userShow} view={view} />
+          <UserContentContainer user={userShow} view={view} />
         </Fragment>
       :
-      <center><div className="spinner tertiary"></div></center>
-    }
-    </Fragment>
+        <Spinner />
+      }
+      </Fragment>
     )
   }
 }

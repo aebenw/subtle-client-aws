@@ -2,16 +2,11 @@ import { URL, HEADERS } from '../../constants'
 
 const errorAction = (error) => ({type: "LOGIN_ERROR", error})
 const loginAction = (user) => ({ type: "LOGIN_USER", user})
-
 const userShow = (user) => ({type: "USER_SHOW", user})
-
 const addFriendToCurr = (user) => ({type: "ADD_FRIEND", user})
 const addCurrUserAsFriend = () => ({type: "ADD_CURR_AS_FRIEND"})
-
 const rmFriendFromCurr = (user) => ({type: "RM_FRIEND", user})
 const rmCurrUserAsFriend = () => ({type: "RM_CURR_AS_FRIEND"})
-
-
 
 export function loginUser(user) {
   return (dispatch) => {
@@ -19,16 +14,16 @@ export function loginUser(user) {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(user)
-    }).then(r => r.json())
-      .then(user => {
-        if(user.error) {dispatch(errorAction(user.error))}
-        else {
-          localStorage.setItem("jwt", user.jwt)
-         dispatch(loginAction(user.user.user))
-       }
-      })
+    })
+    .then(r => r.json())
+    .then(user => {
+      if(user.error) {dispatch(errorAction(user.error))}
+      else {
+        localStorage.setItem("jwt", user.jwt)
+       dispatch(loginAction(user.user.user))
+     }
+    })
   }
-
 }
 
 
@@ -38,13 +33,14 @@ export function createUser(user) {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(user)
-    }).then(r => r.json())
-      .then(user => {
-        if(user.error) {dispatch(errorAction(user.error))}
-        else {
-          localStorage.setItem("jwt", user.jwt)
-          dispatch(loginAction(user.user.user))
-       }
+    })
+    .then(r => r.json())
+    .then(user => {
+      if(user.error) {dispatch(errorAction(user.error))}
+      else {
+        localStorage.setItem("jwt", user.jwt)
+        dispatch(loginAction(user.user.user))
+      }
     })
   }
 }
@@ -57,7 +53,8 @@ export function fetchWithToken(token) {
       Accept: "application/json",
       Authorization: token
     }
-  }).then(r => r.json())
+    })
+    .then(r => r.json())
     .then(user => {
       if(user.error) {dispatch(errorAction(user.error))}
       else {
@@ -98,7 +95,8 @@ export function addFriend(currUser, user){
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(body)
-    }).then(r => r.json())
+    })
+    .then(r => r.json())
     .then(r => (dispatch(addFriendToCurr(r)),
     dispatch(addCurrUserAsFriend())
   ))
@@ -117,9 +115,11 @@ export function rmFriend(currUser, user){
       method: "DELETE",
       headers: HEADERS,
       body: JSON.stringify(body)
-    }).then(r => r.json())
-    .then(r => (dispatch(rmFriendFromCurr(user)),
-    dispatch(rmCurrUserAsFriend())
+    })
+    .then(r => r.json())
+    .then(r => (
+      dispatch(rmFriendFromCurr(user)),
+      dispatch(rmCurrUserAsFriend())
     ))
   }
 }

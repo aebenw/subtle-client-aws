@@ -2,10 +2,12 @@ import React from 'react'
 
 const LoginError = ({error}) => {
   return(
-    <div className="row" style={{"width":"100%",   "align-items": "center",
-      "justify-content": "center"}}>
-      <div className=" error">
-
+    <div className="row" style={{
+      "width":"100%",
+      "align-items": "center",
+      "justify-content": "center"
+    }}>
+      <div className="error">
         <h4>Login Error<span><p>- {error}</p></span></h4>
       </div>
     </div>
@@ -15,8 +17,11 @@ const LoginError = ({error}) => {
 const SignUpError = ({error}) => {
   debugger
   return(
-    <div className="row" style={{"width":"100%",   "align-items": "center",
-      "justify-content": "center"}}>
+    <div className="row" style={{
+      "width":"100%",
+      "align-items": "center",
+      "justify-content": "center"
+    }}>
       <div className=" error">
         <h4>Sign Up Error
           <span>

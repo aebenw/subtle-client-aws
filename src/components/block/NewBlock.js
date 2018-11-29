@@ -1,7 +1,6 @@
-import React,{ Component, Fragment } from 'react'
+import React,{ Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
-import ActiveStorageProvider from 'react-activestorage-provider'
 
 //ACTIONS
 import { createBlock, attatchBlobToBlock } from '../../store/actions/blocks'
@@ -53,7 +52,6 @@ class NewBlock extends Component {
 
   response = (e) => {
     this.setState({
-
       block: {
         ...this.state.block,
       file: e.file.name

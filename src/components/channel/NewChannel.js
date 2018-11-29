@@ -1,7 +1,12 @@
 import React,{ Component } from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom'
+
+//ACTIONS
 import { createChannel } from '../../store/actions/channels'
+
+//COMPONENTS
+import {FormInput} from '../forms/Input'
 import _ from "lodash"
 
 
@@ -16,13 +21,12 @@ class NewChannel extends Component {
       collab: ''
     }
 
-
-
   handleChange = (e) => {
+    let lowerCaseName = e.target.name.toLowerCase()
     this.setState({
       channel: {
         ...this.state.channel,
-      [e.target.name]: e.target.value
+      [lowerCaseName]: e.target.value
       }
     })
   }
@@ -42,28 +46,22 @@ class NewChannel extends Component {
   }
 
   render(){
-    const {collab} = this.state
     return(
       <div id="user-feed" className="row">
-      <center>
-      <div className="col-5-lg">
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <fieldset>
-    <legend>New Channel</legend>
-      <div className="input-group fluid">
-      <div>
-        <label>Name</label>
-        <input type="text" name="name" onChange={(e) => this.handleChange(e)}/>
-        <label>Collaborators</label>
-        <input type="text" name="collab" value={collab} onChange={_.debounce(this.handleColabChange, 300)}/>
-        <input type="submit"/>
+        <center>
+          <div className="col-5-lg">
+          <form onSubmit={(e) => this.handleSubmit(e)}>
+            <fieldset>
+              <legend>New Channel</legend>
+              <div className="input-group fluid">
+                <FormInput content={"Name"} method={this.handleChange}/>
+              </div>
+              <input type="submit"/>
+            </fieldset>
+          </form>
+        </div>
+        </center>
       </div>
-    </div>
-  </fieldset>
-</form>
-</div>
-</center>
-</div>
     )
   }
 }
@@ -84,3 +82,7 @@ const mapStateToProps = (state) => {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NewChannel))
+
+
+        // <label>Collaborators</label>
+        // <input type="text" name="collab" value={collab} onChange={_.debounce(this.handleColabChange, 300)}/>
