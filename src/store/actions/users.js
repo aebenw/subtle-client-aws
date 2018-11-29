@@ -97,9 +97,12 @@ export function addFriend(currUser, user){
       body: JSON.stringify(body)
     })
     .then(r => r.json())
-    .then(r => (dispatch(addFriendToCurr(r)),
-    dispatch(addCurrUserAsFriend())
-  ))
+    .then(r => {
+      return (
+        dispatch(addFriendToCurr(r)),
+        dispatch(addCurrUserAsFriend())
+      )}
+    )
   }
 }
 
@@ -117,9 +120,11 @@ export function rmFriend(currUser, user){
       body: JSON.stringify(body)
     })
     .then(r => r.json())
-    .then(r => (
-      dispatch(rmFriendFromCurr(user)),
-      dispatch(rmCurrUserAsFriend())
-    ))
+    .then(r => {
+      return (
+        dispatch(rmFriendFromCurr(user)),
+        dispatch(rmCurrUserAsFriend())
+      )}
+    )
   }
 }

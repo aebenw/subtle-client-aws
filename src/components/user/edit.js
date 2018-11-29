@@ -41,7 +41,6 @@ class EditUser extends Component {
 
   response = (e) => {
     this.setState({
-
       user: {
         ...this.state.user,
       profile: e.file.name
