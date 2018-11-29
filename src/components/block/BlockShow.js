@@ -8,27 +8,18 @@ import { createComment, addChannelBlock, fetchBlock } from '../../store/actions/
 
 
 //COMPONENTS
-import CommentContainer from '../../containers/CommentContainer'
-import {CommentTextArea} from '../forms/TextArea'
 import BlockPic from './BlockPic'
 import AppearsOn from './AppearsOn'
 import Spinner from '../Spinner'
+import CommentForm from '../comments/CommentForm'
 
 class BlockShow extends Component  {
 
   constructor(props){
     super(props)
     this.state = {
-      comment: {
-        comment: {
-          content: '',
-          user_id: this.props.userId,
-          block_id: this.props.history.location.state
-        }
-      },
       value: '',
       options: [],
-      appearsOn: this.props.channels
     }
   }
 
@@ -36,21 +27,14 @@ class BlockShow extends Component  {
     if (!this.state.options && this.props.currentBlock){
       if (this.props.currentBlock.channels){
         let difference = this.options()
+        let value = difference[0] ? difference[0].id : ''
+
         this.setState({
           ...this.state,
-            options: difference
+            options: difference,
+            value: value
           })
         }
-      }
-      if(this.props.currentBlock){
-        this.setState({
-          comment: {
-            comment: {
-              ...this.state.comment.comment,
-              block_id: this.props.currentBlock.id
-            }
-          }
-        })
       }
     }
 
@@ -63,24 +47,16 @@ class BlockShow extends Component  {
       let id = pathname.substr(pathname
         .lastIndexOf('/') + 1);
       id = parseInt(id)
-      this.setState({
-        comment:{
-          comment:{
-            ...this.state.comment.comment,
-            block_id: id
-          }
-        }
-      })
-
       fetchBlock(id)
     }
-
-    if(currentBlock !== prevProps.currentBlock){
+    if(prevProps.currentBlock && (currentBlock.id !== prevProps.currentBlock.id)){
       let difference = this.options()
+      let value = difference[0] ? difference[0].id : ''
+
       this.setState({
         ...this.state,
           options: difference,
-          value: this.state.options[0]
+          value: value
       })
     }
   }
@@ -98,65 +74,40 @@ class BlockShow extends Component  {
 
   handleSelectSubmit = (e) => {
     e.preventDefault()
+    const {currentBlock, addChannelBlock} = this.props
     let copy = [...this.state.options]
-    let chanId = parseInt(this.state.value)
-    let filtered = copy.filter(x => x.id != chanId)
+    let filtered = copy.filter(x => x.id !== this.state.value)
+    let value = filtered[0] ? filtered[0].id : ''
+      this.setState({
+        ...this.state,
+        options: filtered,
+        value: value
+      })
 
-    this.setState({
-      ...this.state,
-      options: filtered,
-      value: this.state.options[0]
-    }, () => this.state)
-
-    let body = {
-      channel_block: {
-      channel_id: chanId,
-      block_id: this.state.comment.comment.block_id
+      let body = {
+        channel_block: {
+        channel_id: this.state.value,
+        block_id: currentBlock.id
+        }
       }
-    }
-    this.props.addChannelBlock(body)
+      addChannelBlock(body)
+
   }
-
-  handleCommentChange = (e) => {
-    this.setState({
-      comment: {
-        comment: {
-        ...this.state.comment.comment,
-      [e.target.name]: e.target.value
-      }}
-
-    })
-  }
-
 
   handleSelectChange = (e) => {
+    let numberValue = parseInt(e.target.value)
     this.setState({
-      value: e.target.value
+      ...this.state,
+      value: numberValue
     })
 
   }
-
-  handleFormSubmit = (e) => {
-    e.preventDefault()
-    this.props.addComment(this.state.comment)
-    this.setState({
-      comment: {
-        comment: {
-          ...this.state.comment.comment,
-          content: ''
-      }}
-    })
-
-  }
-
 
   render(){
     const {currentBlock} = this.props
-    const {content} = this.state.comment.comment
     return(
       <Fragment>
         { currentBlock ?
-
         <div id="block-feed" className="row  block-page">
           <BlockPic src={currentBlock.file ? currentBlock.file : currentBlock.image} />
 
@@ -164,31 +115,20 @@ class BlockShow extends Component  {
           <h4>{currentBlock.content}</h4>
 
           {this.state.options[0] ?
-            <Fragment>
-          <select value={this.state.value} onChange={ this.handleSelectChange}> {this.selectOptions()}
-          </select>
-          <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
+          <Fragment>
+            <select value={this.state.value} onChange={(e) => this.handleSelectChange(e)}> {this.selectOptions()}
+            </select>
+            <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
           </Fragment>
           : null}
-          <Fragment>
           { currentBlock.channels ?
             <AppearsOn channels={currentBlock.channels}/>
           : null
           }
-          </Fragment>
+          <CommentForm />
+            </div>
+          </div>
 
-
-          <form onSubmit={(e) => this.handleFormSubmit(e)}>
-            {currentBlock.comments ?
-            <CommentContainer comments={currentBlock.comments} />
-            :
-              null
-            }
-            <CommentTextArea content={content} method={this.handleCommentChange} />
-            <input type="submit" />
-          </form>
-        </div>
-        </div>
 
         : <Spinner/>
         }
@@ -200,7 +140,6 @@ class BlockShow extends Component  {
 const mapStateToProps = (state) => {
   return {
     currentBlock: state.blocks.currentBlock,
-    userId: state.users.currentUser.id,
     currentUserId: state.users.currentUser.id,
     userChannels: state.users.currentUser.channels
    }
@@ -220,3 +159,15 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter (connect(mapStateToProps, mapDispatchToProps)(BlockShow))
+
+          {/* <form onSubmit={(e) => this.handleFormSubmit(e)}>
+            {currentBlock.comments ?
+            <CommentContainer comments={currentBlock.comments} />
+            :
+              null
+            }
+            <CommentTextArea content={content} method={this.handleCommentChange} />
+            <input type="submit" />
+          </form>
+        </div>
+        </div> */}

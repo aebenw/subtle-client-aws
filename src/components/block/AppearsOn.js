@@ -11,7 +11,7 @@ const AppearsOn = ({channels, showChannel}) => {
       <h2>Appears on: </h2>
         {channels.map(channel => {
           return (
-            <Link to={`/channel/${channel.id}`}>
+            <Link key={channel.id} to={`/channel/${channel.id}`}>
               <li onClick={() => showChannel(channel.id)}>{channel.name}</li>
             </Link>
           )
