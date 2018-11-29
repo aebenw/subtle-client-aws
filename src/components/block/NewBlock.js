@@ -7,15 +7,11 @@ import ActiveStorageProvider from 'react-activestorage-provider'
 import { createBlock, attatchBlobToBlock } from '../../store/actions/blocks'
 
 //COMPONENTS
-import FormInput from '../forms/Input'
-import TextArea from '../forms/TextArea'
+import {FormInput} from '../forms/Input'
+import {TextArea} from '../forms/TextArea'
 
 
 import ASProvider from '../activestorage/Provider'
-
-
-
-
 
 class NewBlock extends Component {
 
@@ -40,7 +36,7 @@ class NewBlock extends Component {
         ...this.state.block,
       [lowerCaseName]: e.target.value
       }
-    }, () => console.log(this.state))
+    })
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -72,17 +68,17 @@ class NewBlock extends Component {
     return(
     <div id="user-feed" className="row">
       <div className="col-5-lg">
-      <form onSubmit={(e) => this.handleSubmit(e)}>
-        <fieldset>
-          <legend>New Block</legend>
-          <div className="input-group">
-            <FormInput content={"Name"} method={this.handleChange}/>
-            <TextArea content={"Content"} method={this.handleChange}/>
-            <ASProvider method={this.response} model={"block"}/>
-            <input type="submit"/>
-          </div>
-        </fieldset>
-      </form>
+        <form onSubmit={(e) => this.handleSubmit(e)}>
+          <fieldset>
+            <legend>New Block</legend>
+            <div className="input-group">
+              <FormInput content={"Name"} method={this.handleChange}/>
+              <TextArea content={"Content"} method={this.handleChange}/>
+              <ASProvider method={this.response} model={"block"}/>
+              <input type="submit"/>
+            </div>
+          </fieldset>
+        </form>
       </div>
     </div>
     )

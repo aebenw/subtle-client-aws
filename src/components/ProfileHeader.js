@@ -1,9 +1,7 @@
 import React,{ Fragment } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
-import { fetchChannel } from '../store/actions/channels'
-import {fetchUserInfo} from '../store/actions/users'
 import { addFriend } from '../store/actions/users'
 import { rmFriend } from '../store/actions/users'
 
@@ -17,10 +15,7 @@ import Edit from './buttons/Edit'
 import { NO_PROFILE } from '../constants'
 
 
-
-
-
-const header = ({ user, showChannel, userShow, currentUser, addFriend, rmFriend, friendly, history, changeView, view }) => {
+const header = ({ user, currentUser, addFriend, rmFriend, friendly }) => {
   let isFriend
   if (user.id !== currentUser.id){ isFriend = friendly() }
   return (
@@ -42,10 +37,9 @@ const header = ({ user, showChannel, userShow, currentUser, addFriend, rmFriend,
         </Fragment>
         }
       </div>
-        { user.file ?
-        <ProfilePic src={user.file}/>
-        :
-        <ProfilePic src={NO_PROFILE}/>}
+
+        <ProfilePic src={user.file ? user.file : NO_PROFILE}/>
+
 
         <div className="row">
             {user.description ?
@@ -75,12 +69,6 @@ const mapState= (state, ownProps) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    showChannel: (channel) => {
-      return dispatch(fetchChannel(channel))
-    },
-    userShow: (user) => {
-      return dispatch(fetchUserInfo(user))
-    },
     addFriend: (currUser, user) => {
       return dispatch(addFriend(currUser, user))
     },
@@ -89,7 +77,5 @@ const mapDispatch = (dispatch) => {
     }
   }
 }
-
-
 
 export default withRouter(connect(mapState, mapDispatch)(header))

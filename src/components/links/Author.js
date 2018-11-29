@@ -21,11 +21,6 @@ const mapStateCard = (state) => {
     type: "CARD"
   }
 }
-// const mapStateTitle = (state) => {
-//   return {
-//
-//   }
-// }
 
 const mapDispatch = (dispatch) => {
   return {

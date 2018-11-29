@@ -3,6 +3,10 @@ import { loginUser } from '../../store';
 import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
 
+import { FormInput, Password } from '../forms/Input'
+import { LoginError } from '../forms/Error'
+
+
 class Login extends Component {
 
   state = {
@@ -27,46 +31,37 @@ class Login extends Component {
   }
 
   handleChange = (e) => {
+    let lowerCaseName = e.target.name.toLowerCase()
+
     this.setState({
       user: {
       ...this.state.user,
-      [e.target.name]: e.target.value
+      [lowerCaseName]: e.target.value
     }
     })
   }
 
   render(){
-    const { email, password } = this.state
     const { error } = this.props
     return(
       <Fragment>
       <div id="user-feed" className="row">
         { error ?
-          <div className="row" style={{"width":"100%",   "align-items": "center",
-            "justify-content": "center"}}>
-          <div className=" error">
-
-          <h4>Login Error<span><p>- {error}</p></span></h4>
-        </div>
-        </div>
+          <LoginError error={error} />
         : null
-      }
+        }
       <div className="row">
-      <div className="col-5-lg">
-        <form onSubmit={(e) => this.handSubmit(e)}>
-          <fieldset>
-            <legend>Log In</legend>
-            <label>Email:</label>
-            <input onChange={(e) => this.handleChange(e)} name="email" value={email} type="text">
-            </input>
-            <label>Password:</label>
-            <input onChange={(e) => this.handleChange(e)} name="password" value={password} type="password">
-            </input>
-            <button type="submit">Log In</button>
-        </fieldset>
-      </form>
+        <div className="col-5-lg">
+          <form onSubmit={(e) => this.handSubmit(e)}>
+            <fieldset>
+              <legend>Log In</legend>
+              <FormInput content={"Email"} method={this.handleChange}/>
+              <Password method={this.handleChange}/>
+              <button type="submit">Log In</button>
+            </fieldset>
+          </form>
+        </div>
       </div>
-    </div>
       </div>
     </Fragment>
     )

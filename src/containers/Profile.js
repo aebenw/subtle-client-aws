@@ -1,11 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Link } from 'react-router-dom'
-import { token } from '../constants'
+import { withRouter } from 'react-router-dom'
 
-import ChannelContainer from './ChannelContainer'
 import ProfileHeader from '../components/ProfileHeader'
-import {FriendContainer} from './UserContainer'
+import ContentContainer from '../components/user/ContentContainer'
 
 import ChangeView from '../components/buttons/ChangeView'
 import Add from '../components/buttons/Add'
@@ -16,41 +14,17 @@ class Profile extends Component {
     view: "Channels"
   }
 
-
-
   changeView = (change) => {
      return this.setState({
       view: change
-    }, () => console.log(this.state))
+    })
   }
-
-  container = () => {
-    const { view } = this.state
-    const { currentUser } = this.props
-
-    if(view === "Channels") {
-      return (
-        <ChannelContainer channels={currentUser.channels} />
-      )
-    } else if(view === "Friends"){
-      return (
-        <FriendContainer/>
-      )
-    } else if(view === "Followed Channels"){
-      return (
-        <ChannelContainer channels={currentUser.channel_follow}/>
-      )
-    }
-  }
-
 
   render(){
     const { currentUser } = this.props
     const { view } = this.state
-
     return (
       <Fragment>
-
         {currentUser.name ?
           <Fragment>
           <ProfileHeader user={currentUser}/>
@@ -59,14 +33,13 @@ class Profile extends Component {
             <ChangeView content={"Channels"} changeView={this.changeView}/>
             <ChangeView content={"Friends"} changeView={this.changeView}/>
             <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
+
             { view === "Channels" ?
             <Add content={"channels"} />
             : null
-          }
+            }
           </div>
-
-          {this.container()}
-
+          <ContentContainer user={currentUser} view={view} />
         </Fragment>
       :
       <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>

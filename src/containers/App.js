@@ -80,18 +80,14 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.users.currentUser,
-    setHistory: state.users.setHistory
-  }
+    currentUser: state.users.currentUser
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchWithToken: (token) => {
       return dispatch(fetchWithToken(token))
-    },
-    getContent: () => {
-      return dispatch(getContent())
     }
   }
 }

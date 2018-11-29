@@ -13,5 +13,21 @@ const TextArea = ({ content, method }) => {
     </div>
   )
 }
+const CommentTextArea = ({ method, content }) => {
+  return (
+    <div className="row">
+      <div className='col-5-lg'>
+        </div>
+        <div className='col-5-lg'>
+        <textarea type="text" name="content" style={{display:"inline"}} value={content} placeholder="Comment" onChange={(e) => method(e)}>
+        </textarea>
+      </div>
+    </div>
+  )
+}
 
-export default TextArea
+
+export {
+  TextArea,
+  CommentTextArea
+}

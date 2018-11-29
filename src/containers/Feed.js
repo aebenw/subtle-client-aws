@@ -115,7 +115,7 @@ class Feed extends Component {
 
 
   render(){
-    const { content, channelShow, blockShow, currentUser, noFeed } = this.props
+    const { content, noFeed } = this.props
     return (
       <Fragment >
         <div id="home-feed" className="row">

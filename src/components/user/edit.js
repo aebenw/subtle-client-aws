@@ -4,8 +4,8 @@ import {withRouter} from 'react-router-dom'
 import { editUser } from '../../store/actions/users'
 
 //COMPONENTS
-import FormInput from '../forms/Input'
-import TextArea from '../forms/TextArea'
+import {FormInput} from '../forms/Input'
+import {TextArea} from '../forms/TextArea'
 
 import ASProvider from '../activestorage/Provider'
 
