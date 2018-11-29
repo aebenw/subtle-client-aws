@@ -110,27 +110,28 @@ class BlockShow extends Component  {
         { currentBlock ?
         <div id="block-feed" className="row  block-page">
           <BlockPic src={currentBlock.file ? currentBlock.file : currentBlock.image} />
-
           <div className="col-sm-5 block-form">
-          <h4>{currentBlock.content}</h4>
+            <h4>{currentBlock.content}</h4>
 
-          {this.state.options[0] ?
-          <Fragment>
-            <select value={this.state.value} onChange={(e) => this.handleSelectChange(e)}> {this.selectOptions()}
-            </select>
-            <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
-          </Fragment>
-          : null}
-          { currentBlock.channels ?
-            <AppearsOn channels={currentBlock.channels}/>
-          : null
-          }
-          <CommentForm />
-            </div>
+            {this.state.options[0] ?
+              <Fragment>
+                <select value={this.state.value} onChange={(e) => this.handleSelectChange(e)}> {this.selectOptions()}
+                </select>
+                <button className="add-button" onClick={(e) => this.handleSelectSubmit(e)}>Add to Channel</button>
+              </Fragment>
+            : null}
+
+            { currentBlock.channels ?
+              <AppearsOn channels={currentBlock.channels}/>
+            : null
+            }
+
+            <CommentForm />
+
           </div>
-
-
-        : <Spinner/>
+        </div>
+        :
+          <Spinner/>
         }
       </Fragment>
     )
@@ -147,9 +148,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addComment: (comment) => {
-      return dispatch(createComment(comment))
-    },
     addChannelBlock: (ids) => {
       return dispatch(addChannelBlock(ids))
     },
@@ -159,15 +157,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter (connect(mapStateToProps, mapDispatchToProps)(BlockShow))
-
-          {/* <form onSubmit={(e) => this.handleFormSubmit(e)}>
-            {currentBlock.comments ?
-            <CommentContainer comments={currentBlock.comments} />
-            :
-              null
-            }
-            <CommentTextArea content={content} method={this.handleCommentChange} />
-            <input type="submit" />
-          </form>
-        </div>
-        </div> */}
