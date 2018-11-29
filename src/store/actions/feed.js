@@ -1,7 +1,6 @@
 import { URL, HEADERS } from '../../constants'
 
 const contentAction = (content) => ({type: "NEW_CONTENT", content})
-
 const noFeed = (content) => ({type: "NO_FEED", content})
 
 export const getContent = (id) => {

@@ -1,22 +1,13 @@
 import { URL, HEADERS } from '../../constants'
 
 export const showChannel = (channel) => ({type: "SELECT_CHANNEL", channel})
-
 export const addFollower = (user) => ({type: "ADD_FOLLOWER", user})
-
 export const rmFollower = (user) => ({type: "RM_FOLLOWER", user})
-
 export const addFollowedChannel = (channel) => ({type: "ADD_FOLLOWED_CHANNEL", channel})
-
 export const rmFollowedChannel = (channel) => ({type: "RM_FOLLOWED_CHANNEL", channel})
-
 export const addToUserChannel  = (channel) => ({ type: "ADD_CHANNEL", channel})
-
 export const rmCurrChannel  = () => ({ type: "RM_CURR_CHANNEL"})
-
-
 export const rmChannelFromUser  = (channelId) => ({ type: "DELETE_CHANNEL", channelId})
-
 
 export function createChannel(channel){
   return (dispatch) => {
@@ -24,7 +15,8 @@ export function createChannel(channel){
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify(channel)
-    }).then(r => r.json())
+    })
+    .then(r => r.json())
     .then(r => {
       return (
         dispatch(showChannel(r)),
@@ -50,7 +42,6 @@ export function followChannel(user, channel){
       user_id: user
     }
   }
-
   return (dispatch) => {
     return fetch(URL + `channels/followers`, {
       method: `POST`,
@@ -59,8 +50,10 @@ export function followChannel(user, channel){
     })
     .then(r => r.json())
     .then(r => {
-      return dispatch(addFollower(r.user)),
-      dispatch(addFollowedChannel(r.channel))
+      return (
+        dispatch(addFollower(r.user)),
+        dispatch(addFollowedChannel(r.channel))
+      )
     })
   }
 }
@@ -79,11 +72,12 @@ export function unFollowChannel(user, channel){
       body: JSON.stringify(body)
     })
     .then(r => r.json())
-    .then(r => (
-      dispatch(rmFollower(r.user)),
-      dispatch(rmFollowedChannel(r.channel))
-
-    ))
+    .then(r => {
+      return (
+        dispatch(rmFollower(r.user)),
+        dispatch(rmFollowedChannel(r.channel))
+      )
+    })
   }
 }
 

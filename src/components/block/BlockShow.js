@@ -14,11 +14,7 @@ import BlockPic from './BlockPic'
 import AppearsOn from './AppearsOn'
 import Spinner from '../Spinner'
 
-
-
-
 class BlockShow extends Component  {
-
 
   constructor(props){
     super(props)
@@ -35,7 +31,6 @@ class BlockShow extends Component  {
       appearsOn: this.props.channels
     }
   }
-
 
   componentDidMount() {
     if (!this.state.options && this.props.currentBlock){
@@ -59,8 +54,6 @@ class BlockShow extends Component  {
       }
     }
 
-
-
   componentDidUpdate(prevProps){
     const { pathname } = this.props.history.location
     const { currentUserId, currentBlock, fetchBlock } = this.props
@@ -82,14 +75,13 @@ class BlockShow extends Component  {
       fetchBlock(id)
     }
 
-
     if(currentBlock !== prevProps.currentBlock){
       let difference = this.options()
       this.setState({
         ...this.state,
           options: difference,
           value: this.state.options[0]
-      }, () => console.log(this.state))
+      })
     }
   }
 
@@ -103,8 +95,6 @@ class BlockShow extends Component  {
     let channelIds = this.props.currentBlock.channels.map(x => x.id)
     return this.props.userChannels.filter(x => !channelIds.includes(x.id))
     }
-
-
 
   handleSelectSubmit = (e) => {
     e.preventDefault()
@@ -227,7 +217,6 @@ const mapDispatchToProps = (dispatch) => {
     fetchBlock: (block) =>
     dispatch(fetchBlock(block))
   }
-
 }
 
 export default withRouter (connect(mapStateToProps, mapDispatchToProps)(BlockShow))

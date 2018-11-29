@@ -6,13 +6,11 @@ import { withRouter } from 'react-router-dom'
 import { token } from '../constants'
 
 //ACTIONS
-import {getContent} from '../store/actions/feed'
 import { fetchWithToken } from '../store/actions/users'
 
 //COMPONENTS
 import LoggedOutNav from '../components/nav/LoggedOutNav'
 import LoggedInNav from '../components/nav/LoggedInNav'
-
 import Welcome from '../components/Welcome'
 import Feed from './Feed'
 import Login from '../components/auth/Login'
@@ -25,9 +23,6 @@ import BlockShow from '../components/block/BlockShow'
 import UserShow from '../components/user/UserShow'
 import Edit from '../components/user/edit'
 import {FriendContainer, NotFriendContainer} from '../containers/UserContainer'
-
-
-
 
 class App extends Component {
 

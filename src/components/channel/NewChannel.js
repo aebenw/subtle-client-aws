@@ -7,7 +7,7 @@ import { createChannel } from '../../store/actions/channels'
 
 //COMPONENTS
 import {FormInput} from '../forms/Input'
-import _ from "lodash"
+// import _ from "lodash"
 
 
 

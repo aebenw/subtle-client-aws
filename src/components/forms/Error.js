@@ -15,7 +15,6 @@ const LoginError = ({error}) => {
 }
 
 const SignUpError = ({error}) => {
-  debugger
   return(
     <div className="row" style={{
       "width":"100%",
@@ -34,7 +33,6 @@ const SignUpError = ({error}) => {
 }
 
 const errors = (error) => {
-  debugger
   return (
     <ul>
       {error.password ?

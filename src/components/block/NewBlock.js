@@ -8,8 +8,6 @@ import { createBlock, attatchBlobToBlock } from '../../store/actions/blocks'
 //COMPONENTS
 import {FormInput} from '../forms/Input'
 import {TextArea} from '../forms/TextArea'
-
-
 import ASProvider from '../activestorage/Provider'
 
 class NewBlock extends Component {
@@ -45,9 +43,11 @@ class NewBlock extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.createBlock(this.state)
-    .then(res => (
-      this.props.history.state = res.id, this.props.history.push(`/block/${res.block.id}`))
-    )
+    .then(res => {
+      return (
+      this.props.history.state = res.id, this.props.history.push(`/block/${res.block.id}`)
+      )
+    })
   }
 
   response = (e) => {
