@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Add = ({ content}) => {
+const Add = ({ content }) => {
   return (
     <div className="col-sm-offset-5" style={{ "margin-left": "15.7em"}}>
 

@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom'
 
+//COMPONENTS
 import ProfileHeader from '../components/ProfileHeader'
-import ContentContainer from '../components/user/ContentContainer'
-
+import { UserContentContainer } from '../components/ContentContainer'
 import ChangeView from '../components/buttons/ChangeView'
 import Add from '../components/buttons/Add'
+import Spinner from '../components/Spinner'
+
 
 
 class Profile extends Component {
@@ -39,13 +41,12 @@ class Profile extends Component {
             : null
             }
           </div>
-          <ContentContainer user={currentUser} view={view} />
+          <UserContentContainer user={currentUser} view={view} />
         </Fragment>
-      :
-      <center><div style={{"marginTop": "10em"}} className="spinner tertiary"></div></center>
-    }
-
-    </Fragment>
+        :
+        <Spinner />
+        }
+      </Fragment>
     )
   }
 

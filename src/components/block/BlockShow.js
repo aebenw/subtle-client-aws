@@ -1,6 +1,6 @@
 import React,{ Fragment, Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 //ACTIONS
@@ -12,6 +12,7 @@ import CommentContainer from '../../containers/CommentContainer'
 import {CommentTextArea} from '../forms/TextArea'
 import BlockPic from './BlockPic'
 import AppearsOn from './AppearsOn'
+import Spinner from '../Spinner'
 
 
 
@@ -199,7 +200,7 @@ class BlockShow extends Component  {
         </div>
         </div>
 
-        : <center><div className="spinner tertiary"></div></center>
+        : <Spinner/>
         }
       </Fragment>
     )

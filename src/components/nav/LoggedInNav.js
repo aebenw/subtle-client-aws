@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
@@ -16,9 +16,7 @@ class LoggedInNav extends Component {
   }
 
   render(){
-
-      return(
-        <Fragment>
+    return(
         <div className="logged-in">
         <ul className="heading">
         <li>
@@ -56,7 +54,6 @@ class LoggedInNav extends Component {
           Log Out
         </button>
         </div>
-        </Fragment>
     )
   }
 }

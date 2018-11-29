@@ -1,23 +1,21 @@
 import React, { Fragment, Component } from 'react'
 import { connect } from 'react-redux'
-import { withRouter, Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 
 
 //COMPONENTS
 import ChannelHeader  from '../header/ChannelHeader'
+import { ChannelContentContainer } from '../ContentContainer'
+import ChangeView from '../buttons/ChangeView'
+import Add from '../buttons/Add'
+import Spinner from '../Spinner'
 
-//CONTAINERS
-import { ChannelFollowerContainer } from '../../containers/UserContainer'
-import BlockContainer from '../../containers/BlockContainer'
 
 //ACTIONS
-import {fetchUserInfo} from '../../store/actions/users'
 import { fetchChannel } from '../../store/actions/channels'
 
-import ChangeView from '../buttons/ChangeView'
 
-import Add from '../buttons/Add'
 
 
 class ChannelShow extends Component {
@@ -47,24 +45,6 @@ class ChannelShow extends Component {
         })
       }
 
-        container = () => {
-          const { view } = this.state
-          const { currentChannel  } = this.props
-
-          if(view === "Blocks") {
-            return (
-              <BlockContainer blocks={currentChannel.blocks}/>
-            )
-          } else if(view === "Followers"){
-            return (
-              <Fragment>
-              {currentChannel.followers[0] ?
-              <ChannelFollowerContainer/>
-              : <h3>No Followers</h3>}
-              </Fragment>
-            )
-          }
-        }
 
     render(){
     const { currentChannel, isMine } = this.props
@@ -84,9 +64,9 @@ class ChannelShow extends Component {
                 null
               }
             </div>
-            {this.container()}
+            <ChannelContentContainer channel={currentChannel} view={view} />
           </Fragment>
-        : <center><div className="spinner tertiary"></div></center>
+        : <Spinner />
         }
       </Fragment>
     )
@@ -105,9 +85,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userShow: (user) => {
-      return dispatch(fetchUserInfo(user))
-    },
     showChannel: (channel) =>
      dispatch(fetchChannel(channel))
   }

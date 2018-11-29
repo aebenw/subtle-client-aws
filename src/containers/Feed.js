@@ -1,22 +1,16 @@
 import React,{Fragment, Component} from 'react';
 import { connect } from 'react-redux'
-import { token } from '../constants'
 import { withRouter, Link } from 'react-router-dom'
 import {getContent} from '../store/actions/feed'
 
 //Components
-import Channel from '../components/channel/channel'
-import Block from '../components/block/Block'
 import User from '../components/user/user'
 import {TitleAuthor} from '../components/links/Author'
-
+import Spinner from '../components/Spinner'
 
 //Containers
 import BlockContainer from './BlockContainer'
 import ChannelContainer from './ChannelContainer'
-
-
-
 
 //ACTIONS
 import { selectBlock } from '../store/actions/blocks'
@@ -120,29 +114,28 @@ class Feed extends Component {
       <Fragment >
         <div id="home-feed" className="row">
           <div className="col-lg-10">
-        {content ?
-          <Fragment>
-            {this.sortContent()}
-          </Fragment>
-          : null
-        }
-        {noFeed ?
-        <Fragment>
-          <div className="row">
-            <div className="col-12-lg">
-          <center><h3>{noFeed}</h3></center>
-          </div>
+            {content ?
+              <Fragment>
+                {this.sortContent()}
+              </Fragment>
+                : null
+            }
+            {noFeed ?
+              <Fragment>
+                <div className="row">
+                  <div className="col-12-lg">
+                    <center><h3>{noFeed}</h3></center>
+                  </div>
+                </div>
+              </Fragment>
+              : null
+            }
+
+            {!noFeed && !content ? <Spinner/>
+              : null }
+            </div>
           </div>
         </Fragment>
-      : null
-      }
-
-
-        {!noFeed && !content ? <center><div className="spinner tertiary"></div></center>
-      : null }
-      </div>
-      </div>
-      </Fragment>
     )
   }
 

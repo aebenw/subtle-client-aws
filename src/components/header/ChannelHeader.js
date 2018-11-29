@@ -20,27 +20,27 @@ const ChannelHeader = ({currentChannel, currentUserId, amFollowing, isMine, foll
 
   return (
   <Fragment>
-  <div className="container profile">
-    <div className="row">
-    <Title content={currentChannel.name}/>
-    <div className="col-5-sm">
-      <h4> Author </h4>
-      <TitleAuthor user={currentChannel.authors[0]}/>
-    </div>
+    <div className="container profile">
+      <div className="row">
+        <Title content={currentChannel.name}/>
+        <div className="col-5-sm">
+          <h4> Author </h4>
+          <TitleAuthor user={currentChannel.authors[0]}/>
+        </div>
 
-    {isMine() ?
+      {isMine() ?
       <FollowUnfollow method={() => deleteThisChannel(currentChannel.id, deleteChannel, history, rmCurrChannel)} content={'Delete Channel'}/>
-    :
+      :
       <Fragment>
-      { following ?
-        <FollowUnfollow method={() => unFollowChannel(currentUserId, currentChannel.id)} content={"Unfollow"} />
-        :
-        <FollowUnfollow method={() => followChannel(currentUserId, currentChannel.id)} content={"Follow"} />
-      }
+        { following ?
+          <FollowUnfollow method={() => unFollowChannel(currentUserId, currentChannel.id)} content={"Unfollow"} />
+          :
+          <FollowUnfollow method={() => followChannel(currentUserId, currentChannel.id)} content={"Follow"} />
+        }
       </Fragment>
-    }
+      }
+      </div>
     </div>
-  </div>
   </Fragment>
   )
 }
