@@ -7,14 +7,12 @@ import Block from '../components/block/Block'
 
 //Actions
 import { fetchBlock } from '../store/actions/blocks'
-import {fetchUserInfo} from '../store/actions/users'
 
 
 const BlockContainer = ({blocks, userShow, blockShow}) => {
   return (
   <div id="feed" className="row">
-    {blocks.map(block => <Block key={block.id} block={block} blockShow={blockShow}
-    userShow={userShow}/>
+    {blocks.map(block => <Block key={block.id} block={block} blockShow={blockShow}/>
     )}
   </div>
   )
@@ -24,10 +22,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     blockShow: (block) => {
     return dispatch(fetchBlock(block))
-  },
-    userShow: (user) => {
-    return dispatch(fetchUserInfo(user))
-  }
+    }
   }
 }
 

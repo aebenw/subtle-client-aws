@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 //Components
 
-const Channel = ({channel, channelShow, userShow}) => {
+const Channel = ({channel, channelShow}) => {
   return(
       <div key={channel.id} className="card  channel-card" >
       <Link to={{pathname: `/channel/${channel.id}`, state: channel.id}}>

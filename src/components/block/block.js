@@ -8,11 +8,13 @@ const Block = ({block, blockShow, userShow}) => {
   return(
     <div  className="card user-card" >
       <Link to={{pathname:`/block/${block.id}`, state : block.id}}>
-      <img src={block.file ? block.file : block.image} className="section media" onClick={() => blockShow(block.id)} alt="block"/>
+        <img src={block.file ? block.file : block.image} className="section media" onClick={() => blockShow(block.id)} alt="block"/>
       </Link>
       <div className="section author">
-        <span style={{display :"inline"}}><p>Author: </p>
-          <CardAuthor user={block.author}/></span>
+        <span style={{display :"inline"}}>
+          <p>Author: </p>
+          <CardAuthor user={block.author}/>
+        </span>
       </div>
   </div>
   )

@@ -1,10 +1,9 @@
-import React,{ Fragment, Component } from 'react'
-import { withRouter, Link } from 'react-router-dom'
+import React,{ Fragment } from 'react'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux';
 
 
-import {fetchUserInfo} from '../../store/actions/users'
-import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel, fetchChannel} from '../../store/actions/channels'
+import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel } from '../../store/actions/channels'
 
 import Title from './Title'
 import FollowUnfollow from './FollowUnfollow'
@@ -16,7 +15,7 @@ import {TitleAuthor} from '../links/Author'
 
 
 
-const ChannelHeader = ({currentChannel, currentUserId, amFollowing, changeView, isMine, userShow, followChannel, unFollowChannel, view, deleteChannel, rmChannel, history}) => {
+const ChannelHeader = ({currentChannel, currentUserId, amFollowing, isMine, followChannel, unFollowChannel, deleteChannel, rmChannel, history}) => {
   let following = amFollowing()
 
   return (

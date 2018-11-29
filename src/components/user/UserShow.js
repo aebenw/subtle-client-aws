@@ -6,8 +6,8 @@ import { withRouter } from 'react-router-dom'
 import { fetchUserInfo } from '../../store/actions/users'
 
 //CONTAINERS
-import {UserFriendContainer} from '../../containers/UserContainer'
-import ChannelContainer from '../../containers/ChannelContainer'
+import ContentContainer from './ContentContainer'
+
 
 //COMPONENTS
 import ProfileHeader from '../ProfileHeader'
@@ -18,70 +18,40 @@ import ChangeView from '../buttons/ChangeView'
 
 class UserShow extends Component {
 
-    state = {
-      view: 'Channels'
+  state = {
+    view: 'Channels'
+  }
+
+  componentDidUpdate(prevProps){
+    const { pathname } = this.props.history.location
+    const { currentUserId, userShow, fetchUserInfo } = this.props
+
+    if (!prevProps.currentUserId && currentUserId && !userShow){
+
+      let id = pathname.substr(pathname
+        .lastIndexOf('/') + 1);
+      id = parseInt(id)
+
+      fetchUserInfo(id)
     }
 
-      changeView = (change) => {
-         return this.setState({
-          view: change
-        })
-      }
+    if(userShow !== prevProps.userShow){
+      this.setState({
+        view: 'Channels'
+      })
+    }
 
-      componentDidUpdate(prevProps){
-        const { pathname } = this.props.history.location
-        const { currentUserId, userShow, fetchUserInfo } = this.props
+  }
 
-        if (!prevProps.currentUserId && currentUserId && !userShow){
+  changeView = (change) => {
+     return this.setState({
+      view: change
+    })
+  }
 
-          let id = pathname.substr(pathname
-            .lastIndexOf('/') + 1);
-          id = parseInt(id)
-
-          fetchUserInfo(id)
-        }
-
-        if(userShow !== prevProps.userShow){
-          this.setState({
-            view: 'Channels'
-          })
-        }
-
-      }
-
-
-
-
-      container = () => {
-        const { view } = this.state
-        const { userShow } = this.props
-
-        if(view === "Channels") {
-          return (
-            <Fragment>
-            {userShow.channels ?
-            <ChannelContainer channels={userShow.channels} />
-            : <h4>No Channels to Show</h4>
-            }
-          </Fragment>
-          )
-        } else if(view === "Friends"){
-          return (
-            <UserFriendContainer/>
-          )
-        } else if(view === "Followed Channels"){
-          return (
-          <Fragment>
-          {userShow.channel_follow[0] ?
-            <ChannelContainer channels={userShow.channel_follow}/>
-          : <h4>Not Following any Channels</h4>
-          }
-          </Fragment>
-          )
-        }
-      }
   render() {
     const {userShow} = this.props
+    const { view } = this.state
     return (
       <Fragment>
       {userShow ?
@@ -92,7 +62,7 @@ class UserShow extends Component {
             <ChangeView content={"Friends"} changeView={this.changeView}/>
             <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
           </div>
-          {this.container()}
+          <ContentContainer user={userShow} view={view} />
         </Fragment>
       :
       <center><div className="spinner tertiary"></div></center>

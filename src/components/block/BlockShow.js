@@ -5,11 +5,13 @@ import { withRouter, Link } from 'react-router-dom'
 
 //ACTIONS
 import { createComment, addChannelBlock, fetchBlock } from '../../store/actions/blocks'
-import { fetchChannel } from '../../store/actions/channels'
 
 
 //COMPONENTS
 import CommentContainer from '../../containers/CommentContainer'
+import {CommentTextArea} from '../forms/TextArea'
+import BlockPic from './BlockPic'
+import AppearsOn from './AppearsOn'
 
 
 
@@ -157,34 +159,15 @@ class BlockShow extends Component  {
   }
 
 
-  appearsOn = () => {
-    return this.props.currentBlock.channels.map(channel => {
-      return (
-        <Link key={channel.id} to={`/channel/${channel.id}`}>
-        <li onClick={() => this.props.showChannel(channel.id)}>{channel.name}</li>
-        </Link>
-      )
-      }
-    )
-  }
-
-  media = () => {
-    return (
-      <div id="block-img"><img src={this.props.currentBlock.file ? this.props.currentBlock.file : this.props.currentBlock.image} className="section media"  alt="block"/></div>
-    )
-  }
-
   render(){
     const {currentBlock} = this.props
+    const {content} = this.state.comment.comment
     return(
       <Fragment>
         { currentBlock ?
 
         <div id="block-feed" className="row  block-page">
-          <div className="row">
-          <div className="col-4-lg">
-          {this.media()}
-          </div>
+          <BlockPic src={currentBlock.file ? currentBlock.file : currentBlock.image} />
 
           <div className="col-sm-5 block-form">
           <h4>{currentBlock.content}</h4>
@@ -198,27 +181,23 @@ class BlockShow extends Component  {
           : null}
           <Fragment>
           { currentBlock.channels ?
-          <ul className="list">
-            <h2>Appears on: </h2>
-              {this.appearsOn()}
-          </ul>
+            <AppearsOn channels={currentBlock.channels}/>
           : null
           }
           </Fragment>
 
 
           <form onSubmit={(e) => this.handleFormSubmit(e)}>
-          <div>
-          {currentBlock.comments ?
+            {currentBlock.comments ?
             <CommentContainer comments={currentBlock.comments} />
-            : null}
-          </div>
-          <textarea name="content" value={this.state.comment.comment.content} style={{display:"inline"}} placeholder="comment" onChange={(e) => this.handleCommentChange(e)}></textarea>
-          <input type="submit" />
+            :
+              null
+            }
+            <CommentTextArea content={content} method={this.handleCommentChange} />
+            <input type="submit" />
           </form>
         </div>
         </div>
-              </div>
 
         : <center><div className="spinner tertiary"></div></center>
         }
@@ -243,9 +222,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     addChannelBlock: (ids) => {
       return dispatch(addChannelBlock(ids))
-    },
-    showChannel: (channel) => {
-      return dispatch(fetchChannel(channel))
     },
     fetchBlock: (block) =>
     dispatch(fetchBlock(block))
