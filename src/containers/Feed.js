@@ -92,7 +92,7 @@ class Feed extends Component {
           <div className="row">
             <div className="col-12-lg">
           <center><Link to={{pathname: `/users/${x.user.id}`, state: x.user.id}}>
-          <h3 onClick={userShow(x.user.id)}>{x.user.name}</h3>
+          <h3 onClick={() => userShow(x.user.id)}>{x.user.name}</h3>
           </Link>
           <h3> made channels</h3>
         </center>
