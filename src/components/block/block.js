@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //Components
-import { CardAuthor } from '../links/Author'
+import { CardAuthor } from '../links/Author' 
 
 const Block = ({block, blockShow, userShow}) => {
   return(
