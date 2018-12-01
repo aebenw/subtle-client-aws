@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 //Components
-import Block from '../components/block/Block'
+import Block from '../components/block/block'
 
 
 //Actions
