@@ -39,17 +39,12 @@ class BlockShow extends Component  {
           <BlockPic src={currentBlock.file ? currentBlock.file : currentBlock.image} />
           <div className="col-sm-5 block-form">
             <h4>{currentBlock.content}</h4>
-
               <ChannelSelect />
-
-
             { currentBlock.channels ?
               <AppearsOn channels={currentBlock.channels}/>
             : null
             }
-
             <CommentForm />
-
           </div>
         </div>
         :
