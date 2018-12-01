@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { Route } from 'react-router-dom'
+// import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Route } from 'react-router-dom'
 
 import { token } from '../constants'
 
