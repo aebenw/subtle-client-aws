@@ -22,12 +22,11 @@ const header = ({ user, currentUser, addFriend, rmFriend, friendly }) => {
     <Fragment>
 
       <div className="container profile">
+        <div style={{"position":"relative"}}>
         <div className="row">
           <Title content={user.name} />
           { user.id === currentUser.id ?
-              <div className="col-sm-offset-7">
                 <Edit content={"profile"} />
-              </div>
           :
           <Fragment>
             { isFriend ?
@@ -36,6 +35,7 @@ const header = ({ user, currentUser, addFriend, rmFriend, friendly }) => {
           }
         </Fragment>
         }
+      </div>
       </div>
 
         <ProfilePic src={user.file ? user.file : NO_PROFILE}/>

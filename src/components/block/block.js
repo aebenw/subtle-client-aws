@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 //Components
-import { CardAuthor } from '../links/Author' 
+import { CardAuthor } from '../links/Author'
 
 const Block = ({block, blockShow, userShow}) => {
   return(
@@ -11,10 +11,12 @@ const Block = ({block, blockShow, userShow}) => {
         <img src={block.file ? block.file : block.image} className="section media" onClick={() => blockShow(block.id)} alt="block"/>
       </Link>
       <div className="section author">
-        <span style={{display :"inline"}}>
-          <p>Author: </p>
+        <div style={{display :"inline"}}>
+          <p>Author:
+
           <CardAuthor user={block.author}/>
-        </span>
+          </p>
+        </div>
       </div>
   </div>
   )
