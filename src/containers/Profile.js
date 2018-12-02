@@ -30,16 +30,17 @@ class Profile extends Component {
         {currentUser.name ?
           <Fragment>
           <ProfileHeader user={currentUser}/>
+          <div style={{"position":"relative"}}>
+            <div className="row" style={{"margin-left": "2em"}}>
+              <ChangeView content={"Channels"} changeView={this.changeView}/>
+              <ChangeView content={"Friends"} changeView={this.changeView}/>
+              <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
 
-          <div className="row" style={{"margin-left": "2em"}}>
-            <ChangeView content={"Channels"} changeView={this.changeView}/>
-            <ChangeView content={"Friends"} changeView={this.changeView}/>
-            <ChangeView content={"Followed Channels"} changeView={this.changeView}/>
-
-            { view === "Channels" ?
-            <Add content={"channels"} />
-            : null
-            }
+              { view === "Channels" ?
+              <Add content={"channels"} />
+              : null
+              }
+            </div>
           </div>
           <UserContentContainer user={currentUser} view={view} />
         </Fragment>

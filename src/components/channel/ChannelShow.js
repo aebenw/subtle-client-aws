@@ -54,7 +54,7 @@ class ChannelShow extends Component {
         {currentChannel ?
           <Fragment>
             <ChannelHeader isMine={isMine} currentChannel={currentChannel}/>
-
+            <div style={{"position":"relative"}}>
             <div className="row" style={{"margin-left": "2em"}}>
               <ChangeView content={"Blocks"} changeView={this.changeView}/>
               <ChangeView content={"Followers"} changeView={this.changeView}/>
@@ -64,6 +64,7 @@ class ChannelShow extends Component {
                 null
               }
             </div>
+          </div>
             <ChannelContentContainer channel={currentChannel} view={view} />
           </Fragment>
         : <Spinner />

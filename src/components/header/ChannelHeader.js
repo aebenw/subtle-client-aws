@@ -7,9 +7,11 @@ import {followChannel, unFollowChannel, deleteChannel, rmCurrChannel } from '../
 
 import Title from './Title'
 import FollowUnfollow from './FollowUnfollow'
+import Column from './Column'
+
 
 //LINKS
-import {TitleAuthor} from '../links/Author'
+import {ColAuthor} from '../links/Author'
 
 
 
@@ -23,23 +25,23 @@ const ChannelHeader = ({currentChannel, currentUserId, amFollowing, isMine, foll
     <div className="container profile">
       <div className="row">
         <Title content={currentChannel.name}/>
-        <div className="col-5-sm">
-          <h4> Author </h4>
-          <TitleAuthor user={currentChannel.authors[0]}/>
-        </div>
-
       {isMine() ?
-      <FollowUnfollow method={() => deleteThisChannel(currentChannel.id, deleteChannel, history, rmCurrChannel)} content={'Delete Channel'}/>
-      :
-      <Fragment>
-        { following ?
-          <FollowUnfollow method={() => unFollowChannel(currentUserId, currentChannel.id)} content={"Unfollow"} />
-          :
-          <FollowUnfollow method={() => followChannel(currentUserId, currentChannel.id)} content={"Follow"} />
-        }
-      </Fragment>
+        <FollowUnfollow method={() => deleteThisChannel(currentChannel.id, deleteChannel, history, rmCurrChannel)} content={'Delete Channel'}/>
+        :
+        <Fragment>
+          { following ?
+            <FollowUnfollow method={() => unFollowChannel(currentUserId, currentChannel.id)} content={"Unfollow"} />
+            :
+            <FollowUnfollow method={() => followChannel(currentUserId, currentChannel.id)} content={"Follow"} />
+          }
+        </Fragment>
       }
+    </div>
+
+      <div className="row">
+        <Column title={"Author"} content={<ColAuthor user={currentChannel.authors[0]}/>}/>
       </div>
+
     </div>
   </Fragment>
   )

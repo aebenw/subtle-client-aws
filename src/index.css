@@ -866,6 +866,14 @@ a:visited {
   padding-top: 2.3em;
   height: 24.5em; */
 }
+
+.column {
+  margin-left: 0px;
+  text-decoration: underline
+  /* padding-left: 4.5px;
+  padding-top: 2.3em;
+  height: 24.5em; */
+}
 /* .profile > h1,  h4 {
   border-bottom: solid;
   font-style:italic;
@@ -873,6 +881,15 @@ a:visited {
 /* .profile > .row  > .col-4-sm {
   width: 10em;
 } */
+
+.col-text{
+  margin-left: 2px;
+  margin-top: 3px;
+}
+
+.add-btn {
+
+}
 .container.profile{
   padding-top: 2.5em;
   padding-bottom: 2.5em;
@@ -900,7 +917,7 @@ a:visited {
 }
 .card > .section:last-child * {
   border-bottom: 0;
-  display: inline;
+  display: contents;
   font-size: 1em;
 }
 
@@ -1182,6 +1199,11 @@ a[role="button"]:focus, label[role="button"]:hover, label[role="button"]:focus, 
 button:focus{
   outline:none;
 
+}
+
+.alter-btn {
+    position: absolute;
+    right: 5em;
 }
 
 .add-button {
