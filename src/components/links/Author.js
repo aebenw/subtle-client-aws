@@ -20,10 +20,9 @@ const tagType = (user, type, userShow) => {
   switch(type){
     case "CARD" :
       return (
-        <div className="section author">
-        <p onClick={() => userShow(user.id)}>{user.name}</p>
-        </div>
-      );
+        <div onClick={() => userShow(user.id)} className="section author">
+        {user.name}
+        </div>);
 
     case "COL":
       return (<h4 style={{"margin": "0"}} onClick={() => userShow(user.id)}>{user.name}</h4>);

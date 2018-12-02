@@ -769,6 +769,8 @@ a:visited {
   --card-border-color: #ddd;
 }
 
+
+
 .card {
   /* display: flex;
   /* flex-direction: column; */
@@ -1200,6 +1202,22 @@ button:focus{
   outline:none;
 
 }
+.form-input{
+  padding-bottom: 1em;
+}
+
+.form-textarea{
+  position: relative;
+  height: 7em;
+  padding-bottom: 1em;
+}
+
+.form-textarea{
+  position: relative;
+  height: 7em;
+  padding-bottom: 1em;
+}
+
 
 .alter-btn {
     position: absolute;
@@ -2715,4 +2733,19 @@ box-sizing: border-box;
 
     .add-btn:hover:after {
       content: "+++++"
+    }
+
+    .hidden-file {
+        visibility: hidden;
+        height: 0px;
+        padding: 0px;
+        margin: 0px;
+        border: 0px
+    }
+    .hidden {
+        visibility: hidden;
+        height: 0px;
+        padding: 0px;
+        margin: 0px;
+        border: 0px
     }

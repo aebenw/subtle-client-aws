@@ -5,7 +5,8 @@ import { withRouter } from 'react-router-dom';
 
 import { FormInput, Password } from '../forms/Input'
 
-import { SignUpError } from '../forms/Error'
+import { SignUpError } from './Error'
+
 
 
 class SignUp extends Component {
@@ -55,6 +56,8 @@ class SignUp extends Component {
           <div className="col-5-lg">
             <form onSubmit={(e) => this.handSubmit(e)}>
               <fieldset>
+                <legend>Sign Up</legend>
+                <input type="file" className="hidden-file"/>
                 <FormInput content={"Name"} method={this.handleChange}/>
                 <FormInput content={"Email"} method={this.handleChange}/>
                 <Password  method={this.handleChange}/>

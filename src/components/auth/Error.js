@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{Fragment} from 'react'
 
 const LoginError = ({error}) => {
   return(
@@ -7,7 +7,7 @@ const LoginError = ({error}) => {
       "align-items": "center",
       "justify-content": "center"
     }}>
-      <div className="error">
+      <div className="col-5-lg error">
         <h4>Login Error<span><p>- {error}</p></span></h4>
       </div>
     </div>
@@ -21,12 +21,9 @@ const SignUpError = ({error}) => {
       "align-items": "center",
       "justify-content": "center"
     }}>
-      <div className=" error">
-        <h4>Sign Up Error
-          <span>
-            <p>{errors(error)}</p>
-          </span>
-        </h4>
+      <div className="col-5-lg error">
+        <h4>Sign Up Error</h4><br/>
+            {errors(error)}
       </div>
     </div>
   )
@@ -37,22 +34,33 @@ const errors = (error) => {
     <ul>
       {error.password ?
         <li>
-          <p>Password:</p>
-            <ul>{error.password.map(x => <li>{x} </li>)}</ul>
+          <p>Password:</p><br/>
+            <ul>{error.password.map(x =>
+              <Fragment>
+              <li>{x}</li><br/>
+              </Fragment>
+            )}</ul>
         </li>
       : null
       }
       {error.email ?
         <li>
-          <p>Email:</p>
-            {error.email.map(x => <p>{x}</p>)}
+          <p>Email:</p><br/>
+            <ul>{error.email.map(x =>
+              <Fragment>
+            <li>{x}</li><br/>
+            </Fragment>
+          )}</ul>
         </li>
           : null
       }
       {error.name ?
         <li>
-          <p>Name:</p>
-          {error.name.map(x => <p>{x}</p>)}
+          <p>Name:</p><br/>
+          <ul>{error.name.map(x =>
+            <Fragment>
+              <li>{x}</li><br/>
+            </Fragment>)}</ul>
         </li>
         : null
       }
