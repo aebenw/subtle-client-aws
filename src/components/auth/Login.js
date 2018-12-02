@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from 'react-router-dom'
 
 import { FormInput, Password } from '../forms/Input'
-import { LoginError } from '../forms/Error'
+import { LoginError } from './Error'
 
 
 class Login extends Component {
@@ -50,14 +50,17 @@ class Login extends Component {
           <LoginError error={error} />
         : null
         }
-      <div className="row">
         <div className="col-5-lg">
+      <div className="row">
           <form onSubmit={(e) => this.handSubmit(e)}>
             <fieldset>
               <legend>Log In</legend>
+              <div className="input-group">
+              <input type="file" className="hidden-file"/>
               <FormInput content={"Email"} method={this.handleChange}/>
               <Password method={this.handleChange}/>
               <button type="submit">Log In</button>
+            </div>
             </fieldset>
           </form>
         </div>

@@ -60,7 +60,7 @@ class EditUser extends Component {
                 <FormInput content={"Name"} method={this.handleChange}/>
                 <TextArea content={"Description"} method={this.handleChange}/>
                 <ASProvider method={this.response} model={'user'} />
-                <input type="submit"/>
+                <div><input type="submit"/></div>
               </div>
             </fieldset>
           </form>
